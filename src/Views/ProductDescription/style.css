@@ -25,6 +25,11 @@
   border: 1px solid gray;
 }
 
+.attribute-img:hover {
+  border: 3px solid gray;
+  cursor: pointer;
+}
+
 .custom-option-description {
   font-weight: normal !important;
   display: block !important;

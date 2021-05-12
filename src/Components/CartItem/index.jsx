@@ -11,13 +11,9 @@ const CartItem = ({ item }) => {
     <div className="col-md-12 p-0 my-2">
       <div className="item-content-wrapper d-flex ">
         <div>
-          <img
-            src={`data:image/png;base64,${item.itemImage}`}
-            className="cart-image"
-            alt=""
-          />
+          <img src={item.itemImage} className="cart-image" alt="" />
         </div>
-        <div className="pl-2 w-100">
+        <div className="pl-4 w-100">
           <p className="font-weight-bold">{item.itemName}</p>
           {/* <p className="no-space text-small">Color: {item.attribute.color}</p>
           <p className="no-space">Size: {item.attribute.size}</p> */}
@@ -26,12 +22,29 @@ const CartItem = ({ item }) => {
           </div>
           <div className="web-show-stuff">
             <div className="d-flex align-items-center  select-wrapper">
-              <select name="cars" id="cars" className="custom-select">
+              {/* <select name="cars" id="cars" className="custom-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
                 <option value="audi">Audi</option>
-              </select>
+              </select> */}
+              <div className="d-flex justify-content-center align-items-center">
+                <div
+                  className="custom-box"
+                  // onClick={() =>
+                  //   setQuantity(quantity <= 1 ? quantity - 0 : quantity - 1)
+                  // }
+                >
+                  -
+                </div>
+                <div className="custom-box">0</div>
+                <div
+                  className="custom-box"
+                  // onClick={() => setQuantity(quantity + 1)}
+                >
+                  +
+                </div>
+              </div>
               <button className="btn btn-light delete-btn" onClick={removeCart}>
                 X Delete
               </button>
@@ -44,12 +57,21 @@ const CartItem = ({ item }) => {
       </div>
       <div className="mob-show-stuff d-none mt-3">
         <div className="d-flex align-items-center  select-wrapper w-100">
-          <select name="cars" id="cars" className="custom-select w-75">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
+          <div
+            className="custom-box"
+            // onClick={() =>
+            //   setQuantity(quantity <= 1 ? quantity - 0 : quantity - 1)
+            // }
+          >
+            -
+          </div>
+          <div className="custom-box">0</div>
+          <div
+            className="custom-box"
+            // onClick={() => setQuantity(quantity + 1)}
+          >
+            +
+          </div>
           <button className="btn btn-light delete-btn ">X Delete</button>
         </div>
         <p className="text-available">
