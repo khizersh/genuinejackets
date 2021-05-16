@@ -7,6 +7,7 @@
   font-size: 25px;
   letter-spacing: 3px;
   color: #444444;
+  color: #b12704;
 }
 .product-description {
   color: gray;
@@ -19,6 +20,7 @@
   letter-spacing: 0.1em;
   font-size: 13px;
   vertical-align: middle;
+  color: #337ab7;
 }
 
 .attribute-img {
@@ -109,4 +111,10 @@
     margin-top: 30px;
     /* margin-bottom: 20px; */
   }
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px;
+  color: grey;
 }

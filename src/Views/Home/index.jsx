@@ -40,7 +40,6 @@ const Home = () => {
         <h1 className="text-center font-weight-bold mt-5">New Arrival</h1>
         <CardFour products={products} />
       </div>
-      <Footer />
     </div>
   );
 };

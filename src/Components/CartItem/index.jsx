@@ -49,9 +49,9 @@ const CartItem = ({ item }) => {
                 X Delete
               </button>
             </div>
-            <p className="text-available">
+            {/* <p className="text-available">
               Available - Delivery in 2-7 business days
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

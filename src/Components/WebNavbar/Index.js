@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
-import { RiPagesLine } from "react-icons/ri";
+import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./style.css";
 import {
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
 } from "reactstrap";
+
+import "./style.css";
+
 const WebNavbar = ({ categories }) => {
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
@@ -72,7 +73,7 @@ const WebNavbar = ({ categories }) => {
             <Link to="/cart">
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
                 <span className="cartnumber">{state.length}</span>
-                <RiPagesLine className="icon" />
+                <IoCartOutline className="icon" size={20} />
                 <p className="icon_name">Bag</p>
               </span>
             </Link>
@@ -103,7 +104,7 @@ const WebNavbar = ({ categories }) => {
                           border: "none",
                           margin: 0,
                         }}
-                        classNames="categoryButton"
+                        className="categoryButton"
                       >
                         {cat?.title}
                       </DropdownToggle>

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
-  console.log("state: ",state);
+  // console.log("state: ",state);
   if (!state.length)
     return (
       <h1 className="d-flex justify-content-center align-items-center my-5">

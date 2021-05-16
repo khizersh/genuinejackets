@@ -8,7 +8,7 @@ const index = ({ detail }) => {
       <Tabs>
         <TabList>
           <Tab>DESCRIPTION</Tab>
-          <Tab>ADDITIONAL INFORMATION</Tab>
+          {/* <Tab>ADDITIONAL INFORMATION</Tab> */}
           <Tab>REVIEWS (0)</Tab>
         </TabList>
 
@@ -16,7 +16,7 @@ const index = ({ detail }) => {
           <h2 className="pb-4 product-description-tab">Description</h2>
           <p>{detail?.description}</p>
         </TabPanel>
-        <TabPanel>
+        {/* <TabPanel>
           <h2 className="pb-4 product-description-tab">
             Additional Information
           </h2>
@@ -50,7 +50,7 @@ const index = ({ detail }) => {
               </tr>
             </tbody>
           </Table>
-        </TabPanel>
+        </TabPanel> */}
         <TabPanel>
           <h2 className="pb-4 product-description-tab">Reviews</h2>
           <p>There are no reviews yet.</p>

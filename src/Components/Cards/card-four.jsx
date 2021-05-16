@@ -41,19 +41,15 @@ const CardFour = (props) => {
               </div>
             </div>
             <CardBody className="text-center">
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center align-items-center">
                 <ReactStars
                   count={5}
                   onChange={(ratingChanged) => console.log(ratingChanged)}
                   size={24}
                   isHalf={true}
-                  // activeColor="yellow"
+                  edit={false}
                   value={3}
-                  // emptyIcon={<i className="far fa-star"></i>}
-                  // halfIcon={<i className="fa fa-star-half-alt"></i>}
-                  // filledIcon={<i className="fa fa-star"></i>}
-                  // activeColor="#ffd700"
-                />
+                />{" "}(2)
               </div>
               <span className="card-product-title" tag="h5">
                 <Link to={`/product/${pro?.id}`}>{pro.title}</Link>

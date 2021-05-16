@@ -3,15 +3,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./Store/index";
 import { Provider } from "react-redux";
-import "./App.css";
+import { ToastContainer } from "react-toastify";
 
-import NavbarWrapper from "./Components/NavbarWrapper/Index";
+import "./App.css";
 import Home from "./Views/Home";
 import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
 import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
-import { ToastContainer } from 'react-toastify';
+import NavbarWrapper from "./Components/NavbarWrapper/Index";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                 <CategoryProducts />
               </Route>
             </Switch>
+            <Footer />
           </Router>
         </div>
       </PersistGate>
