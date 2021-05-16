@@ -45,7 +45,8 @@ const ProductDescription = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     getProductByIdWrapper();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [slug]);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
     if (data.data?.imageList?.length) {
