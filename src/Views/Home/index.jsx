@@ -45,7 +45,6 @@ const Home = () => {
         </h1>
         <CardFour products={products} />
       </div>
-      <Footer />
     </div>
   );
 };

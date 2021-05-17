@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 import CustomModal from "../CustomModal";
 import { CURRENCY } from "../../constant";
@@ -40,6 +41,16 @@ const CardFour = (props) => {
               </div>
             </div>
             <CardBody className="text-center">
+              <div className="d-flex justify-content-center align-items-center">
+                <ReactStars
+                  count={5}
+                  onChange={(ratingChanged) => console.log(ratingChanged)}
+                  size={24}
+                  isHalf={true}
+                  edit={false}
+                  value={3}
+                />{" "}(2)
+              </div>
               <span className="card-product-title" tag="h5">
                 <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
               </span>
