@@ -62,8 +62,10 @@ const ProductDescription = () => {
   };
   const getProducts = async (id) => {
     try {
-      const data = await getProductsByCategory(id);
-      setProducts(data.data);
+      const { data } = await getProductsByCategory(id);
+      const validProducts = data.filter((product) => product.range);
+      setProducts(validProducts);
+      setProducts(validProducts);
     } catch (error) {
       console.log(error);
     }
@@ -301,18 +303,18 @@ const ProductDescription = () => {
         <section className="mt-5">
           <h3>Related Items</h3>
           <Slider {...settings}>
-            {products.length
-              ? products.map((pro, ind) => (
-                  <ProductCard
-                    key={ind}
-                    id={pro?.id}
-                    title={pro?.title}
-                    imageList={pro?.imageList}
-                    range={pro?.range}
-                    data={pro}
-                  />
-                ))
-              : null}
+              {products.length
+                ? products.map((pro, ind) => (
+                    <ProductCard
+                      key={ind}
+                      id={pro?.id}
+                      title={pro?.title}
+                      imageList={pro?.imageList}
+                      range={pro?.range}
+                      data={pro}
+                    />
+                  ))
+                : null}
           </Slider>
         </section>
       </div>

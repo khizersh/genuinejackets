@@ -20,7 +20,8 @@ const Home = () => {
 
       console.log(data[0]);
       setSectionTitle(data[0].title);
-      setProducts(data[0].productList);
+      const validProducts = data[0].filter((product) => product.range);
+      setProducts(validProducts);
     } catch (error) {
       console.log(error);
     }

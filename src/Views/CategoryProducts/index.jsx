@@ -15,9 +15,11 @@ const Index = () => {
   }, [slug]);
   const getProducts = async () => {
     try {
-      const data = await getProductsByCategory(slug);
-      setProducts(data.data);
-      setPriceFilterProducts(data.data);
+      const {data} = await getProductsByCategory(slug);
+      setProducts(data);
+      const validProducts = data.filter((product) => product.range);
+      setProducts(validProducts);
+      setPriceFilterProducts(validProducts);
     } catch (error) {
       return error.message;
     }

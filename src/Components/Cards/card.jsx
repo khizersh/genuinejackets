@@ -12,8 +12,8 @@ const ProductCard = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState([]);
   return (
-    <div className="mt-2 p-2">
-      <Card className="product-card">
+    <div className="mt-2 p-2 ">
+      <Card className="product-card ">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">
             <Link to={`/product/${id}`}>
