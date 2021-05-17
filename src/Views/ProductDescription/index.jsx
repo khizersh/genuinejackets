@@ -35,7 +35,6 @@ const ProductDescription = () => {
         original: img.image,
         thumbnail: img.image,
       }));
-      console.log(arr);
       setImages(arr);
     }
     // setImages(data.data?.imageList);
@@ -61,14 +60,9 @@ const ProductDescription = () => {
   const onChangeAtrribute = async (val, ind) => {
     let dup = attribute;
     dup[ind] = val;
-    // console.log(val);
     setColor(val);
     setAttribute(dup);
 
-    // console.log(ind);
-    // console.log(attribute);
-    // console.log(detail?.attributeList);
-    // console.log(detail?.attributeList[ind].multi);
     if (!val) {
       let arr = detail?.imageList.map((img) => ({
         original: img.image,
@@ -80,14 +74,11 @@ const ProductDescription = () => {
       let attrData = detail?.attributeList[ind].childAttributeList.find(
         (e) => e.title === dup[ind]
       );
-      console.log(attrData);
       if (attrData && attrData.attributeImage?.length) {
-        // console.log(attrData.attributeImage);
         let imgArr = attrData.attributeImage.map((img) => ({
           original: img,
           thumbnail: img,
         }));
-        // console.log(imgArr);
         setImages(imgArr);
       }
     }
@@ -98,9 +89,7 @@ const ProductDescription = () => {
           list: attribute,
         });
         setPrice(data?.data);
-        // console.log(data);
       } catch (error) {
-        console.log(error);
       }
     }
   };
@@ -133,8 +122,6 @@ const ProductDescription = () => {
             <FormGroup>
               {detail
                 ? detail?.attributeList.map((attribute, index) => (
-                    // <></>
-                    // :
                     <Fragment key={index}>
                       <Label for="exampleSelect" className="attributes-heading">
                         {attribute?.parentTitle}: {color}
@@ -152,6 +139,7 @@ const ProductDescription = () => {
                                         width={55}
                                         height={65}
                                         className="p-1 m-1 attribute-img"
+                                        alt=""
                                         onMouseOver={() =>
                                           onChangeAtrribute(attr?.title, index)
                                         }

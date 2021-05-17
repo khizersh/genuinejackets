@@ -3,21 +3,24 @@ import React, { useEffect, useState } from "react";
 import SliderComponent from "../../Components/Slider";
 import CardFour from "../../Components/Cards/card-four";
 import Footer from "../../Components/Footer";
-import { getAllProducts, getMainBanner } from "../../api/index";
+import { getSectionProducts, getMainBanner } from "../../api/index";
 import "./style.css";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [banners, setBanners] = useState([]);
+  const [sectionTitle, setSectionTitle] = useState("");
   useEffect(() => {
     getAllProductsWrapper();
     getBanner();
   }, []);
   const getAllProductsWrapper = async () => {
     try {
-      const data = await getAllProducts();
+      const { data } = await getSectionProducts();
 
-      setProducts(data.data);
+      console.log(data[0]);
+      setSectionTitle(data[0].title);
+      setProducts(data[0].productList);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +40,9 @@ const Home = () => {
       <SliderComponent slides={banners} />
 
       <div className="container">
-        <h1 className="text-center font-weight-bold mt-5">New Arrival</h1>
+        <h1 className="text-center font-weight-bold mt-5">
+          {sectionTitle && sectionTitle}
+        </h1>
         <CardFour products={products} />
       </div>
       <Footer />

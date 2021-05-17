@@ -1,27 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { getProductsByCategory } from "../../api/index";
 import { useParams } from "react-router-dom";
-import Slider from "react-rangeslider";
-import "react-rangeslider/lib/index.css";
-import CardFour from "../../Components/Cards/card-four";
+import { Range } from "rc-slider";
+import SingleCard from "../../Components/SingleCard";
+import Footer from "../../Components/Footer";
+import { getProductsByCategory } from "../../api/index";
+import "rc-slider/assets/index.css";
 const Index = () => {
   const { slug } = useParams();
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState([50, 200]);
   const [products, setProducts] = useState([]);
-  const voulumeChange = (value) => {
-    setVolume(value);
-  };
+  const [priceFilterProducts, setPriceFilterProducts] = useState([]);
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [slug]);
   const getProducts = async () => {
     try {
       const data = await getProductsByCategory(slug);
-      console.log(data.data);
       setProducts(data.data);
+      setPriceFilterProducts(data.data);
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
+  };
+
+  const afterHandleChange = () => {
+    let productClone = [...products];
+    let filteredArray = [];
+    for (let index = 0; index < productClone.length; index++) {
+      let element = productClone[index];
+      if (element.range) {
+        if (
+          parseInt(element.range.split("-")[0].trim()) >= volume[0] &&
+          parseInt(element.range.split("-")[1].trim()) <= volume[1]
+        ) {
+          filteredArray.push(element);
+        }
+      } else {
+        filteredArray.push(element);
+      }
+    }
+    setPriceFilterProducts(filteredArray);
   };
   return (
     <div className="mt-5">
@@ -33,32 +51,44 @@ const Index = () => {
           height="500px"
         />
       </div>
-      <section>
-        <div className="container-fluid mt-5">
-          <div className="row justify-content-center align-items-center">
-            <div className="col-md-3">
-              <h2>Filter By Price</h2>
-              <Slider
-                min={1000}
-                max={5000}
-                step={1000}
-                tooltip={true}
-                labels={{ 1000: "Low", 5000: "High" }}
-                value={volume}
-                orientation="horizontal"
-                onChange={(e) => voulumeChange(e)}
-              />
+
+      <section className="mt-5">
+        <div className="container">
+          {products.length ? (
+            <div className="row">
+              <div className="col-md-3">
+                <div className="mt-5 pt-5">
+                  <h2> By Price</h2>
+                  <Range
+                    draggableTrack
+                    min={50}
+                    step={10}
+                    max={200}
+                    value={volume}
+                    onChange={setVolume}
+                    onAfterChange={afterHandleChange}
+                  />
+                  <p className="text-muted mt-3">
+                    Price: Rs {volume[0]} - Rs {volume[1]}
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-9">
+                <div className="row">
+                  {priceFilterProducts.map((item, index) => (
+                    <div className="col-md-4 my-1" key={index}>
+                      <SingleCard pro={item} />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="col-md-9">
-              {products.length > 0 ? (
-                <CardFour products={products} />
-              ) : (
-                <h1 className="text-center">Loading</h1>
-              )}
-            </div>
-          </div>
+          ) : (
+            <h1 className="text-center">No Products Available</h1>
+          )}
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

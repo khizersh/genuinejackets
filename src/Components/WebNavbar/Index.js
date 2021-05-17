@@ -103,7 +103,7 @@ const WebNavbar = ({ categories }) => {
                           border: "none",
                           margin: 0,
                         }}
-                        classNames="categoryButton"
+                        className="categoryButton"
                       >
                         {cat?.title}
                       </DropdownToggle>
