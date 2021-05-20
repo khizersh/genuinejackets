@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./style.css";
 import CartItem from "../../Components/CartItem";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -8,13 +8,22 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
-  // console.log("state: ",state);
+  const [subtotal, setSubtotal] = useState(0);
+  const [shippingCharge, setShippingCharges] = useState(50);
+  useEffect(() => {
+    let total = state
+      .map((item) => item.price)
+      .reduce((prev, curr) => prev + curr, 0);
+    setSubtotal(total);
+  }, []);
+  console.log("state: ", state);
   if (!state.length)
     return (
       <h1 className="d-flex justify-content-center align-items-center my-5">
         No Item Added
       </h1>
     );
+ 
   return (
     <div className="cart-wrapper mt-5 pt-5">
       <div className="container pt-3  item-main-wrapper">
@@ -37,14 +46,14 @@ const Cart = () => {
                   <p>Estimated Shipping:</p>
                 </div>
                 <div>
-                  <p>$259.90</p>
-                  <p>$259.90</p>
+                  <p>${subtotal}</p>
+                  <p>$10</p>
                 </div>
               </div>
               <hr />
               <div className="d-flex justify-content-between">
                 <p className="font-weight-bold">Order Total</p>
-                <p className="font-weight-bold">$259.90</p>
+                <p className="font-weight-bold">${shippingCharge+subtotal}</p>
               </div>
               <p className="secure-button btn btn-primary btn-block ">
                 Secure Checkout

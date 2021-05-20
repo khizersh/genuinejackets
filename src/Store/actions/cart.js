@@ -10,3 +10,10 @@ export const remove_from_cart = (data) => {
     data,
   };
 };
+export const update_cart = (data) => {
+  console.log(data)
+  return {
+    type: "UPDATE_CART",
+    data:data,
+  };
+};

@@ -18,6 +18,20 @@ const cartReducer = (state = initialState, action) => {
       console.log(filtered);
       return { ...state, cartArray: filtered };
     }
+    case "UPDATE_CART": {
+      let data = { ...state };
+      console.log(action.data.id);
+      console.log(action);
+      let updated = data?.cartArray.map((x) => {
+        console.log(action.data.quantityValue);
+        if (x.id === action.data.id) {
+          x.quantity =  action.data.quantityValue;
+        }
+        return x
+      });
+      console.log(updated);
+      return { ...state, cartArray: updated };
+    }
     default:
       return state;
   }

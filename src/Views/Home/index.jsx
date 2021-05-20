@@ -5,22 +5,33 @@ import CardFour from "../../Components/Cards/card-four";
 import Footer from "../../Components/Footer";
 import { getSectionProducts, getMainBanner } from "../../api/index";
 import "./style.css";
+import Slider from "react-slick";
+import TestCard from "../../Components/Cards/TestCard";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+
   const [banners, setBanners] = useState([]);
   const [sectionTitle, setSectionTitle] = useState("");
   useEffect(() => {
     getAllProductsWrapper();
     getBanner();
   }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  };
   const getAllProductsWrapper = async () => {
     try {
       const { data } = await getSectionProducts();
-
-      console.log(data[0]);
       setSectionTitle(data[0].title);
-      const validProducts = data[0].filter((product) => product.range);
+      const validProducts = data[0]?.productList.filter(
+        (product) => product.range
+      );
+      console.log(validProducts);
       setProducts(validProducts);
     } catch (error) {
       console.log(error);
@@ -44,7 +55,14 @@ const Home = () => {
         <h1 className="text-center font-weight-bold mt-5">
           {sectionTitle && sectionTitle}
         </h1>
-        <CardFour products={products} />
+        {/* <CardFour products={products} /> */}
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div>
+              <TestCard pro={product} />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
