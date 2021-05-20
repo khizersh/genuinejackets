@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Range } from "rc-slider";
+
 import SingleCard from "../../Components/SingleCard";
-import Footer from "../../Components/Footer";
 import { getProductsByCategory } from "../../api/index";
 import "rc-slider/assets/index.css";
 const Index = () => {
@@ -70,7 +70,7 @@ const Index = () => {
   };
   return (
     <div className="mt-5">
-      <div className="container " onClick={()=>console.log(range1,range2)}>
+      <div onClick={()=>console.log(range1,range2)}>
         <img
           src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
           alt="background cover"
@@ -91,7 +91,7 @@ const Index = () => {
                     min={range1}
                     step={10}
                     max={range2}
-                    value={volume]}
+                    value={volume}
                     onChange={setVolume}
                     onAfterChange={afterHandleChange}
                   />
@@ -115,7 +115,6 @@ const Index = () => {
           )}
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
