@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
@@ -7,21 +7,25 @@ import CustomModal from "../CustomModal";
 import { CURRENCY } from "../../constant";
 import "./style.css";
 
-const ProductCard = (props) => {
-  const { id, title, imageList, range } = props;
+function SliderCard({ pro }) {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState([]);
+  console.log(pro);
+  useEffect(() => {
+    setDetail(pro);
+  });
   return (
-    <div className="mt-2 p-2 ">
-      <Card className="product-card ">
+    <div className=" pb-5  p-1 mt-5  ">
+      <Card className="product-card-Wrapper">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">
-            <Link to={`/product/${id}`}>
+            <Link to={`/product/${pro?.id}`}>
               <CardImg
                 top
                 width="100%"
-                height="350px"
-                src={`${imageList[0]?.image}`}
+                height="300px"
+                className="card_img_wrapper"
+                src={`${pro.imageList[0].image}`}
                 alt="Card image cap"
               />
             </Link>
@@ -30,7 +34,7 @@ const ProductCard = (props) => {
             <Button
               className="add-to-cart-btn btn-block btn-sm"
               onClick={() => {
-                setDetail(props.data);
+                setDetail(pro);
                 setShowModal(!showModal);
               }}
             >
@@ -51,12 +55,12 @@ const ProductCard = (props) => {
             (2)
           </div>
           <span className="card-product-title" tag="h5">
-            <Link to={`/product/${id}`}>{title}</Link>
+            <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
           </span>
           <br />
-          <span tag="h6" className="mb-2 card-product-price">
+          <span tag="h6" className="mb-2 card-product-price pb-5">
             {CURRENCY}
-            {range}
+            {pro?.range}
           </span>
         </CardBody>
       </Card>
@@ -69,6 +73,6 @@ const ProductCard = (props) => {
       )}
     </div>
   );
-};
+}
 
-export default ProductCard;
+export default SliderCard;

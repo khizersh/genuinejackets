@@ -20,16 +20,33 @@ import {
 } from "../../api/index";
 import { CURRENCY } from "../../constant";
 import { add_to_cart } from "../../Store/actions/cart";
-import ProductCard from "../../Components/Cards/card";
 import "./style.css";
+import SliderCard from "../../Components/Cards/SliderCard";
 
 const settings = {
   dots: true,
   infinite: true,
   speed: 500,
   slidesToShow: 3,
-  slidesToScroll: 1,
-  arrows: true,
+  slidesToScroll: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 390,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+      },
+    },
+  ],
 };
 
 const ProductDescription = () => {
@@ -303,18 +320,11 @@ const ProductDescription = () => {
         <section className="mt-5">
           <h3>Related Items</h3>
           <Slider {...settings}>
-              {products.length
-                ? products.map((pro, ind) => (
-                    <ProductCard
-                      key={ind}
-                      id={pro?.id}
-                      title={pro?.title}
-                      imageList={pro?.imageList}
-                      range={pro?.range}
-                      data={pro}
-                    />
-                  ))
-                : null}
+            {products.map((product) => (
+              <div>
+                <SliderCard pro={product} />
+              </div>
+            ))}
           </Slider>
         </section>
       </div>

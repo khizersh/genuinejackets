@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import CartItem from "../../Components/CartItem";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -11,11 +11,16 @@ const Cart = () => {
   const [subtotal, setSubtotal] = useState(0);
   const [shippingCharge, setShippingCharges] = useState(50);
   useEffect(() => {
-    let total = state
-      .map((item) => item.price)
-      .reduce((prev, curr) => prev + curr, 0);
-    setSubtotal(total);
-  }, []);
+    let temp = 0;
+
+    for (let index = 0; index < state.length; index++) {
+      const element = state[index];
+      let value = element.price * element.quantity;
+      temp += value;
+    }
+    console.log(temp)
+    setSubtotal(temp  )
+  }, [state]);
   console.log("state: ", state);
   if (!state.length)
     return (
@@ -23,7 +28,7 @@ const Cart = () => {
         No Item Added
       </h1>
     );
- 
+
   return (
     <div className="cart-wrapper mt-5 pt-5">
       <div className="container pt-3  item-main-wrapper">
@@ -46,14 +51,14 @@ const Cart = () => {
                   <p>Estimated Shipping:</p>
                 </div>
                 <div>
-                  <p>${subtotal}</p>
-                  <p>$10</p>
+                  <p>{subtotal}</p>
+                  <p>{shippingCharge}</p>
                 </div>
               </div>
               <hr />
               <div className="d-flex justify-content-between">
                 <p className="font-weight-bold">Order Total</p>
-                <p className="font-weight-bold">${shippingCharge+subtotal}</p>
+                <p className="font-weight-bold">{shippingCharge + subtotal}</p>
               </div>
               <p className="secure-button btn btn-primary btn-block ">
                 Secure Checkout

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   DropdownToggle,
@@ -14,6 +14,7 @@ import {
 import "./style.css";
 
 const WebNavbar = ({ categories }) => {
+  const history = useHistory();
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
@@ -52,11 +53,11 @@ const WebNavbar = ({ categories }) => {
           <div className=" d-flex justify-content-center">
             <div>
               <Link to="/">
-              <img
-                className="logo"
-                src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
-                alt="logo"
-              />
+                <img
+                  className="logo"
+                  src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
+                  alt="logo"
+                />
               </Link>
             </div>
           </div>
@@ -106,7 +107,7 @@ const WebNavbar = ({ categories }) => {
                         }}
                         className="categoryButton"
                       >
-                        {cat?.title}
+                        <span  onClick={()=>history.push("/categories")}>{cat?.title}</span>
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {cat?.childList?.length
@@ -114,11 +115,12 @@ const WebNavbar = ({ categories }) => {
                               <DropdownItem
                                 className="dropdownItem"
                                 key={index}
+                                onClick={() =>
+                                  history.push(`/category/${child_cat?.id}`)
+                                }
                               >
-                                <Link to={`/category/${child_cat?.id}`}>
-                                  {" "}
-                                  {child_cat?.childTitle}
-                                </Link>
+                                {/* <Link to={}> */} {child_cat?.childTitle}
+                                {/* </Link>/ */}
                               </DropdownItem>
                             ))
                           : null}

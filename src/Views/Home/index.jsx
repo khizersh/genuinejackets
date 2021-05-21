@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import SliderComponent from "../../Components/Slider";
-import CardFour from "../../Components/Cards/card-four";
-import Footer from "../../Components/Footer";
+
 import { getSectionProducts, getMainBanner } from "../../api/index";
 import "./style.css";
 import Slider from "react-slick";
-import TestCard from "../../Components/Cards/TestCard";
+import SliderCard from "../../Components/Cards/SliderCard";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -23,6 +22,24 @@ const Home = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+    ],
   };
   const getAllProductsWrapper = async () => {
     try {
@@ -59,7 +76,7 @@ const Home = () => {
         <Slider {...settings}>
           {products.map((product) => (
             <div>
-              <TestCard pro={product} />
+              <SliderCard pro={product} />
             </div>
           ))}
         </Slider>

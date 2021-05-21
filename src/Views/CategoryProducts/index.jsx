@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Range } from "rc-slider";
 
-import SingleCard from "../../Components/SingleCard";
+// import SingleCard from "../../Components/SingleCard";
 import { getProductsByCategory } from "../../api/index";
 import "rc-slider/assets/index.css";
+import GlobalCard from "../../Components/GlobalCard/index";
 const Index = () => {
   const { slug } = useParams();
   const [range1, setRange1] = useState(150);
@@ -14,7 +15,7 @@ const Index = () => {
   const [priceFilterProducts, setPriceFilterProducts] = useState([]);
   useEffect(() => {
     getProducts();
-  }, [slug,volume]);
+  }, [slug, volume]);
   const getProducts = async () => {
     try {
       const { data } = await getProductsByCategory(slug);
@@ -42,7 +43,6 @@ const Index = () => {
         setRange2(8000);
         console.log("max", parseInt(element.range.split("-")[1].trim()));
         console.log("Max State===>", range2);
-
       }
     });
     setRange1(1000);
@@ -70,7 +70,7 @@ const Index = () => {
   };
   return (
     <div className="mt-5">
-      <div onClick={()=>console.log(range1,range2)}>
+      <div onClick={() => console.log(range1, range2)}>
         <img
           src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
           alt="background cover"
@@ -101,10 +101,10 @@ const Index = () => {
                 </div>
               </div>
               <div className="col-md-9">
-                <div className="row">
+                <div className="row p-0 m-0">
                   {priceFilterProducts.map((item, index) => (
-                    <div className="col-md-4 my-1" key={index}>
-                      <SingleCard pro={item} />
+                    <div className="col-md-4 m-0 p-0 " key={index}>
+                      <GlobalCard pro={item} className="w-100" />
                     </div>
                   ))}
                 </div>

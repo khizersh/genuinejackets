@@ -10,6 +10,7 @@ const CartItem = ({ item }) => {
     dispatch(remove_from_cart(item.id));
   };
   const updateCart = (quantityValue) => {
+    if(item.quantity+quantityValue<=1)return false
     dispatch(update_cart({ id: item.id, quantityValue }));
   };
   useEffect(() => {
@@ -23,8 +24,7 @@ const CartItem = ({ item }) => {
         </div>
         <div className="pl-4 w-100">
           <p className="font-weight-bold">{item.itemName}</p>
-          {/* <p className="no-space text-small">Color: {item.attribute.color}</p>
-          <p className="no-space">Size: {item.attribute.size}</p> */}
+         
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">
               ${item?.quantity * item.price}
@@ -33,11 +33,17 @@ const CartItem = ({ item }) => {
           <div className="web-show-stuff">
             <div className="d-flex align-items-center  select-wrapper">
               <div className="d-flex justify-content-center align-items-center">
-                <div className="custom-box" onClick={() => updateCart(item.quantity-1)}>
+                <div
+                  className="custom-box"
+                  onClick={() => updateCart(item.quantity - 1)}
+                >
                   -
                 </div>
                 <div className="custom-box">{item?.quantity}</div>
-                <div className="custom-box" onClick={() => updateCart(item.quantity+1)}>
+                <div
+                  className="custom-box"
+                  onClick={() => updateCart(item.quantity + 1)}
+                >
                   +
                 </div>
               </div>
