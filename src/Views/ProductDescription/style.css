@@ -27,7 +27,7 @@
   border: 1px solid gray;
 }
 
-.attribute-img:hover {
+.img-active, .attribute-img:hover {
   border: 3px solid gray;
   cursor: pointer;
 }
@@ -58,6 +58,17 @@
   cursor: pointer;
   margin: 0 !important;
 }
+
+.btn-buy{
+  background-color: #FCB800;
+  color: #fff;
+}
+
+.btn-buy:hover{
+  background-color: #E7A603;
+  color: #fff;
+}
+
 .product-description-links span:hover {
   cursor: pointer;
   color: #00b1b7;

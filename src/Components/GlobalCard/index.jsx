@@ -50,9 +50,9 @@ function GlobalCard({ pro }) {
               size={24}
               isHalf={true}
               edit={false}
-              value={3}
+              value={detail?.review}
             />{" "}
-            (2)
+            ({detail?.reviewCount})
           </div>
           <span className="card-product-title" tag="h5">
             <Link to={`/product/${pro?.id}`}>{pro.title}</Link>

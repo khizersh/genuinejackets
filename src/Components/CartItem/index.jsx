@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import { useDispatch } from "react-redux";
+
+import "./style.css";
 import { remove_from_cart, update_cart } from "../../Store/actions/cart";
+import { CURRENCY } from "../../constant";
+
 const CartItem = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -27,7 +30,7 @@ const CartItem = ({ item }) => {
          
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">
-              ${item?.quantity * item.price}
+              {CURRENCY}{item?.quantity * item.price}
             </p>
           </div>
           <div className="web-show-stuff">

@@ -20,8 +20,8 @@ import {
 } from "../../api/index";
 import { CURRENCY } from "../../constant";
 import { add_to_cart } from "../../Store/actions/cart";
-import "./style.css";
 import SliderCard from "../../Components/Cards/SliderCard";
+import "./style.css";
 
 const settings = {
   dots: true,
@@ -59,6 +59,7 @@ const ProductDescription = () => {
   const { slug } = useParams();
   const [detail, setDetail] = useState();
   const [products, setProducts] = useState([]);
+  const [isActive, setisActive] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
     getProductByIdWrapper();
@@ -90,7 +91,7 @@ const ProductDescription = () => {
   const addtocart = () => {
     if (attribute.length !== detail?.attributeList?.length)
       return toast.warning("Select All Attributes");
-    console.log("detail: ", detail);
+    // console.log("detail: ", detail);
     let cartItemObj = {
       id: detail.id,
       itemName: detail?.title,
@@ -104,12 +105,12 @@ const ProductDescription = () => {
     toast.success("Added To Cart");
   };
 
-  const onChangeAtrribute = async (val, ind) => {
+  const onChangeAtrribute = async (val, ind,i) => {
     let dup = attribute;
     dup[ind] = val;
     setColor(val);
     setAttribute(dup);
-
+    setisActive(i);
     if (!val) {
       let arr = detail?.imageList.map((img) => ({
         original: img.image,
@@ -171,9 +172,16 @@ const ProductDescription = () => {
                 size={24}
                 isHalf={true}
                 edit={false}
-                value={3}
+                value={detail?.review}
               />{" "}
-              (2)
+              ({detail?.reviewCount})
+            </div>
+            <div className="mt-3">
+              <ul className="pl-3">
+                {detail?.bulletList?.length ? detail?.bulletList.map((list,i) => (
+                  <li key={i}>{list?.point}</li>
+                )): null}
+              </ul>
             </div>
             <FormGroup>
               {detail
@@ -203,11 +211,12 @@ const ProductDescription = () => {
                                               key={i}
                                               width={55}
                                               height={65}
-                                              className="p-1 m-1 attribute-img rounded-circle"
+                                              className={"p-1 m-1 attribute-img rounded-circle " + (isActive === ind ? "img-active" : "")}
                                               onClick={() =>
                                                 onChangeAtrribute(
                                                   attr?.title,
-                                                  index
+                                                  index,
+                                                  ind
                                                 )
                                               }
                                             />
@@ -281,9 +290,7 @@ const ProductDescription = () => {
                 >
                   Add to Cart
                 </button>
-              </div>
-              <div>
-                <button className="btn btn-dark">Buy Now</button>
+                <button className="btn ml-3 btn-buy">Buy Now</button>
               </div>
             </div>
             <div className="mt-3">

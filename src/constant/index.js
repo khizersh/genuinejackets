@@ -130,4 +130,4 @@ export const Images = [
   },
 ];
 
-export const CURRENCY = "Rs.";
+export const CURRENCY = "$";

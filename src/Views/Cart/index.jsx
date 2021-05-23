@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
-import CartItem from "../../Components/CartItem";
+import { useSelector } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { TiStarburst } from "react-icons/ti";
+
+import CartItem from "../../Components/CartItem";
 import CartFooter from "../../Components/CartFooter";
-import { useSelector } from "react-redux";
+import { CURRENCY } from "../../constant";
+import "./style.css";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
@@ -51,14 +53,14 @@ const Cart = () => {
                   <p>Estimated Shipping:</p>
                 </div>
                 <div>
-                  <p>{subtotal}</p>
-                  <p>{shippingCharge}</p>
+                  <p>{CURRENCY}{subtotal}</p>
+                  <p>{CURRENCY}{shippingCharge}</p>
                 </div>
               </div>
               <hr />
               <div className="d-flex justify-content-between">
                 <p className="font-weight-bold">Order Total</p>
-                <p className="font-weight-bold">{shippingCharge + subtotal}</p>
+                <p className="font-weight-bold">{CURRENCY}{shippingCharge + subtotal}</p>
               </div>
               <p className="secure-button btn btn-primary btn-block ">
                 Secure Checkout
