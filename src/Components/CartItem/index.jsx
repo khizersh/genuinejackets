@@ -31,7 +31,7 @@ const CartItem = ({ item }) => {
             </p>
           </div>
           <div className="web-show-stuff">
-            <div className="d-flex align-items-center  select-wrapper">
+            <div className="d-flex align-items-center justify-content-between">
               <div className="d-flex justify-content-center align-items-center">
                 <div
                   className="custom-box"
@@ -47,8 +47,8 @@ const CartItem = ({ item }) => {
                   +
                 </div>
               </div>
-              <button className="btn btn-light delete-btn" onClick={removeCart}>
-                X Delete
+              <button className="btn bg-danger text-white delete-btn" onClick={removeCart}>
+                X
               </button>
             </div>
             {/* <p className="text-available">
