@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import SliderComponent from "../../Components/Slider";
 
@@ -20,36 +20,31 @@ const Home = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 390,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
-        }
+          initialSlide: 1,
+        },
       },
     ],
   };
   const getAllProductsWrapper = async () => {
     try {
       const { data } = await getSectionProducts();
-      setSectionTitle(data[0].title);
-      const validProducts = data[0]?.productList.filter(
-        (product) => product.range
-      );
-      console.log(validProducts);
-      setProducts(validProducts);
+      setProducts(data);
     } catch (error) {
       console.log(error);
     }
@@ -69,17 +64,26 @@ const Home = () => {
       <SliderComponent slides={banners} />
 
       <div className="container">
-        <h1 className="text-center font-weight-bold mt-5">
-          {sectionTitle && sectionTitle}
-        </h1>
-        {/* <CardFour products={products} /> */}
-        <Slider {...settings}>
-          {products.map((product) => (
-            <div>
-              <SliderCard pro={product} />
-            </div>
-          ))}
-        </Slider>
+        {products.length
+          ? products.map((pro, ind) => (
+              <Fragment className={ind}>
+                <h1 className="text-center font-weight-bold mt-5">
+                  {pro.title}
+                </h1>
+                <Slider {...settings}>
+                  {pro?.productList?.map
+                    ? pro.productList
+                        .filter((product) => product.range)
+                        .map((product, i) => (
+                          <div key={i}>
+                            <SliderCard pro={product} />
+                          </div>
+                        ))
+                    : null}
+                </Slider>
+              </Fragment>
+            ))
+          : null}
       </div>
     </div>
   );
