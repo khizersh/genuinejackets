@@ -161,9 +161,9 @@ const ProductDescription = () => {
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">{detail?.title}</p>
-            <p className="product-price mt-1">
+            <h1 className="product-price mt-1">
               {CURRENCY} {price ? price : detail?.range}
-            </p>
+            </h1>
             <div className="d-flex align-items-center">
               <ReactStars
                 count={5}
