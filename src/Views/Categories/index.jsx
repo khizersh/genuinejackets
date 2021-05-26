@@ -28,28 +28,32 @@ const Categories = () => {
       <Row>
         <Col sm={0} md={3} className="p-0 filter">
           {parentCategories?.length
-            ? parentCategories.map((cat, ind) => (
+            ? parentCategories.map((cat, ind) => {
+              let title = cat?.childTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+              return(
                 <section key={ind}>
                   <h5>{cat?.title}:</h5>
                   <ul>
                     {cat?.childList?.length
                       ? cat?.childList?.map((child_cat, index) => (
                           <li key={index}>
-                            <Link to={`/category/${child_cat.id}`}>
-                              {child_cat.childTitle}
+                            <Link to={`/category/${title}/${child_cat?.id}`}>
+                              {child_cat?.childTitle}
                             </Link>
                           </li>
                         ))
                       : null}
                   </ul>
                 </section>
-              ))
+              )})
             : null}
         </Col>
         <Col md={9}>
           <Row className="card-wrapper">
             {categories?.length
-              ? categories.map((cat, ind) => (
+              ? categories.map((cat, ind) => {
+                let title = cat?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                return(
                   <Col
                     xs={6}
                     sm={6}
@@ -57,13 +61,13 @@ const Categories = () => {
                     className={ind % 2 === 0 ? "left-wrapper" : "right-wrapper"}
                   >
                     <CategoryCard
-                      title={cat.title}
-                      link={`/category/${cat.id}`}
+                      title={cat?.title}
+                      link={`/category/${title}/${cat?.id}`}
                       isLeftAlign={ind % 2 === 0 ? false : true}
                       img={cat?.image}
                     />
                   </Col>
-                ))
+                )})
               : null}
           </Row>
         </Col>

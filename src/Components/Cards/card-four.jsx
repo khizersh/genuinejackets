@@ -13,12 +13,14 @@ const CardFour = (props) => {
   const [detail, setDetail] = useState([]);
   return (
     <div className="row mt-2">
-      {props?.products.map((pro, index) => (
+      {props?.products.map((pro, index) => {
+        let slug = pro?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        return(
         <div className="col-md-3 col-6 p-1 mt-5" key={index}>
           <Card className="product-card">
             <div className="product-img-wrapper">
               <div className="product-img-wrapper1">
-                <Link to={`/product/${pro?.id}`}>
+                <Link to={`/product/${slug}/${pro?.id}`}>
                   <CardImg
                     top
                     width="100%"
@@ -52,7 +54,7 @@ const CardFour = (props) => {
                 />{" "}(2)
               </div>
               <span className="card-product-title" tag="h5">
-                <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
+                <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
               </span>
               <br />
               <span tag="h6" className="mb-2 card-product-price">
@@ -62,7 +64,7 @@ const CardFour = (props) => {
             </CardBody>
           </Card>
         </div>
-      ))}
+      )})}
       {showModal && (
         <CustomModal
           detail={detail}

@@ -26,7 +26,7 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/product/:slug">
+              <Route exact path="/product/:title/:slug">
                 <ProductDescription />
               </Route>
               <Route exact path="/cart">
@@ -35,7 +35,7 @@ function App() {
               <Route exact path="/categories">
                 <Categories />
               </Route>
-              <Route exact path="/category/:slug">
+              <Route exact path="/category/:title/:slug">
                 <CategoryProducts />
               </Route>
             </Switch>

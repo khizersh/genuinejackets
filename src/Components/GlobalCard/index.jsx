@@ -10,16 +10,19 @@ import "./globalCard.css";
 function GlobalCard({ pro }) {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState([]);
+  const [slug, setSlug] = useState("");
   console.log(pro);
   useEffect(() => {
     setDetail(pro);
+    let _slug = pro?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    setSlug(_slug);
   });
   return (
     <div className=" pb-5  p-1 mt-5  ">
       <Card className="product-card-global">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">
-            <Link to={`/product/${pro?.id}`}>
+            <Link to={`/product/${slug}/${pro?.id}`}>
               <CardImg
                 top
                 width="100%"
@@ -55,7 +58,7 @@ function GlobalCard({ pro }) {
             ({detail?.reviewCount})
           </div>
           <span className="card-product-title" tag="h5">
-            <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
+            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
           </span>
           <br />
           <span tag="h6" className="mb-2 card-product-price pb-5">

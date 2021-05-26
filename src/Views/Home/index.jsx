@@ -66,7 +66,7 @@ const Home = () => {
       <div className="container">
         {products.length
           ? products.map((pro, ind) => (
-              <Fragment className={ind}>
+              <span className={ind} key={ind}>
                 <h1 className="text-center font-weight-bold mt-5">
                   {pro.title}
                 </h1>
@@ -81,7 +81,7 @@ const Home = () => {
                         ))
                     : null}
                 </Slider>
-              </Fragment>
+              </span>
             ))
           : null}
       </div>

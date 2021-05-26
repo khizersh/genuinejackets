@@ -111,18 +111,20 @@ const WebNavbar = ({ categories }) => {
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {cat?.childList?.length
-                          ? cat?.childList.map((child_cat, index) => (
+                          ? cat?.childList.map((child_cat, index) => {
+                            let title = child_cat?.childTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                            return(
                               <DropdownItem
                                 className="dropdownItem"
                                 key={index}
                                 onClick={() =>
-                                  history.push(`/category/${child_cat?.id}`)
+                                  history.push(`/category/${title}/${child_cat?.id}`)
                                 }
                               >
                                 {/* <Link to={}> */} {child_cat?.childTitle}
                                 {/* </Link>/ */}
                               </DropdownItem>
-                            ))
+                            )})
                           : null}
                       </DropdownMenu>
                     </UncontrolledDropdown>

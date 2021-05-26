@@ -83,7 +83,6 @@ const ProductDescription = () => {
       const { data } = await getProductsByCategory(id);
       const validProducts = data.filter((product) => product.range);
       setProducts(validProducts);
-      setProducts(validProducts);
     } catch (error) {
       console.log(error);
     }
@@ -297,7 +296,7 @@ const ProductDescription = () => {
               {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
                 Categories:{" "}
-                <Link to={`/category/${detail?.categoryId}`}>
+                <Link to={`/category/${detail?.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}>
                   {detail?.categoryName}
                 </Link>
               </div>
@@ -327,8 +326,8 @@ const ProductDescription = () => {
         <section className="mt-5">
           <h3>Related Items</h3>
           <Slider {...settings}>
-            {products.map((product) => (
-              <div>
+            {products.map((product, ind) => (
+              <div key={ind}>
                 <SliderCard pro={product} />
               </div>
             ))}
