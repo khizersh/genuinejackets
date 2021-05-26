@@ -11,6 +11,7 @@ import ReactStars from "react-rating-stars-component";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MetaTags from "react-meta-tags";
 
 import DescriptionTabs from "../../Components/DescriptionTabs";
 import {
@@ -104,7 +105,7 @@ const ProductDescription = () => {
     toast.success("Added To Cart");
   };
 
-  const onChangeAtrribute = async (val, ind,i) => {
+  const onChangeAtrribute = async (val, ind, i) => {
     let dup = attribute;
     dup[ind] = val;
     setColor(val);
@@ -142,6 +143,15 @@ const ProductDescription = () => {
 
   return (
     <div className="my-5">
+      <MetaTags>
+        <title>Jackter.com: {detail?.title}</title>
+        <meta name="description" content={detail?.description} />
+        <meta property="og:title" content={detail?.title} />
+        <meta property="og:image" content={images[0]?.original} />
+        <meta property="og:review" content={detail?.review} />
+        <meta property="og:stars" content={detail?.reviewCount} />
+        <meta property="og:category" content={detail?.categoryName} />
+      </MetaTags>
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -177,9 +187,11 @@ const ProductDescription = () => {
             </div>
             <div className="mt-3">
               <ul className="pl-3">
-                {detail?.bulletList?.length ? detail?.bulletList.map((list,i) => (
-                  <li key={i}>{list?.point}</li>
-                )): null}
+                {detail?.bulletList?.length
+                  ? detail?.bulletList.map((list, i) => (
+                      <li key={i}>{list?.point}</li>
+                    ))
+                  : null}
               </ul>
             </div>
             <FormGroup>
@@ -210,7 +222,12 @@ const ProductDescription = () => {
                                               key={i}
                                               width={55}
                                               height={65}
-                                              className={"p-1 m-1 attribute-img rounded-circle " + (isActive === ind ? "img-active" : "")}
+                                              className={
+                                                "p-1 m-1 attribute-img rounded-circle " +
+                                                (isActive === ind
+                                                  ? "img-active"
+                                                  : "")
+                                              }
                                               onClick={() =>
                                                 onChangeAtrribute(
                                                   attr?.title,
@@ -296,7 +313,11 @@ const ProductDescription = () => {
               {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
                 Categories:{" "}
-                <Link to={`/category/${detail?.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}>
+                <Link
+                  to={`/category/${detail?.categoryName
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}
+                >
                   {detail?.categoryName}
                 </Link>
               </div>
