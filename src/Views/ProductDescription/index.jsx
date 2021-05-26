@@ -2,14 +2,16 @@ import { Fragment, useEffect, useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
+import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ReactStars from "react-rating-stars-component";
-import Slider from "react-slick";
+import SkeletonCard from "../../Components/SkeletonCard/index";
+import SkeletonGallery from "../../Components/SkeletonCard/SkeletonGallery/index";
 import "slick-carousel/slick/slick.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-image-gallery/styles/css/image-gallery.css";
 import "slick-carousel/slick/slick-theme.css";
 import MetaTags from "react-meta-tags";
 
@@ -23,6 +25,7 @@ import { CURRENCY } from "../../constant";
 import { add_to_cart } from "../../Store/actions/cart";
 import SliderCard from "../../Components/Cards/SliderCard";
 import "./style.css";
+import Skeleton from "react-loading-skeleton";
 
 const settings = {
   dots: true,
@@ -155,7 +158,7 @@ const ProductDescription = () => {
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6 d-flex justify-content-center align-items-center">
-            {images?.length ? (
+            {!images?.length ? (
               <ImageGallery
                 items={images}
                 showThumbnails={true}
@@ -167,31 +170,54 @@ const ProductDescription = () => {
                 useBrowserFullscreen={true}
                 showFullscreenButton={true}
               />
-            ) : null}
+            ) : (
+              <SkeletonGallery />
+            )}
           </div>
           <div className="col-md-6 marginTopAndBottom">
-            <p className="product-title">{detail?.title}</p>
-            <h1 className="product-price mt-1">
-              {CURRENCY} {price ? price : detail?.range}
-            </h1>
+            {detail ? (
+              <Skeleton height={35} width={300} />
+            ) : (
+              <p className="product-title">{detail?.title}</p>
+            )}
+            <p className="product-price mt-1">
+              {detail ? (
+                <Skeleton height={35} width={300} />
+              ) : (
+                <h1 className="product-price mt-1">
+                  {CURRENCY} {price ? price : detail?.range}
+                </h1>
+              )}
+            </p>
             <div className="d-flex align-items-center">
-              <ReactStars
-                count={5}
-                onChange={(ratingChanged) => console.log(ratingChanged)}
-                size={24}
-                isHalf={true}
-                edit={false}
-                value={detail?.review}
-              />{" "}
-              ({detail?.reviewCount})
+              {detail ? (
+                <Skeleton height={35} width={250} />
+              ) : (
+                <>
+                  <ReactStars
+                    count={5}
+                    onChange={(ratingChanged) => console.log(ratingChanged)}
+                    size={24}
+                    isHalf={true}
+                    edit={false}
+                    value={detail?.review}
+                  />
+                  ({detail?.reviewCount})
+                </>
+              )}
             </div>
             <div className="mt-3">
               <ul className="pl-3">
-                {detail?.bulletList?.length
-                  ? detail?.bulletList.map((list, i) => (
-                      <li key={i}>{list?.point}</li>
-                    ))
-                  : null}
+                {detail ? (
+                  <div className="d-flex flex-column">
+                    <Skeleton height={20} width={250} />
+                    <Skeleton height={20} width={250} />
+                  </div>
+                ) : detail?.bulletList?.length ? (
+                  detail?.bulletList.map((list, i) => (
+                    <li key={i}>{list?.point}</li>
+                  ))
+                ) : null}
               </ul>
             </div>
             <FormGroup>
@@ -199,7 +225,8 @@ const ProductDescription = () => {
                 ? detail?.attributeList.map((attribute, index) => (
                     <div className="mt-3" key={index}>
                       <Label for="exampleSelect" className="attributes-heading">
-                        {attribute?.parentTitle}:
+                        {attribute?.parentTitle}
+                        {":"}
                       </Label>
                       {/* {attribute?.parentTitle.toLowerCase() === "color" && */}
                       {attribute?.multi ? (
@@ -244,7 +271,7 @@ const ProductDescription = () => {
                               )
                             : null}
                         </div>
-                      ) : (
+                      ) : !detail ? (
                         <Input
                           type="select"
                           name="select"
@@ -275,51 +302,72 @@ const ProductDescription = () => {
                               : null}
                           </>
                         </Input>
+                      ) : (
+                        <Skeleton height={40} />
                       )}
                     </div>
                   ))
                 : null}
             </FormGroup>
             <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex justify-content-center align-items-center">
-                <div
-                  className="custom-box"
-                  onClick={() =>
-                    setQuantity(quantity <= 1 ? quantity - 0 : quantity - 1)
-                  }
-                >
-                  -
+              {!detail ? (
+                <div className="d-flex justify-content-center align-items-center">
+                  <div
+                    className="custom-box"
+                    onClick={() =>
+                      setQuantity(quantity <= 1 ? quantity - 0 : quantity - 1)
+                    }
+                  >
+                    -
+                  </div>
+                  <div className="custom-box">{quantity}</div>
+                  <div
+                    className="custom-box"
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
+                    +
+                  </div>
                 </div>
-                <div className="custom-box">{quantity}</div>
-                <div
-                  className="custom-box"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  +
+              ) : (
+                <div className="d-flex justify-content-center align-items-center">
+                  <Skeleton height={50} width={70} className="mx-1" />
+                  <Skeleton height={50} width={70} className="mx-1" />
+                  <Skeleton height={50} width={70} className="mx-1" />
                 </div>
-              </div>
+              )}
               <div>
-                <button
-                  className="btn btn-info "
-                  onClick={addtocart}
-                  disabled={cart.some((e) => +e.id === +slug)}
-                >
-                  Add to Cart
-                </button>
-                <button className="btn ml-3 btn-buy">Buy Now</button>
+                {!detail ? (
+                  <button
+                    className="btn btn-info "
+                    onClick={addtocart}
+                    disabled={cart.some((e) => +e.id === +slug)}
+                  >
+                    Add to Cart
+                  </button>
+                ) : (
+                  <Skeleton height={40} width={120} />
+                )}
+                {!detail ? (
+                  <button className="btn ml-3 btn-buy">Buy Now</button>
+                ) : (
+                  <Skeleton height={40} width={120} className="ml-1"/>
+                )}
               </div>
             </div>
             <div className="mt-3">
               {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
                 Categories:{" "}
-                <Link
+                {detail?.categoryId ? (
+                  <Skeleton width={100} height={15} />
+                ) : ( <Link
                   to={`/category/${detail?.categoryName
                     .toLowerCase()
                     .replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}
                 >
                   {detail?.categoryName}
                 </Link>
+                )}
               </div>
               {/* <div className="product-description-links">
                 Tags: <span>Dress</span>,<span>Women</span>
@@ -346,13 +394,23 @@ const ProductDescription = () => {
         <hr />
         <section className="mt-5">
           <h3>Related Items</h3>
+          <div>
+            {!products.length ? (
           <Slider {...settings}>
-            {products.map((product, ind) => (
-              <div key={ind}>
+              {/* <div key={ind}> */}
+              {products.map((product, i) => (
                 <SliderCard pro={product} />
-              </div>
-            ))}
-          </Slider>
+              ))}
+              {/* </div> */}
+            </Slider>
+          ) : (
+            <Slider {...settings}>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </Slider>
+          )}
+          </div>
         </section>
       </div>
     </div>

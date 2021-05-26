@@ -1,0 +1,48 @@
+.skeletonProductWrapper {
+  margin-left: 10px;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.skeleton_Image {
+  width: 250px !important;
+}
+.sub_skeleton_wrapper {
+  width: inherit !important;
+}
+.sub_skeleton {
+  width: 51% !important;
+}
+.description_Skeleton{
+  width: 300px;
+}
+@media (max-width: 1200px) {
+  .skeletonProductWrapper {
+    width: 220px !important;
+  }
+  .skeleton_Image {
+    width: 220px !important;
+  }
+}
+@media (max-width: 1000px) {
+  .skeletonProductWrapper {
+    width: 150px !important;
+  }
+  .skeleton_Image {
+    width: 150px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .skeletonProductWrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 250px !important;
+  }
+  .skeleton_Image {
+    display: flex !important;
+    justify-content: center !important;
+    width: 250px !important;
+  }
+}

@@ -1,0 +1,32 @@
+@media (max-width: 992px) {
+  .sketon_Thumbnail {
+    width: 80px !important;
+  }
+  .sketon_Image_Gallery {
+    width: 200px !important;
+  }
+}
+@media (max-width: 768px) {
+  .skeleton_gallery_wrapper {
+    flex-direction: column-reverse;
+  }
+  .skeleton_Thumbnail_wrapper {
+    flex-direction: row !important;
+  }
+
+  .sketon_Thumbnail {
+    margin-right: 15px !important;
+  }
+  .sketon_Image_Gallery {
+    width: 300px !important;
+  }
+}
+@media (max-width: 475px) {
+  .sketon_Thumbnail {
+    margin-right: 8px !important;
+    width: 60px !important;
+  }
+  .sketon_Image_Gallery {
+    width: 200px !important;
+  }
+}

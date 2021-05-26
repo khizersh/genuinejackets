@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Range } from "rc-slider";
 
-// import SingleCard from "../../Components/SingleCard";
+import SkeletonCard from "../../Components/SkeletonCard";
 import { getProductsByCategory } from "../../api/index";
 import "rc-slider/assets/index.css";
 import GlobalCard from "../../Components/GlobalCard/index";
@@ -80,39 +80,75 @@ const Index = () => {
       </div>
 
       <section className="mt-5">
-        <div className="container">
-          {products.length ? (
-            <div className="row">
-              <div className="col-md-3">
-                <div className="mt-5 pt-5">
-                  <h2> By Price</h2>
-                  <Range
-                    draggableTrack
-                    min={range1}
-                    step={10}
-                    max={range2}
-                    value={volume}
-                    onChange={setVolume}
-                    onAfterChange={afterHandleChange}
-                  />
-                  <p className="text-muted mt-3">
-                    Price: Rs {volume[0]} - Rs {volume[1]}
-                  </p>
-                </div>
-              </div>
-              <div className="col-md-9">
-                <div className="row p-0 m-0">
-                  {priceFilterProducts.map((item, index) => (
-                    <div className="col-md-4 m-0 p-0 " key={index}>
-                      <GlobalCard pro={item} className="w-100" />
-                    </div>
-                  ))}
-                </div>
+        <div className="container ">
+          <div className="row">
+            <div className="col-md-3">
+              <div className="mt-5 pt-5">
+                <h2> By Price</h2>
+                <Range
+                  draggableTrack
+                  min={range1}
+                  step={10}
+                  max={range2}
+                  value={volume}
+                  onChange={setVolume}
+                  onAfterChange={afterHandleChange}
+                />
+                <p className="text-muted mt-3">
+                  Price: Rs {volume[0]} - Rs {volume[1]}
+                </p>
               </div>
             </div>
-          ) : (
-            <h1 className="text-center">No Products Available</h1>
-          )}
+            <div className="col-md-9 ">
+              <div className="row p-0 m-0 ">
+                {products.length ? (
+                  <div className="row p-0 w-full ">
+                    <div className=" col-md-3 mx-4 col-sm-6 col-12 mt-2 p-0 ">
+                      <SkeletonCard />
+                    </div>
+                    <div className=" col-md-3 mx-4 col-sm-6 col-12 mt-2 p-0 ">
+                      <SkeletonCard />
+                    </div>
+                    <div className=" col-md-3 mx-4 col-sm-6 col-12 mt-2 p-0 ">
+                      <SkeletonCard />
+                    </div>
+                    <div className=" col-md-3 mx-4 col-sm-6 col-12 mt-2 p-0 ">
+                      <SkeletonCard />
+                    </div>
+                  </div>
+                ) : (
+                  priceFilterProducts.map((item, index) => (
+                    <>
+                      <div
+                        className="col-xl-3 col-md-4 col-sm-6 col-12 m-0 p-0 "
+                        key={index}
+                      >
+                        <GlobalCard pro={item} className="w-100" />
+                      </div>
+                      <div
+                        className="col-xl-3 col-md-4 col-sm-6 col-12 m-0 p-0 "
+                        key={index}
+                      >
+                        <GlobalCard pro={item} className="w-100" />
+                      </div>
+                      <div
+                        className="col-xl-3 col-md-4 col-sm-6 col-12 m-0 p-0 "
+                        key={index}
+                      >
+                        <GlobalCard pro={item} className="w-100" />
+                      </div>
+                      <div
+                        className="col-xl-3 col-md-4 col-sm-6 col-12 m-0 p-0 "
+                        key={index}
+                      >
+                        <GlobalCard pro={item} className="w-100" />
+                      </div>
+                    </>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

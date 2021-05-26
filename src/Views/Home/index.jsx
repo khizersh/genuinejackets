@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 import SliderComponent from "../../Components/Slider";
+import SkeletonCard from "../../Components/SkeletonCard";
 
 import { getSectionProducts, getMainBanner } from "../../api/index";
 import "./style.css";
@@ -83,7 +84,13 @@ const Home = () => {
                 </Slider>
               </span>
             ))
-          : null}
+           : (
+            <Slider {...settings}>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </Slider>
+          )}
       </div>
     </div>
   );

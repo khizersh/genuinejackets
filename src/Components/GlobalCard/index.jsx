@@ -18,8 +18,8 @@ function GlobalCard({ pro }) {
     setSlug(_slug);
   });
   return (
-    <div className=" pb-5  p-1 mt-5  ">
-      <Card className="product-card-global">
+    <div className=" pb-5  p-1 mt-5 product-card-global_wrapper ">
+      <Card className="product-card-global p-3">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">
             <Link to={`/product/${slug}/${pro?.id}`}>
@@ -45,15 +45,17 @@ function GlobalCard({ pro }) {
             </Button>
           </div>
         </div>
-        <CardBody className="text-center">
+        <CardBody className="text-center p-3">
           <div className="d-flex justify-content-center align-items-center">
             <ReactStars
+              className="product_card_global_stars"
               count={5}
               onChange={(ratingChanged) => console.log(ratingChanged)}
               size={24}
               isHalf={true}
-              edit={false}
+              edit={true}
               value={detail?.review}
+              style={{ fontSize: "5px" }}
             />{" "}
             ({detail?.reviewCount})
           </div>
@@ -61,7 +63,7 @@ function GlobalCard({ pro }) {
             <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
           </span>
           <br />
-          <span tag="h6" className="mb-2 card-product-price pb-5">
+          <span tag="h6" className="mb-2 card-product-price ">
             {CURRENCY}
             {pro?.range}
           </span>
