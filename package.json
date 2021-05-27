@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "formik": "^2.2.8",
     "rc-slider": "^9.7.2",
     "react": "^17.0.1",
     "react-animated-slider": "^2.0.0",

@@ -1,0 +1,18 @@
+.info_side{
+    width: 75% !important;
+    margin-top: -150px;
+}
+.semi_bold{
+    font-weight: 500;
+}
+.signUp_Wrapper{
+    margin-top: 100px;
+}
+@media (max-width:768px) {
+    .info_side{
+        margin-top: 0px;
+    }
+    .info_side_wrapper{
+        margin-top: 20px;
+    }
+}

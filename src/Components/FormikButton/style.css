@@ -1,0 +1,10 @@
+.formikButton {
+  background-color: #fe8273;
+  border-color: #fe8273;
+  border: 1px solid ;
+  width: 85%;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 0px 10px 0px;
+  font-size: 14px;
+}

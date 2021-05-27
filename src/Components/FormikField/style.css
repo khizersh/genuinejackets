@@ -1,0 +1,27 @@
+.label {
+  display: block;
+  color: gray;
+  padding: 0;
+  font-size: 16px;
+  margin: 0;
+}
+.resizeWidth {
+  width: 85%;
+}
+.inputField {
+  width: 85%;
+  outline: none !important;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e7e7e7;
+  border-radius: 0.25rem;
+}
+.error {
+  border: 1px solid red !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
