@@ -18,7 +18,7 @@ function GlobalCard({ pro }) {
     setSlug(_slug);
   });
   return (
-    <div className=" pb-5  p-1 mt-5 product-card-global_wrapper ">
+    <div className=" pb-5  p-1 mt-5 product-card-global_wrapper scaleY">
       <Card className="product-card-global p-3">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">

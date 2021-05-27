@@ -17,7 +17,7 @@ function SliderCard({ pro }) {
     setSlug(_slug);
   });
   return (
-    <div className=" pb-5  p-1 mt-5  ">
+    <div className=" pb-5 p-1 mt-5 scaleY  ">
       <Card className="product-card-Wrapper">
         <div className="product-img-wrapper">
           <div className="product-img-wrapper1">

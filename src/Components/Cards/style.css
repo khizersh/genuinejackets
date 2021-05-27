@@ -147,3 +147,16 @@
     padding-top: 10px;
   }
 }
+
+.scaleY:hover {
+  overflow:hidden;
+  width: 100%;
+  transform: scale(1.1);
+  transition: 0.4s ease-in-out;
+  transition: all 0.2s ease-in-out;
+z-index: 20;
+}
+.scaleY {
+  position: relative;
+  transition: transform 0.2s;
+}
