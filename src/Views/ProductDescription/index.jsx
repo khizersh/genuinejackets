@@ -347,7 +347,7 @@ const ProductDescription = () => {
                 ) : (
                   <Skeleton height={40} width={120} />
                 )}
-                {!detail ? (
+                {detail ? (
                   <button className="btn ml-3 btn-buy">Buy Now</button>
                 ) : (
                   <Skeleton height={40} width={120} className="ml-1" />
@@ -357,17 +357,17 @@ const ProductDescription = () => {
             <div className="mt-3">
               {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
-                Categories:{" "}
+                Category:{" "}
                 {detail?.categoryId ? (
-                  <Skeleton width={100} height={15} />
-                ) : (
                   <Link
                     to={`/category/${detail?.categoryName
                       .toLowerCase()
                       .replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}
                   >
-                    {detail?.categoryName}
+                    <span>{detail?.categoryName}</span>
                   </Link>
+                ) : (
+                  <Skeleton width={100} height={15} />
                 )}
               </div>
               {/* <div className="product-description-links">

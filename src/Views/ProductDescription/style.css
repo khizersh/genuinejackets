@@ -77,6 +77,12 @@
   display: flex;
   /* justify-content: ; */
 }
+.product-description-links a span {
+  text-decoration: none;
+  color: #337ab7;
+  font-weight: bold;
+  margin: 0;
+}
 .product-description-links span {
   text-decoration: underline;
   margin: 0px 10px;

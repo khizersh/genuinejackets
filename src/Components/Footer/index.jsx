@@ -10,6 +10,7 @@ import "./style.css";
 const index = () => {
   return (
     <div className="footer-wrappper mt-5">
+      <hr />
       <div className="container mt-4 ">
         <div className="row">
           <div className="mt-5 col-md-6">
