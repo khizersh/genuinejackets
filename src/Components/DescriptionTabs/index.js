@@ -15,7 +15,7 @@ const index = ({ detail }) => {
 
         <TabPanel className="mt-5">
           <h2 className="pb-4 product-description-tab">Description</h2>
-          {detail?.description ? (
+          {!detail?.description ? (
             <Skeleton className="description_Skeleton" height={100} />
           ) : (
             <p>{detail?.description}</p>

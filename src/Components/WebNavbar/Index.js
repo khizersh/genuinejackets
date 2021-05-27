@@ -18,7 +18,17 @@ const WebNavbar = ({ categories }) => {
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
+  const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setSwitchNavbar(true);
+    } else {
+      setSwitchNavbar(false);
+    }
+  };
+  window.addEventListener("scroll", changeNavbarColor);
 
   useEffect(() => {
     window.addEventListener(
@@ -84,14 +94,14 @@ const WebNavbar = ({ categories }) => {
 
       {/* Bottom  */}
 
-      <div className={`${isMobile ? "container" : "container-fluid"} `}>
-        <div className="row align-items-center justify-content-center">
-          <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList p-0  ">
+      <div className={`px-5 pb-5 bottom_nav ${switchNavbar ? "sticky_nav" : ""}`}>
+        <div className="row align-items-center justify-content-center align-items-center">
+          <div className="col-md-6  mt-0 d-flex justify-content-start align-items-center mt-2 navItemsList text-white p-0  ">
             {categories?.length
               ? categories.map((cat, ind) => (
                   <p
                     key={ind}
-                    className="nav-item ml-4 hoverMe"
+                    className="ml-4 hoverMe "
                     onMouseOver={() => onMouseEnter(ind)}
                   >
                     <UncontrolledDropdown
@@ -101,31 +111,39 @@ const WebNavbar = ({ categories }) => {
                       <DropdownToggle
                         style={{
                           backgroundColor: "transparent",
-                          color: "black",
+                          color: "white",
                           border: "none",
                           margin: 0,
                         }}
                         className="categoryButton"
                       >
-                        <span  onClick={()=>history.push("/categories")}>{cat?.title}</span>
+                        <span onClick={() => history.push("/categories")}>
+                          {cat?.title}
+                        </span>
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {cat?.childList?.length
                           ? cat?.childList.map((child_cat, index) => {
-                            let title = child_cat?.childTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-                            return(
-                              <DropdownItem
-                                className="dropdownItem"
-                                key={index}
-                                onClick={() =>
-                                  history.push(`/category/${title}/${child_cat?.id}`)
-                                }
-                              >
-                                {/* <Link to={}> */} {child_cat?.childTitle}
-                                {/* </Link>/ */}
-                              </DropdownItem>
-                            )})
+                              let title = child_cat?.childTitle
+                                .toLowerCase()
+                                .replace(/[^a-z0-9]+/g, "-");
+                              return (
+                                <DropdownItem
+                                  className="dropdownItem"
+                                  key={index}
+                                  onClick={() =>
+                                    history.push(
+                                      `/category/${title}/${child_cat?.id}`
+                                    )
+                                  }
+                                >
+                                  {/* <Link to={}> */} {child_cat?.childTitle}
+                                  {/* </Link>/ */}
+                                </DropdownItem>
+                              );
+                            })
                           : null}
+                       
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </p>

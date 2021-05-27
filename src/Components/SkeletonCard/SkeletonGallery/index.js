@@ -11,7 +11,7 @@ function index() {
         <Skeleton width={120} height={100} className="sketon_Thumbnail" />
       </div>
       <div className="col-md-8 col-sm-12 m-0 p-0">
-        <Skeleton height={350} width={300} className="sketon_Image_Gallery" />
+        <Skeleton height={400} width={300} className="sketon_Image_Gallery" />
       </div>
     </div>
   );

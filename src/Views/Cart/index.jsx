@@ -20,8 +20,8 @@ const Cart = () => {
       let value = element.price * element.quantity;
       temp += value;
     }
-    console.log(temp)
-    setSubtotal(temp  )
+    console.log(temp);
+    setSubtotal(temp);
   }, [state]);
   console.log("state: ", state);
   if (!state.length)
@@ -32,7 +32,7 @@ const Cart = () => {
     );
 
   return (
-    <div className="cart-wrapper mt-5 pt-5">
+    <div className="cart-wrapper mt-4">
       <div className="container pt-3  item-main-wrapper">
         <div className="row">
           <div className="col-lg-7 my-3 bg-white p-3 cartItem-wrapper mr-2">
@@ -53,14 +53,23 @@ const Cart = () => {
                   <p>Estimated Shipping:</p>
                 </div>
                 <div>
-                  <p>{CURRENCY}{subtotal}</p>
-                  <p>{CURRENCY}{shippingCharge}</p>
+                  <p>
+                    {CURRENCY}
+                    {subtotal}
+                  </p>
+                  <p>
+                    {CURRENCY}
+                    {shippingCharge}
+                  </p>
                 </div>
               </div>
               <hr />
               <div className="d-flex justify-content-between">
                 <p className="font-weight-bold">Order Total</p>
-                <p className="font-weight-bold">{CURRENCY}{shippingCharge + subtotal}</p>
+                <p className="font-weight-bold">
+                  {CURRENCY}
+                  {shippingCharge + subtotal}
+                </p>
               </div>
               <p className="secure-button btn btn-primary btn-block ">
                 Secure Checkout

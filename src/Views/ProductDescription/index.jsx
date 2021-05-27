@@ -158,7 +158,7 @@ const ProductDescription = () => {
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6 d-flex justify-content-center align-items-center">
-            {!images?.length ? (
+            {images?.length ? (
               <ImageGallery
                 items={images}
                 showThumbnails={true}
@@ -175,13 +175,13 @@ const ProductDescription = () => {
             )}
           </div>
           <div className="col-md-6 marginTopAndBottom">
-            {detail ? (
+            {!detail ? (
               <Skeleton height={35} width={300} />
             ) : (
               <p className="product-title">{detail?.title}</p>
             )}
             <p className="product-price mt-1">
-              {detail ? (
+              {!detail ? (
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
@@ -190,7 +190,7 @@ const ProductDescription = () => {
               )}
             </p>
             <div className="d-flex align-items-center">
-              {detail ? (
+              {!detail ? (
                 <Skeleton height={35} width={250} />
               ) : (
                 <>
@@ -208,7 +208,7 @@ const ProductDescription = () => {
             </div>
             <div className="mt-3">
               <ul className="pl-3">
-                {detail ? (
+                {!detail ? (
                   <div className="d-flex flex-column">
                     <Skeleton height={20} width={250} />
                     <Skeleton height={20} width={250} />
@@ -271,7 +271,7 @@ const ProductDescription = () => {
                               )
                             : null}
                         </div>
-                      ) : !detail ? (
+                      ) : detail ? (
                         <Input
                           type="select"
                           name="select"
@@ -310,7 +310,7 @@ const ProductDescription = () => {
                 : null}
             </FormGroup>
             <div className="d-flex justify-content-between align-items-center">
-              {!detail ? (
+              {detail ? (
                 <div className="d-flex justify-content-center align-items-center">
                   <div
                     className="custom-box"
@@ -336,7 +336,7 @@ const ProductDescription = () => {
                 </div>
               )}
               <div>
-                {!detail ? (
+                {detail ? (
                   <button
                     className="btn btn-info "
                     onClick={addtocart}
@@ -350,7 +350,7 @@ const ProductDescription = () => {
                 {!detail ? (
                   <button className="btn ml-3 btn-buy">Buy Now</button>
                 ) : (
-                  <Skeleton height={40} width={120} className="ml-1"/>
+                  <Skeleton height={40} width={120} className="ml-1" />
                 )}
               </div>
             </div>
@@ -360,13 +360,14 @@ const ProductDescription = () => {
                 Categories:{" "}
                 {detail?.categoryId ? (
                   <Skeleton width={100} height={15} />
-                ) : ( <Link
-                  to={`/category/${detail?.categoryName
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}
-                >
-                  {detail?.categoryName}
-                </Link>
+                ) : (
+                  <Link
+                    to={`/category/${detail?.categoryName
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")}/${detail?.categoryId}`}
+                  >
+                    {detail?.categoryName}
+                  </Link>
                 )}
               </div>
               {/* <div className="product-description-links">
@@ -392,16 +393,13 @@ const ProductDescription = () => {
           <DescriptionTabs detail={detail} />
         </section>
         <hr />
-        <section className="mt-5">
+        <section className="mt-5 ">
           <h3>Related Items</h3>
-          <div>
-            {!products.length ? (
-          <Slider {...settings}>
-              {/* <div key={ind}> */}
+          {products.length ? (
+            <Slider {...settings}>
               {products.map((product, i) => (
-                <SliderCard pro={product} />
+                <SliderCard pro={product} key={i} />
               ))}
-              {/* </div> */}
             </Slider>
           ) : (
             <Slider {...settings}>
@@ -410,7 +408,6 @@ const ProductDescription = () => {
               <SkeletonCard />
             </Slider>
           )}
-          </div>
         </section>
       </div>
     </div>
