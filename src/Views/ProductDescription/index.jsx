@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import ReactStars from "react-rating-stars-component";
 import SkeletonCard from "../../Components/SkeletonCard/index";
 import SkeletonGallery from "../../Components/SkeletonCard/SkeletonGallery/index";
 import "slick-carousel/slick/slick.css";
+import Scrollspy from "react-scrollspy";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -64,7 +65,9 @@ const ProductDescription = () => {
   const [detail, setDetail] = useState();
   const [products, setProducts] = useState([]);
   const [isActive, setisActive] = useState("");
+  const [indexNumber, setIndexNumber] = useState();
   const dispatch = useDispatch();
+  const myRef = useRef();
   useEffect(() => {
     getProductByIdWrapper();
     window.scrollTo(0, 0);
@@ -143,7 +146,15 @@ const ProductDescription = () => {
       } catch (error) {}
     }
   };
-
+  const showRating = () => {
+    setIndexNumber(2);
+  };
+  const handleOnClick = () => {
+    console.log(myRef);
+    if (myRef.current) {
+      myRef.current.test();
+    }
+  };
   return (
     <div className="my-5">
       <MetaTags>
@@ -193,17 +204,18 @@ const ProductDescription = () => {
               {!detail ? (
                 <Skeleton height={35} width={250} />
               ) : (
-                <>
-                  <ReactStars
-                    count={5}
-                    onChange={(ratingChanged) => console.log(ratingChanged)}
-                    size={24}
-                    isHalf={true}
-                    edit={false}
-                    value={detail?.review}
-                  />
-                  ({detail?.reviewCount})
-                </>
+               
+                  <a onClick={handleOnClick} href="#tabs">
+                    <ReactStars
+                      count={5}
+                      onChange={(ratingChanged) => console.log(ratingChanged)}
+                      size={24}
+                      isHalf={true}
+                      edit={false}
+                      value={detail?.review}
+                    />
+                    ({detail?.reviewCount})
+                  </a>
               )}
             </div>
             <div className="mt-3">
@@ -389,8 +401,12 @@ const ProductDescription = () => {
           </div>
         </div>
         {/* Tabs */}
-        <section className="mt-5 mb-5">
-          <DescriptionTabs detail={detail} />
+        <section className="mt-5 mb-5" id="tabs">
+          <DescriptionTabs
+            detail={detail}
+            indexNumber={indexNumber}
+            ref={myRef}
+          />
         </section>
         <hr />
         <section className="mt-5 ">

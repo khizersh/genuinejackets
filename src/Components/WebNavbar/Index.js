@@ -94,14 +94,17 @@ const WebNavbar = ({ categories }) => {
 
       {/* Bottom  */}
 
-      <div className={`px-5 pb-5 bottom_nav ${switchNavbar ? "sticky_nav" : ""}`}>
+      <div
+        className={`px-5 pb-5 bottom_nav ${switchNavbar ? "sticky_nav" : ""}`}
+      >
         <div className="row align-items-center justify-content-center ">
-          <div className="col-md-6  mt-0 d-flex justify-content-start align-items-center mt-2 navItemsList text-white p-0  ">
+          <div className="col-md-6 text-white p-0 d-flex align-items-center mt-2 ">
+            {" "}
             {categories?.length
               ? categories.map((cat, ind) => (
                   <p
                     key={ind}
-                    className="ml-4 hoverMe "
+                    className="ml-4 "
                     onMouseOver={() => onMouseEnter(ind)}
                   >
                     <UncontrolledDropdown
@@ -117,7 +120,10 @@ const WebNavbar = ({ categories }) => {
                         }}
                         className="categoryButton"
                       >
-                        <span onClick={() => history.push("/categories")}>
+                        <span
+                          onClick={() => history.push("/categories")}
+                          className="  "
+                        >
                           {cat?.title}
                         </span>
                       </DropdownToggle>
@@ -143,13 +149,11 @@ const WebNavbar = ({ categories }) => {
                               );
                             })
                           : null}
-                       
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </p>
                 ))
               : null}
-
             {/* </Dropdown> */}
           </div>
           <div className="col-md-6 d-flex justify-content-center searchBar_Wrapper">
