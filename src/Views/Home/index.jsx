@@ -8,15 +8,16 @@ import "./style.css";
 import Slider from "react-slick";
 import SliderCard from "../../Components/Cards/SliderCard";
 import Skeleton from "react-loading-skeleton";
+import Loader from "../../Components/Loader";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-
   const [banners, setBanners] = useState([]);
-  const [sectionTitle, setSectionTitle] = useState("");
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getAllProductsWrapper();
     getBanner();
+    getAllProductsWrapper();
   }, []);
   const settings = {
     dots: true,
@@ -64,11 +65,15 @@ const Home = () => {
     try {
       const data = await getMainBanner();
       setBanners(data.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
+  if (loading) {
+    return <Loader />
+  }
   return (
     <div className="mt-4">
       <SliderComponent slides={banners} />
