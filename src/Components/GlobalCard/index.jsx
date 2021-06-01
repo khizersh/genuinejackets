@@ -46,6 +46,9 @@ function GlobalCard({ pro }) {
           </div>
         </div>
         <CardBody className="text-center p-3">
+          <span className="card-product-title" tag="h5">
+            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
+          </span>
           <div className="d-flex justify-content-center align-items-center">
             <ReactStars
               className="product_card_global_stars"
@@ -59,10 +62,6 @@ function GlobalCard({ pro }) {
             />{" "}
             ({detail?.reviewCount})
           </div>
-          <span className="card-product-title" tag="h5">
-            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
-          </span>
-          <br />
           <span tag="h6" className="mb-2 card-product-price ">
             {CURRENCY}
             {pro?.range}

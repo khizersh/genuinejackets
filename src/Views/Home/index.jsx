@@ -66,7 +66,7 @@ const Home = () => {
   const getBanner = async () => {
     try {
       const data = await getMainBanner();
-      setBanners(data.data);
+      setBanners(data?.data);
       setLoading(false);
     } catch (error) {
       console.log(error);

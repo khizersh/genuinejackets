@@ -1,13 +1,34 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { AiOutlineCheck, AiFillCloseCircle } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router";
+
 import FormikFeild from "../../Components/FormikField";
 import FormikButton from "../../Components/FormikButton";
+import { onRegister } from "../../api";
 import "./index.css";
-const SignUp = () => {
-  const onSubmitHandler = (values,setSubmitting) => {
 
-  }
+const SignUp = () => {
+  const router = useHistory();
+  const onSubmitHandler = async (values) => {
+    const data = new FormData();
+    data.append("user", JSON.stringify(values));
+    try {
+      let res = await onRegister(data);
+      if (res?.data?.statusCode === 1) {
+        toast.success(res?.data?.data);
+        setTimeout(() => {
+          router.push("/signIn");
+        }, 1000);
+      }
+      else{
+        toast.warning(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error?.message);
+      console.log(error);
+    }
+  };
   return (
     <div className="mt-4">
       <div className="container d-flex justify-content-center align-items-center w-full signUp_Wrapper">
@@ -72,11 +93,7 @@ const SignUp = () => {
                 return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
-                // setTimeout(() => {
-                //   alert(JSON.stringify(values, null, 2));
-                //   setSubmitting(false);
-                // }, 400);
-                onSubmitHandler(values,setSubmitting)
+                onSubmitHandler(values);
               }}
             >
               {({ errors, touched }) => (

@@ -45,6 +45,9 @@ function SliderCard({ pro }) {
           </div>
         </div>
         <CardBody className="text-center">
+          <span className="card-product-title" tag="h5">
+            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
+          </span>
           <div className="d-flex justify-content-center align-items-center">
             <ReactStars
               count={5}
@@ -56,10 +59,6 @@ function SliderCard({ pro }) {
             />{" "}
             ({detail?.reviewCount})
           </div>
-          <span className="card-product-title" tag="h5">
-            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
-          </span>
-          <br />
           <span tag="h6" className="mb-2 card-product-price pb-5">
             {CURRENCY}
             {pro?.range}

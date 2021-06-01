@@ -112,11 +112,10 @@ export const getPriceByAttruibute = function (body) {
 
 export const onRegister = function (body) {
   return axios
-    .post(BASE_URL + "/price-attribute/price", body)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .post(BASE_URL + "/user/process_register", body)
+};
+
+export const onLogin = function (body) {
+  return axios
+    .post(BASE_URL + "/login", body)
 };

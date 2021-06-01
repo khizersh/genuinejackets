@@ -6,7 +6,9 @@ import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 import ImageGallery from "react-image-gallery";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 import ReactStars from "react-rating-stars-component";
+
 import SkeletonCard from "../../Components/SkeletonCard/index";
 import SkeletonGallery from "../../Components/SkeletonCard/SkeletonGallery/index";
 import "slick-carousel/slick/slick.css";
@@ -14,7 +16,6 @@ import Scrollspy from "react-scrollspy";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Helmet } from "react-helmet";
 
 import DescriptionTabs from "../../Components/DescriptionTabs";
 import {
@@ -150,7 +151,6 @@ const ProductDescription = () => {
     setIndexNumber(2);
   };
   const handleOnClick = () => {
-    console.log(myRef);
     if (myRef.current) {
       myRef.current.test();
     }
