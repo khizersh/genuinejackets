@@ -40,6 +40,7 @@ const Home = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          arrows: false
         },
       },
       {
@@ -48,6 +49,7 @@ const Home = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
+          arrows: false
         },
       },
     ],
@@ -72,7 +74,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
   return (
     <div className="mt-4">

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import Scrollspy from "react-scrollspy";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "slick-carousel/slick/slick-theme.css";
-import MetaTags from "react-meta-tags";
+import { Helmet } from "react-helmet";
 
 import DescriptionTabs from "../../Components/DescriptionTabs";
 import {
@@ -157,15 +157,15 @@ const ProductDescription = () => {
   };
   return (
     <div className="my-5">
-      <MetaTags>
-        <title>Jackter.com: {detail?.title}</title>
+      <Helmet>
+        <title>{`Jackter.com: ${detail?.title}`}</title>
         <meta name="description" content={detail?.description} />
         <meta property="og:title" content={detail?.title} />
         <meta property="og:image" content={images[0]?.original} />
         <meta property="og:review" content={detail?.review} />
         <meta property="og:stars" content={detail?.reviewCount} />
         <meta property="og:category" content={detail?.categoryName} />
-      </MetaTags>
+      </Helmet>
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -200,24 +200,25 @@ const ProductDescription = () => {
                 </h1>
               )}
             </p>
-            <div className="d-flex align-items-center">
-              {!detail ? (
-                <Skeleton height={35} width={250} />
-              ) : (
-               
-                  <a onClick={handleOnClick} href="#tabs">
-                    <ReactStars
-                      count={5}
-                      onChange={(ratingChanged) => console.log(ratingChanged)}
-                      size={24}
-                      isHalf={true}
-                      edit={false}
-                      value={detail?.review}
-                    />
-                    ({detail?.reviewCount})
-                  </a>
-              )}
-            </div>
+            {!detail ? (
+              <Skeleton height={35} width={250} />
+            ) : (
+              <a
+                className="d-flex align-items-center"
+                onClick={handleOnClick}
+                href="#tabs"
+              >
+                <ReactStars
+                  count={5}
+                  onChange={(ratingChanged) => console.log(ratingChanged)}
+                  size={24}
+                  isHalf={true}
+                  edit={false}
+                  value={detail?.review}
+                />
+                ({detail?.reviewCount})
+              </a>
+            )}
             <div className="mt-3">
               <ul className="pl-3">
                 {!detail ? (

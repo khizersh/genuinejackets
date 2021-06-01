@@ -5,9 +5,5 @@
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255) url(../../assets/loader_.gif) center center no-repeat;
-  /* opacity: 0.5; */
-}
-
-.footer-wrappper{
-  display: none;
+  z-index: 9;
 }
