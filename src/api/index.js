@@ -109,3 +109,14 @@ export const getPriceByAttruibute = function (body) {
       console.log(error);
     });
 };
+
+export const onRegister = function (body) {
+  return axios
+    .post(BASE_URL + "/price-attribute/price", body)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

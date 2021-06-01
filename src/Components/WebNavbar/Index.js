@@ -72,10 +72,12 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           <div className=" d-flex justify-content-end align-items-center">
-            <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
-              <BiUser className="icon" />
-              <p className="icon_name">Sigin In</p>
-            </span>
+            <Link to="/signIn">
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                <BiUser className="icon" />
+                <p className="icon_name">Sigin In</p>
+              </span>
+            </Link>
 
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BsBag className="icon" />

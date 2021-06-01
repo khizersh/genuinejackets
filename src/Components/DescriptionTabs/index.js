@@ -35,7 +35,7 @@ const Index = forwardRef(({ detail, indexNumber }, ref) => {
           {!detail?.description ? (
             <Skeleton className="description_Skeleton" height={100} />
           ) : (
-            <p>{detail?.description}</p>
+            <p dangerouslySetInnerHTML={{__html: detail?.description}}></p>
           )}
         </TabPanel>
 

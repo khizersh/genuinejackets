@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Sidebar from "../Sidebar/Index";
 import { RiPagesLine } from "react-icons/ri";
-import "./style.css";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-const MobileNavbar = ({categories}) => {
+import { Link } from "react-router-dom";
+
+import Sidebar from "../Sidebar/Index";
+import "./style.css";
+
+const MobileNavbar = ({ categories }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const state = useSelector((state) => state.cartReducer.cartArray);
   return (
@@ -25,10 +28,12 @@ const MobileNavbar = ({categories}) => {
         </div>
         <div>
           <div className="col-md-4 d-flex align-items-center justify-content-center ">
-            <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
-              <BiUser className="icon" />
-              <p className="icon_name ">Sign In</p>
-            </span>
+            <Link to="/signIn">
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
+                <BiUser className="icon" />
+                <p className="icon_name ">Sign In</p>
+              </span>
+            </Link>
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
               <span className="cartnumber">{state.length}</span>
               <RiPagesLine className="icon" />
@@ -45,7 +50,11 @@ const MobileNavbar = ({categories}) => {
       </div>
       {/* {showSidebar === true && ( */}
       <div className={`${showSidebar ? "show" : "hide"}`}>
-        <Sidebar setShowSidebar={setShowSidebar} showSidebar={showSidebar} categories={categories} />
+        <Sidebar
+          setShowSidebar={setShowSidebar}
+          showSidebar={showSidebar}
+          categories={categories}
+        />
       </div>
       {/* )} */}
     </div>
