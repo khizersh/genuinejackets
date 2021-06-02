@@ -7,11 +7,21 @@ import CartItem from "../../Components/CartItem";
 import CartFooter from "../../Components/CartFooter";
 import { CURRENCY } from "../../constant";
 import "./style.css";
+import { useHistory } from "react-router";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
+  const user = useSelector((state) => state.authReducer.user);
   const [subtotal, setSubtotal] = useState(0);
   const [shippingCharge, setShippingCharges] = useState(50);
+  const history = useHistory();
+  const confirmCheckout = () => {
+    if (!user) {
+      history.push("/signIn", { from: "cartPage" });
+    } else {
+      history.push("/dummy");
+    }
+  };
   useEffect(() => {
     let temp = 0;
 
@@ -71,7 +81,10 @@ const Cart = () => {
                   {shippingCharge + subtotal}
                 </p>
               </div>
-              <p className="secure-button btn btn-primary btn-block ">
+              <p
+                className="secure-button btn btn-primary btn-block"
+                onClick={confirmCheckout}
+              >
                 Secure Checkout
               </p>
             </div>
@@ -108,29 +121,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <div className="mt-3 container-fluid features-wrapper justify-content-center align-items-center">
-        <div className="container">
-          <div className="row justify-content-center align-items-center">
-            <div className="col-lg-3 col-sm-6 col-6 feature-item">
-              <TiStarburst color={"white"} />
-              <p>All sizes same price</p>
-            </div>
-            <div className="col-lg-3 col-sm-6 col-6 feature-item">
-              <TiStarburst color={"white"} />
-              <p>Return With 60 Days</p>
-            </div>
-            <div className="col-lg-3 col-sm-6 col-6 feature-item">
-              <TiStarburst color={"white"} />
-              <p>SSl Data Security</p>
-            </div>
-            <div className="col-lg-3 col-sm-6 col-6 feature-item">
-              <TiStarburst color={"white"} />
-              <p>Flat express Shipping Rate</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <CartFooter />
     </div>
   );
 };
