@@ -1,5 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
-import { Modal, ModalHeader, ModalBody, FormGroup, Label, Input } from "reactstrap";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Slider from "react-animated-slider";
@@ -35,7 +42,8 @@ const CustomModal = (props) => {
   }, [detail.id]);
 
   const addtocart = () => {
-    if(attribute.length !== detail?.attributeList?.length) return toast.warning('Select All Attributes');
+    if (attribute.length !== detail?.attributeList?.length)
+      return toast.warning("Select All Attributes");
     let cartItemObj = {
       id: detail.id,
       itemName: detail?.title,
@@ -46,7 +54,7 @@ const CustomModal = (props) => {
     };
     // console.log(cartItemObj);
     dispatch(add_to_cart(cartItemObj));
-    toast.success('Added To Cart');
+    toast.success("Added To Cart");
   };
 
   const onChangeAtrribute = async (val, ind) => {
@@ -65,7 +73,9 @@ const CustomModal = (props) => {
     }
 
     if (detail?.attributeList[ind].multi) {
-      let attrData = detail?.attributeList[ind].childAttributeList.find( e => e.title === dup[ind]);
+      let attrData = detail?.attributeList[ind].childAttributeList.find(
+        (e) => e.title === dup[ind]
+      );
       // console.log(attrData);
       if (attrData && attrData.attributeImage?.length) {
         // console.log(attrData.attributeImage);
@@ -78,15 +88,16 @@ const CustomModal = (props) => {
       }
     }
     if (attribute.length === detail?.attributeList?.length) {
-      let data = await getPriceByAttruibute({
+      let {
+        data: { price },
+      } = await getPriceByAttruibute({
         productId: detail?.id,
         list: attribute,
       });
-      setPrice(data?.data);
-      console.log(data);
+      setPrice(price);
     }
   };
-  
+
   return (
     <div>
       <Modal
@@ -102,14 +113,16 @@ const CustomModal = (props) => {
           <div className="row w-100 ">
             <div className="col-md-6  d-flex justify-content-center align-items-center">
               <Slider>
-                {images?.length ? images.map((slide, index) => (
-                  <img
-                    key={index}
-                    src={slide.original}
-                    style={{ width: "400px", height: "500px" }}
-                    alt={`img-${index}`}
-                  />
-                )) : null}
+                {images?.length
+                  ? images.map((slide, index) => (
+                      <img
+                        key={index}
+                        src={slide.original}
+                        style={{ width: "400px", height: "500px" }}
+                        alt={`img-${index}`}
+                      />
+                    ))
+                  : null}
               </Slider>
             </div>
             <div className="col-md-6 marginTopAndBottom  ">
@@ -117,48 +130,51 @@ const CustomModal = (props) => {
               <p className="product-price my-3">
                 {CURRENCY} {price ? price : detail?.range}
               </p>
-              <p className="product-description my-3">
-                {detail?.description}
-              </p>
+              <p className="product-description my-3">{detail?.description}</p>
               <FormGroup>
-              {detail
-                ? detail?.attributeList.map((attribute, index) => (
-                    <Fragment key={index}>
-                      <Label for="exampleSelect" className="attributes-heading">
-                        {attribute?.parentTitle}
-                      </Label>
-                      <Input
-                        type="select"
-                        name="select"
-                        id="exampleSelect"
-                        onChange={(e) =>
-                          onChangeAtrribute(e.target.value, index)
-                        }
-                      >
-                        <>
-                          <option
-                            className="custom-option-description"
-                            value=""
-                          >
-                            Select {attribute?.parentTitle.toLowerCase()}
-                          </option>
-                          {attribute?.childAttributeList?.length
-                            ? attribute?.childAttributeList.map((attr, ind) => (
-                                <option
-                                  className="custom-option-description"
-                                  value={attr?.title}
-                                  key={ind}
-                                >
-                                  {attr?.title}
-                                </option>
-                              ))
-                            : null}
-                        </>
-                      </Input>
-                    </Fragment>
-                  ))
-                : null}
-            </FormGroup>
+                {detail
+                  ? detail?.attributeList.map((attribute, index) => (
+                      <Fragment key={index}>
+                        <Label
+                          for="exampleSelect"
+                          className="attributes-heading"
+                        >
+                          {attribute?.parentTitle}
+                        </Label>
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelect"
+                          onChange={(e) =>
+                            onChangeAtrribute(e.target.value, index)
+                          }
+                        >
+                          <>
+                            <option
+                              className="custom-option-description"
+                              value=""
+                            >
+                              Select {attribute?.parentTitle.toLowerCase()}
+                            </option>
+                            {attribute?.childAttributeList?.length
+                              ? attribute?.childAttributeList.map(
+                                  (attr, ind) => (
+                                    <option
+                                      className="custom-option-description"
+                                      value={attr?.title}
+                                      key={ind}
+                                    >
+                                      {attr?.title}
+                                    </option>
+                                  )
+                                )
+                              : null}
+                          </>
+                        </Input>
+                      </Fragment>
+                    ))
+                  : null}
+              </FormGroup>
               <div className="d-flex justify-content-between align-items-center">
                 <div className="d-flex justify-content-center align-items-center">
                   <div

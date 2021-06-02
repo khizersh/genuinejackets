@@ -17,6 +17,7 @@ const WebNavbar = ({ categories }) => {
   const history = useHistory();
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
+  const user = useSelector((state) => state.authReducer.user);
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
   const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
@@ -39,6 +40,7 @@ const WebNavbar = ({ categories }) => {
       },
       false
     );
+    console.log(user);
   }, [isMobile]);
 
   // const toggle = () => {
@@ -72,12 +74,14 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           <div className=" d-flex justify-content-end align-items-center">
-            <Link to="/signIn">
-              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
-                <BiUser className="icon" />
-                <p className="icon_name">Sigin In</p>
-              </span>
-            </Link>
+            {!user && (
+              <Link to="/signIn">
+                <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                  <BiUser className="icon" />
+                  <p className="icon_name">Sign In</p>
+                </span>
+              </Link>
+            )}
 
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BsBag className="icon" />

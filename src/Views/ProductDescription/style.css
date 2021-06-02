@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 .product-title {
@@ -30,7 +30,8 @@ html{
   border: 1px solid gray;
 }
 
-.img-active, .attribute-img:hover {
+.img-active,
+.attribute-img:hover {
   border: 3px solid gray;
   cursor: pointer;
 }
@@ -62,13 +63,13 @@ html{
   margin: 0 !important;
 }
 
-.btn-buy{
-  background-color: #FCB800;
+.btn-buy {
+  background-color: #fcb800;
   color: #fff;
 }
 
-.btn-buy:hover{
-  background-color: #E7A603;
+.btn-buy:hover {
+  background-color: #e7a603;
   color: #fff;
 }
 
@@ -125,11 +126,39 @@ html{
   font-weight: normal;
   line-height: 26px;
 }
-/*Media Queries */
-@media (max-width: 992px) {
+
+@media (min-width: 992px) {
   .marginTopAndBottom {
     margin-top: 30px;
     /* margin-bottom: 20px; */
+  }
+  .actionButton_desc {
+    padding: 10px;
+    /* padding-bottom: 3px !important; */
+    height: 48px;
+  }
+}
+@media (max-width: 991px) {
+  .actionButton_desc {
+    padding:4px !important;
+    padding-bottom: 5px !important;
+    height: 44px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .actionButton_desc {
+    padding: 10px;
+    /* height: 48px; */
+  }
+}
+@media (max-width: 430px) {
+  .actoinButtons_wrapper_desc {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .actionButton_desc {
+    margin-top: 5px !important;
   }
 }
 

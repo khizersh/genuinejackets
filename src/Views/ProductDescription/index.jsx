@@ -83,6 +83,7 @@ const ProductDescription = () => {
       setImages(arr);
     }
     // setImages(data.data?.imageList);
+    console.log(data);
     setDetail(data.data);
     getProducts(data?.data?.categoryId);
   };
@@ -139,12 +140,16 @@ const ProductDescription = () => {
     }
     if (attribute.length === detail?.attributeList?.length) {
       try {
-        let data = await getPriceByAttruibute({
+        let {
+          data: { price },
+        } = await getPriceByAttruibute({
           productId: detail?.id,
           list: attribute,
         });
-        setPrice(data?.data);
-      } catch (error) {}
+        setPrice(price);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
   const showRating = () => {
@@ -322,9 +327,9 @@ const ProductDescription = () => {
                   ))
                 : null}
             </FormGroup>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center actoinButtons_wrapper_desc">
               {detail ? (
-                <div className="d-flex justify-content-center align-items-center">
+                <div className="d-flex justify-content-center align-items-center mr-1">
                   <div
                     className="custom-box"
                     onClick={() =>
@@ -348,10 +353,10 @@ const ProductDescription = () => {
                   <Skeleton height={50} width={70} className="mx-1" />
                 </div>
               )}
-              <div>
+              <div className="d-flex justify-content-center align-items-center"> 
                 {detail ? (
                   <button
-                    className="btn btn-info "
+                    className="btn actionButton_desc btn-info m-0 "
                     onClick={addtocart}
                     disabled={cart.some((e) => +e.id === +slug)}
                   >
@@ -361,7 +366,7 @@ const ProductDescription = () => {
                   <Skeleton height={40} width={120} />
                 )}
                 {detail ? (
-                  <button className="btn ml-3 btn-buy">Buy Now</button>
+                  <button className="btn actionButton_desc ml-2  btn-buy m-0">Buy Now</button>
                 ) : (
                   <Skeleton height={40} width={120} className="ml-1" />
                 )}

@@ -1,24 +1,37 @@
 import { Formik, Form } from "formik";
 import { AiOutlineCheck, AiFillCloseCircle } from "react-icons/ai";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 import FormikFeild from "../../Components/FormikField";
 import FormikButton from "../../Components/FormikButton";
 import "./index.css";
 import { onLogin } from "../../api";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { sign_In_User } from "../../Store/actions/authAction";
 const SignIn = () => {
-  const router = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const onSubmitHandler = async (values) => {
     try {
       let res = await onLogin(values);
       if (res?.data?.statusCode === 1) {
+        dispatch(sign_In_User(res?.data?.data));
         toast.success("SignIn Successfull");
         setTimeout(() => {
-          // router.push("/signIn");
+          if (
+            history &&
+            history?.location &&
+            history?.location?.state &&
+            history?.location?.state?.from === "cartPage"
+          ) {
+            history.push("/cart");
+          } else {
+            history.push("/");
+          }
         }, 1000);
-      }
-      else{
+      } else {
         toast.warning(res?.data?.message);
       }
     } catch (error) {
@@ -34,8 +47,8 @@ const SignIn = () => {
             <h4 className="semi_bold">Login With Your Ulla Popken account</h4>
             <Formik
               initialValues={{
-                email: "",
-                password: "",
+                email: "pop@gmail.com",
+                password: "123456",
               }}
               validate={(values) => {
                 const errors = {};
