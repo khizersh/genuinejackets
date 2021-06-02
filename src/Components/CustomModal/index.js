@@ -25,6 +25,7 @@ const CustomModal = (props) => {
   const [attribute, setAttribute] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
+  const [isActive, setisActive] = useState("");
   const dispatch = useDispatch();
   const toggle = () => {
     setShowModal(!props.showModal);
@@ -48,7 +49,8 @@ const CustomModal = (props) => {
       id: detail.id,
       itemName: detail?.title,
       itemImage: detail.imageList[0].picByte,
-      price: price,
+      price: price?.price,
+      priceId: price?.priceId,
       attribute: attribute,
       quantity,
     };
@@ -57,12 +59,12 @@ const CustomModal = (props) => {
     toast.success("Added To Cart");
   };
 
-  const onChangeAtrribute = async (val, ind) => {
+  const onChangeAtrribute = async (val, ind,i) => {
     let dup = attribute;
     dup[ind] = val;
     // console.log(ind);
     setAttribute(dup);
-
+    setisActive(i);
     // console.log(detail?.attributeList);
     if (!val) {
       let arr = detail?.imageList.map((img) => ({
@@ -88,13 +90,15 @@ const CustomModal = (props) => {
       }
     }
     if (attribute.length === detail?.attributeList?.length) {
-      let {
-        data: { price },
-      } = await getPriceByAttruibute({
+      let data = await getPriceByAttruibute({
         productId: detail?.id,
         list: attribute,
       });
-      setPrice(price);
+      let obj = {
+        price: data?.data?.price,
+        priceId: data?.data?.priceId,
+      };
+      setPrice(obj);
     }
   };
 
@@ -128,50 +132,98 @@ const CustomModal = (props) => {
             <div className="col-md-6 marginTopAndBottom  ">
               <p className="product-title">{detail.title}</p>
               <p className="product-price my-3">
-                {CURRENCY} {price ? price : detail?.range}
+                {CURRENCY} {price && price.price ? price?.price : detail?.range}
               </p>
               <p className="product-description my-3">{detail?.description}</p>
               <FormGroup>
                 {detail
                   ? detail?.attributeList.map((attribute, index) => (
-                      <Fragment key={index}>
+                      <div className="mt-3" key={index}>
                         <Label
                           for="exampleSelect"
                           className="attributes-heading"
                         >
                           {attribute?.parentTitle}
+                          {":"}
                         </Label>
-                        <Input
-                          type="select"
-                          name="select"
-                          id="exampleSelect"
-                          onChange={(e) =>
-                            onChangeAtrribute(e.target.value, index)
-                          }
-                        >
-                          <>
-                            <option
-                              className="custom-option-description"
-                              value=""
-                            >
-                              Select {attribute?.parentTitle.toLowerCase()}
-                            </option>
+                        {/* {attribute?.parentTitle.toLowerCase() === "color" && */}
+                        {attribute?.multi ? (
+                          <div>
                             {attribute?.childAttributeList?.length
-                              ? attribute?.childAttributeList.map(
-                                  (attr, ind) => (
-                                    <option
-                                      className="custom-option-description"
-                                      value={attr?.title}
-                                      key={ind}
-                                    >
-                                      {attr?.title}
-                                    </option>
-                                  )
+                              ? attribute?.childAttributeList.map((attr, ind) =>
+                                  attr?.attributeImage?.length
+                                    ? attr?.attributeImage.map(
+                                        (attr_img, i) => {
+                                          if (i === 0) {
+                                            return (
+                                              <span
+                                                className="d-inline-block"
+                                                key={ind}
+                                              >
+                                                <p className="text-center mb-2">
+                                                  {attr.title}
+                                                </p>
+                                                <img
+                                                  src={attr_img}
+                                                  key={i}
+                                                  width={55}
+                                                  height={65}
+                                                  className={
+                                                    "p-1 m-1 attribute-img rounded-circle " +
+                                                    (isActive === ind
+                                                      ? "img-active"
+                                                      : "")
+                                                  }
+                                                  onClick={() =>
+                                                    onChangeAtrribute(
+                                                      attr?.title,
+                                                      index,
+                                                      ind
+                                                    )
+                                                  }
+                                                />
+                                              </span>
+                                            );
+                                          }
+                                        }
+                                      )
+                                    : null
                                 )
                               : null}
-                          </>
-                        </Input>
-                      </Fragment>
+                          </div>
+                        ) : detail ? (
+                          <Input
+                            type="select"
+                            name="select"
+                            id="exampleSelect"
+                            onChange={(e) =>
+                              onChangeAtrribute(e.target.value, index)
+                            }
+                          >
+                            <>
+                              <option
+                                className="custom-option-description"
+                                value=""
+                              >
+                                Select {attribute?.parentTitle.toLowerCase()}
+                              </option>
+                              {attribute?.childAttributeList?.length
+                                ? attribute?.childAttributeList.map(
+                                    (attr, ind) => (
+                                      <option
+                                        className="custom-option-description"
+                                        value={attr?.title}
+                                        key={ind}
+                                      >
+                                        {attr?.title}
+                                      </option>
+                                    )
+                                  )
+                                : null}
+                            </>
+                          </Input>
+                        ) : null}
+                      </div>
                     ))
                   : null}
               </FormGroup>

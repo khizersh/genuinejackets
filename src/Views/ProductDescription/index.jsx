@@ -108,7 +108,8 @@ const ProductDescription = () => {
       id: detail.id,
       itemName: detail?.title,
       itemImage: detail.imageList[0].image,
-      price: price,
+      price: price?.price,
+      priceId: price?.priceId,
       attribute: attribute,
       quantity,
     };
@@ -144,13 +145,18 @@ const ProductDescription = () => {
     }
     if (attribute.length === detail?.attributeList?.length) {
       try {
-        let {
-          data: { price },
-        } = await getPriceByAttruibute({
+        let data = await getPriceByAttruibute({
           productId: detail?.id,
           list: attribute,
         });
-        setPrice(price);
+
+        if (data?.statusCode === 1) {
+          let obj = {
+            price: data?.data?.price,
+            priceId: data?.data?.priceId
+          }
+          setPrice(obj);
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -205,7 +211,7 @@ const ProductDescription = () => {
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
-                  {CURRENCY} {price ? price : detail?.range}
+                  {CURRENCY} {(price && price.price) ? price?.price : detail?.range}
                 </h1>
               )}
             </p>
