@@ -83,6 +83,7 @@ const ProductDescription = () => {
       setImages(arr);
     }
     // setImages(data.data?.imageList);
+    console.log(data);
     setDetail(data.data);
     getProducts(data?.data?.categoryId);
   };
@@ -139,12 +140,16 @@ const ProductDescription = () => {
     }
     if (attribute.length === detail?.attributeList?.length) {
       try {
-        let data = await getPriceByAttruibute({
+        let {
+          data: { price },
+        } = await getPriceByAttruibute({
           productId: detail?.id,
           list: attribute,
         });
-        setPrice(data?.data);
-      } catch (error) {}
+        setPrice(price);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
   const showRating = () => {
