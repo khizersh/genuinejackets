@@ -1,6 +1,6 @@
-export const auth = (data) => {
+export const sign_In_User = (data) => {
   return {
-    type: "USER_AUTH",
+    type: "sign_In_User",
     data,
   };
 };
