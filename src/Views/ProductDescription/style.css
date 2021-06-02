@@ -127,6 +127,10 @@ html {
   line-height: 26px;
 }
 
+.react-stars-wrapper-46199183974972830:hover{
+  cursor: pointer;
+}
+
 @media (min-width: 992px) {
   .marginTopAndBottom {
     margin-top: 30px;

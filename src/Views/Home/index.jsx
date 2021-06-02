@@ -20,7 +20,7 @@ const Home = () => {
     getAllProductsWrapper();
   }, []);
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -49,7 +49,8 @@ const Home = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          arrows: false
+          arrows: false,
+          dots: true,
         },
       },
     ],

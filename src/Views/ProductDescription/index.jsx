@@ -30,18 +30,20 @@ import "./style.css";
 import Skeleton from "react-loading-skeleton";
 
 const settings = {
-  dots: true,
+  dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 4,
+  slidesToScroll: 1,
   responsive: [
     {
       breakpoint: 768,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         initialSlide: 2,
+        dots: true,
+        arrows: false
       },
     },
     {
@@ -50,6 +52,8 @@ const settings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 1,
+        dots: true,
+        arrows: false
       },
     },
   ],
@@ -214,6 +218,7 @@ const ProductDescription = () => {
                 href="#tabs"
               >
                 <ReactStars
+                  classNames="rating"
                   count={5}
                   onChange={(ratingChanged) => console.log(ratingChanged)}
                   size={24}
@@ -225,7 +230,7 @@ const ProductDescription = () => {
               </a>
             )}
             <div className="mt-3">
-              <ul className="pl-3">
+              {/* <ul className="pl-3"> */}
                 {!detail ? (
                   <div className="d-flex flex-column">
                     <Skeleton height={20} width={250} />
@@ -233,10 +238,10 @@ const ProductDescription = () => {
                   </div>
                 ) : detail?.bulletList?.length ? (
                   detail?.bulletList.map((list, i) => (
-                    <li key={i}>{list?.point}</li>
+                    <span key={i} dangerouslySetInnerHTML={{__html: list?.point}}></span>
                   ))
                 ) : null}
-              </ul>
+              {/* </ul> */}
             </div>
             <FormGroup>
               {detail
@@ -353,7 +358,7 @@ const ProductDescription = () => {
                   <Skeleton height={50} width={70} className="mx-1" />
                 </div>
               )}
-              <div className="d-flex justify-content-center align-items-center"> 
+              <div className="d-flex justify-content-center align-items-center">
                 {detail ? (
                   <button
                     className="btn actionButton_desc btn-info m-0 "
@@ -366,7 +371,9 @@ const ProductDescription = () => {
                   <Skeleton height={40} width={120} />
                 )}
                 {detail ? (
-                  <button className="btn actionButton_desc ml-2  btn-buy m-0">Buy Now</button>
+                  <button className="btn actionButton_desc ml-2  btn-buy m-0">
+                    Buy Now
+                  </button>
                 ) : (
                   <Skeleton height={40} width={120} className="ml-1" />
                 )}

@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
+import {  VscSignOut} from "react-icons/vsc";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DropdownToggle,
   DropdownMenu,
@@ -12,15 +13,17 @@ import {
 } from "reactstrap";
 
 import "./style.css";
+import { sign_Out_User } from "../../Store/actions/authAction";
 
 const WebNavbar = ({ categories }) => {
-  const history = useHistory();
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
   const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
@@ -57,6 +60,13 @@ const WebNavbar = ({ categories }) => {
     setIsDropdownOpen(false);
   };
 
+  const onSignOut = () => {
+    dispatch(sign_Out_User());
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
+  }
+
   return (
     <div className="main-webnavbar">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
@@ -74,14 +84,20 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           <div className=" d-flex justify-content-end align-items-center">
-            {!user && (
+            {!user ? (
               <Link to="/signIn">
                 <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
                   <BiUser className="icon" />
                   <p className="icon_name">Sign In</p>
                 </span>
               </Link>
+            ) : (
+                <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center" onClick={onSignOut}>
+                  <VscSignOut className="icon" />
+                  <p className="icon_name">Sign Out</p>
+                </span>
             )}
+            
 
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BsBag className="icon" />

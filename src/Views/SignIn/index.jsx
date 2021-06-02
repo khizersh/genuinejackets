@@ -9,6 +9,7 @@ import { onLogin } from "../../api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { sign_In_User } from "../../Store/actions/authAction";
+import { Link } from "react-router-dom";
 const SignIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -47,8 +48,8 @@ const SignIn = () => {
             <h4 className="semi_bold">Login With Your Ulla Popken account</h4>
             <Formik
               initialValues={{
-                email: "pop@gmail.com",
-                password: "123456",
+                email: "",
+                password: "",
               }}
               validate={(values) => {
                 const errors = {};
@@ -101,6 +102,7 @@ const SignIn = () => {
                 </Form>
               )}
             </Formik>
+            <p className="mt-4">Don't have a account. <Link to="/register" className="font-weight-bold"> Register</Link></p>
           </div>
           <div className="col-md-6 info_side_wrapper">
             <div className="info_side">
