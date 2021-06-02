@@ -119,3 +119,8 @@ export const onLogin = function (body) {
   return axios
     .post(BASE_URL + "/login", body)
 };
+
+export const onVerify = function (body) {
+  return axios
+    .post(BASE_URL + "/user/verify", body)
+};

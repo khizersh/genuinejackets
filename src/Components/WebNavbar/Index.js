@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
-import {  VscSignOut} from "react-icons/vsc";
+import { VscSignOut } from "react-icons/vsc";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   DropdownToggle,
   DropdownMenu,
@@ -62,10 +63,11 @@ const WebNavbar = ({ categories }) => {
 
   const onSignOut = () => {
     dispatch(sign_Out_User());
+    toast.success("SignOut Successfully");
     setTimeout(() => {
       history.push("/");
     }, 1000);
-  }
+  };
 
   return (
     <div className="main-webnavbar">
@@ -92,12 +94,14 @@ const WebNavbar = ({ categories }) => {
                 </span>
               </Link>
             ) : (
-                <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center" onClick={onSignOut}>
-                  <VscSignOut className="icon" />
-                  <p className="icon_name">Sign Out</p>
-                </span>
+              <span
+                className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center"
+                onClick={onSignOut}
+              >
+                <VscSignOut className="icon" />
+                <p className="icon_name">Sign Out</p>
+              </span>
             )}
-            
 
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BsBag className="icon" />

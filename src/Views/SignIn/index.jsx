@@ -1,21 +1,26 @@
+import { useState } from "react";
 import { Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { Spinner } from "react-activity";
+import { useHistory } from "react-router";
 import { AiOutlineCheck, AiFillCloseCircle } from "react-icons/ai";
-import { useHistory, useLocation } from "react-router";
 
 import FormikFeild from "../../Components/FormikField";
 import FormikButton from "../../Components/FormikButton";
-import "./index.css";
 import { onLogin } from "../../api";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 import { sign_In_User } from "../../Store/actions/authAction";
-import { Link } from "react-router-dom";
+import "./index.css";
+
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+  
   const onSubmitHandler = async (values) => {
     try {
+      setLoading(true);
       let res = await onLogin(values);
       if (res?.data?.statusCode === 1) {
         dispatch(sign_In_User(res?.data?.data));
@@ -33,9 +38,11 @@ const SignIn = () => {
           }
         }, 1000);
       } else {
+        setLoading(false);
         toast.warning(res?.data?.message);
       }
     } catch (error) {
+      setLoading(false);
       toast.error(error?.message);
       console.log(error);
     }
@@ -98,11 +105,26 @@ const SignIn = () => {
                     name="password"
                     label={"Password"}
                   />
-                  <FormikButton type={"submit"} title={"Login"} />
+                  {loading ? (
+                    
+                    <FormikButton type={"submit"} title={<Spinner
+                      animating={true}
+                      size={14}
+                      style={{margin: "0 auto"}}
+                    />} />
+                  ) : (
+                    <FormikButton type={"submit"} title={"Login"} />
+                  )}
                 </Form>
               )}
             </Formik>
-            <p className="mt-4">Don't have a account. <Link to="/register" className="font-weight-bold"> Register</Link></p>
+            <p className="mt-4">
+              Don't have a account.{" "}
+              <Link to="/register" className="font-weight-bold">
+                {" "}
+                Register
+              </Link>
+            </p>
           </div>
           <div className="col-md-6 info_side_wrapper">
             <div className="info_side">

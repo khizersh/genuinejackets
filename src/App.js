@@ -16,6 +16,7 @@ import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import Footer from "./Components/Footer";
+import Verify from "./Views/Verify";
 
 function App() {
   return (
@@ -49,6 +50,9 @@ function App() {
               </Route>
               <Route exact path="/category/:title/:slug">
                 <CategoryProducts />
+              </Route>
+              <Route exact path="/verify/:token">
+                <Verify />
               </Route>
             </Switch>
             <Footer />

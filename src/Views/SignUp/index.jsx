@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Formik, Form } from "formik";
 import { AiOutlineCheck, AiFillCloseCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router";
+import { Spinner } from "react-activity";
 
 import FormikFeild from "../../Components/FormikField";
 import FormikButton from "../../Components/FormikButton";
@@ -9,22 +11,25 @@ import { onRegister } from "../../api";
 import "./index.css";
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
   const router = useHistory();
   const onSubmitHandler = async (values) => {
     const data = new FormData();
     data.append("user", JSON.stringify(values));
     try {
+      setLoading(true);
       let res = await onRegister(data);
       if (res?.data?.statusCode === 1) {
         toast.success(res?.data?.data);
         setTimeout(() => {
           router.push("/signIn");
         }, 1000);
-      }
-      else{
+      } else {
+        setLoading(false);
         toast.warning(res?.data?.message);
       }
     } catch (error) {
+      setLoading(false);
       toast.error(error?.message);
       console.log(error);
     }
@@ -122,7 +127,20 @@ const SignUp = () => {
                     name="password"
                     label={"Password"}
                   />
-                  <FormikButton type={"submit"} title={"Register"} />
+                  {loading ? (
+                    <FormikButton
+                      type={"submit"}
+                      title={
+                        <Spinner
+                          animating={true}
+                          size={14}
+                          style={{ margin: "0 auto" }}
+                        />
+                      }
+                    />
+                  ) : (
+                    <FormikButton type={"submit"} title={"Register"} />
+                  )}
                 </Form>
               )}
             </Formik>
