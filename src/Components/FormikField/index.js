@@ -11,7 +11,7 @@ const FormikField = ({ type, name, label, error }) => {
   return (
     <div className="mt-3">
       {name === "password" ? (
-        <div className="d-flex justify-content-between align-items-center resizeWidth">
+        <div className="d-flex justify-content-between align-items-center resizeWidth w-100 ">
           <label htmlFor={type} className="label">
             {label}
           </label>

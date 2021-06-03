@@ -1,0 +1,23 @@
+input {
+  width: 100% !important;
+}
+.spaceB {
+  margin-top: 32px !important;
+}
+.space {
+  padding: 22px !important;
+}
+label {
+  font-weight: bold;
+}
+@media (max-width: 991px) {
+  .rightSide_shipping {
+    margin-top: 30px !important;
+  }
+}
+@media (max-width: 768px) {
+  .spaceB {
+    margin-top: 5px !important;
+  }
+  
+}

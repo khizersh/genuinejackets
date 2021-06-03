@@ -19,7 +19,7 @@ const Cart = () => {
     if (!user) {
       history.push("/signIn", { from: "cartPage" });
     } else {
-      history.push("/dummy");
+      history.push("/shoppingDetail");
     }
   };
   useEffect(() => {

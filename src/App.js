@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Home from "./Views/Home";
 import SignUp from "./Views/SignUp";
-import Dummy from "./Views/DummyPage";
+import ShoppingDetail from "./Views/ShoppingDetail";
 import SignIn from "./Views/SignIn";
 import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
@@ -42,8 +42,8 @@ function App() {
               <Route exact path="/cart">
                 <Cart />
               </Route>
-              <Route exact path="/dummy">
-                <Dummy />
+              <Route exact path="/shoppingDetail">
+                <ShoppingDetail />
               </Route>
               <Route exact path="/categories">
                 <Categories />
