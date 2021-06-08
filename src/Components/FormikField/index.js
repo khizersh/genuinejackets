@@ -4,7 +4,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import "./style.css";
 const FormikField = ({ type, name, label, error }) => {
-  const [hidePassword, setHidePassword] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
   const togglePassoword = () => {
     setHidePassword(!hidePassword);
   };

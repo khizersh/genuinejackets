@@ -3,7 +3,7 @@ import PhoneInput from "react-phone-input-2";
 import ReactFlagsSelect from "react-flags-select";
 
 import "react-phone-input-2/lib/style.css";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import "./style.css";
 const Index = () => {
   const [phone, setPhone] = useState();

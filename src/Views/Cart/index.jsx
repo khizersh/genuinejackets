@@ -5,22 +5,42 @@ import { TiStarburst } from "react-icons/ti";
 
 import CartItem from "../../Components/CartItem";
 import CartFooter from "../../Components/CartFooter";
-import { CURRENCY } from "../../constant";
+import { CURRENCY, products } from "../../constant";
 import "./style.css";
 import { useHistory } from "react-router";
+import { validateCoupon } from "../../api";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const [subtotal, setSubtotal] = useState(0);
+  const [promoCode, setpromoCode] = useState("");
   const [shippingCharge, setShippingCharges] = useState(50);
   const history = useHistory();
-  const confirmCheckout = () => {
-    if (!user) {
-      history.push("/signIn", { from: "cartPage" });
-    } else {
-      history.push("/shoppingDetail");
+
+  const confirmCheckout = async () => {
+    if (!user) return history.push("/signIn", { from: "cartPage" });
+    
+    let productList = state.map((x) => {
+      return { productId: x.id, quantity: x.quantity, priceId: x.priceId };
+    });
+    const body = {
+      userId: user.id,
+      coupon: false,
+      totalAmount: +subtotal,
+      netAmount: +subtotal,
+      productList: productList,
+    };
+    console.log("body***", user.id);
+    try {
+      validateCoupon(body);
+      // history.push("/shoppingDetail");
+    } catch (error) {
+      console.log(error.message);
     }
+    // if (!user) {
+    // } else {
+    // }
   };
   useEffect(() => {
     let temp = 0;
@@ -33,7 +53,6 @@ const Cart = () => {
     console.log(temp);
     setSubtotal(temp);
   }, [state]);
-  console.log("state: ", state);
   if (!state.length)
     return (
       <h1 className="d-flex justify-content-center align-items-center my-5">
@@ -98,6 +117,8 @@ const Cart = () => {
                   <input
                     placeholder="enter promo code"
                     className="promo-input"
+                    value={promoCode}
+                    onChange={(e) => setpromoCode(e.target.value)}
                   />
                   <button className="btn btn-light btn-block text-truncate btn-sm mt-2">
                     Apply

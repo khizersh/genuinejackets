@@ -111,16 +111,24 @@ export const getPriceByAttruibute = function (body) {
 };
 
 export const onRegister = function (body) {
-  return axios
-    .post(BASE_URL + "/user/process_register", body)
+  return axios.post(BASE_URL + "/user/process_register", body);
 };
 
 export const onLogin = function (body) {
-  return axios
-    .post(BASE_URL + "/login", body)
+  return axios.post(BASE_URL + "/login", body);
 };
 
 export const onVerify = function (body) {
+  return axios.post(BASE_URL + "/user/verify", body);
+};
+
+export const validateCoupon = function (body) {
   return axios
-    .post(BASE_URL + "/user/verify", body)
+    .post(BASE_URL + "/checkout", body)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error.message);
+    });
 };

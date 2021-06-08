@@ -25,12 +25,18 @@ const cartReducer = (state = initialState, action) => {
       let updated = data?.cartArray.map((x) => {
         console.log(action.data.quantityValue);
         if (x.id === action.data.id) {
-          x.quantity =  action.data.quantityValue;
+          x.quantity = action.data.quantityValue;
         }
-        return x
+        return x;
       });
       console.log(updated);
       return { ...state, cartArray: updated };
+    }
+    case "CONFIRM_CHECKOUT": {
+      let data = { ...state };
+      console.log(data);
+
+      return { ...state };
     }
     default:
       return state;
