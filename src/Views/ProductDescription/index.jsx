@@ -204,7 +204,7 @@ const ProductDescription = () => {
             {!detail ? (
               <Skeleton height={35} width={300} />
             ) : (
-              <p className="product-title">{detail?.title}</p>
+              <h1 className="product-title">{detail?.title}</h1>
             )}
             <p className="product-price mt-1">
               {!detail ? (

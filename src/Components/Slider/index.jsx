@@ -18,9 +18,7 @@ const SliderComponent = (props) => {
               }}
             >
               <div className="inner">
-                <h1>{item?.title}</h1>
-                <p>{item?.description}</p>
-                <button className="slider-button" onClick={() => history.push(item?.url)}>Read More</button>
+                <button className="slider-button" onClick={() => history.push(item?.url)}>Shop Now</button>
               </div>
             </div>
           ))}

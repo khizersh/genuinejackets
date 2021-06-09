@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { RiDeleteBin3Line } from "react-icons/ri";
 
 import "./style.css";
 import { remove_from_cart, update_cart } from "../../Store/actions/cart";
@@ -13,7 +14,7 @@ const CartItem = ({ item }) => {
     dispatch(remove_from_cart(item.id));
   };
   const updateCart = (quantityValue) => {
-    if(item.quantity+quantityValue<=1)return false
+    if (item.quantity + quantityValue <= 1) return false;
     dispatch(update_cart({ id: item.id, quantityValue }));
   };
   useEffect(() => {
@@ -27,10 +28,11 @@ const CartItem = ({ item }) => {
         </div>
         <div className="pl-4 w-100">
           <p className="font-weight-bold">{item.itemName}</p>
-         
+
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">
-              {CURRENCY}{item?.quantity * item.price}
+              {CURRENCY}
+              {item?.quantity * item.price}
             </p>
           </div>
           <div className="web-show-stuff">
@@ -50,8 +52,11 @@ const CartItem = ({ item }) => {
                   +
                 </div>
               </div>
-              <button className="btn bg-danger text-white delete-btn" onClick={removeCart}>
-                X
+              <button
+                className="btn bg-danger text-white delete-btn"
+                onClick={removeCart}
+              >
+                <RiDeleteBin3Line />
               </button>
             </div>
             {/* <p className="text-available">
@@ -62,19 +67,29 @@ const CartItem = ({ item }) => {
       </div>
       <div className="mob-show-stuff d-none mt-3">
         <div className="d-flex align-items-center  select-wrapper w-100">
-          <div className="custom-box">-</div>
-          <div className="custom-box">0</div>
           <div
             className="custom-box"
-            // onClick={() => setQuantity(quantity + 1)}
+            onClick={() => updateCart(item.quantity - 1)}
+          >
+            -
+          </div>
+          <div className="custom-box">{item?.quantity}</div>
+          <div
+            className="custom-box"
+            onClick={() => updateCart(item.quantity + 1)}
           >
             +
           </div>
-          <button className="btn btn-light delete-btn ">X Delete</button>
+          <button
+            className="btn bg-danger text-white delete-btn"
+            onClick={removeCart}
+          >
+            <RiDeleteBin3Line />
+          </button>
         </div>
-        <p className="text-available">
+        {/* <p className="text-available">
           Available - Delivery in 2-7 business days
-        </p>
+        </p> */}
       </div>
       <hr />
     </div>

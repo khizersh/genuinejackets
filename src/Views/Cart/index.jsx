@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { TiStarburst } from "react-icons/ti";
 
 import CartItem from "../../Components/CartItem";
 import CartFooter from "../../Components/CartFooter";
@@ -20,7 +19,7 @@ const Cart = () => {
 
   const confirmCheckout = async () => {
     if (!user) return history.push("/signIn", { from: "cartPage" });
-    
+
     let productList = state.map((x) => {
       return { productId: x.id, quantity: x.quantity, priceId: x.priceId };
     });
@@ -69,6 +68,7 @@ const Cart = () => {
               <p className="font-weight-bold mt-1">Bag</p>
               <p>{state.length} items</p>
             </div>
+            <hr />
             {state.map((item) => (
               <CartItem item={item} key={item.id} />
             ))}
