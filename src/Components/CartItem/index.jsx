@@ -8,7 +8,8 @@ import { CURRENCY } from "../../constant";
 
 const CartItem = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
-
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
   const dispatch = useDispatch();
   const removeCart = () => {
     dispatch(remove_from_cart(item.id));
@@ -19,6 +20,15 @@ const CartItem = ({ item }) => {
   };
   useEffect(() => {
     setQuantity(item?.quantity);
+    console.log(item);
+    const sizes = ["Small", "Medium", "Large"];
+    item?.attribute?.some((i) => {
+      if (sizes?.includes(i)) {
+        setSize(i);
+      } else {
+        setColor(i);
+      }
+    });
   }, [item]);
   return (
     <div className="col-md-12 p-0 my-2">
@@ -28,6 +38,18 @@ const CartItem = ({ item }) => {
         </div>
         <div className="pl-4 w-100">
           <p className="font-weight-bold">{item.itemName}</p>
+          {item && item.attribute.length && size && (
+            <div className="d-flex align-item-center">
+              <p className="font-weight-bold">Size: </p>
+              <p className="ml-2"> {size}</p>
+            </div>
+          )}
+          {item && item.attribute.length && (
+            <div className="d-flex align-items-center">
+              <p className="font-weight-bold">Color: </p>
+              <p className="ml-2">{color}</p>
+            </div>
+          )}
 
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">
