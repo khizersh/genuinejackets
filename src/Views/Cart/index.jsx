@@ -7,16 +7,22 @@ import CartFooter from "../../Components/CartFooter";
 import { CURRENCY, products } from "../../constant";
 import "./style.css";
 import { useHistory } from "react-router";
+import Toggle from "react-toggle";
 import { validateCoupon } from "../../api";
+import "react-toggle/style.css"; // for ES6 modules
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const [subtotal, setSubtotal] = useState(0);
   const [promoCode, setpromoCode] = useState("");
-  const [shippingCharge, setShippingCharges] = useState(50);
+  const [shippingCharge, setShippingCharges] = useState(30);
+  const [toggle, setToggle] = useState(false);
   const history = useHistory();
 
+  const handleToggleShipping = () => {
+    setToggle(!toggle);
+  };
   const confirmCheckout = async () => {
     if (!user) return history.push("/signIn", { from: "cartPage" });
 
@@ -33,13 +39,10 @@ const Cart = () => {
     console.log("body***", user.id);
     try {
       validateCoupon(body);
-      // history.push("/shoppingDetail");
+      history.push("/shoppingDetail");
     } catch (error) {
       console.log(error.message);
     }
-    // if (!user) {
-    // } else {
-    // }
   };
   useEffect(() => {
     let temp = 0;
@@ -79,17 +82,19 @@ const Cart = () => {
               <div className="d-flex justify-content-between mt-3">
                 <div className="w-50">
                   <p>Subtotal:</p>
-                  <p>Estimated Shipping:</p>
+                  {<p>{toggle ? "Expidet shipping :" : "Free Shipping"}</p>}
                 </div>
                 <div>
                   <p>
                     {CURRENCY}
                     {subtotal}
                   </p>
-                  <p>
-                    {CURRENCY}
-                    {shippingCharge}
-                  </p>
+                  {toggle && (
+                    <p>
+                      {CURRENCY}
+                      {shippingCharge}
+                    </p>
+                  )}
                 </div>
               </div>
               <hr />
@@ -97,7 +102,7 @@ const Cart = () => {
                 <p className="font-weight-bold">Order Total</p>
                 <p className="font-weight-bold">
                   {CURRENCY}
-                  {shippingCharge + subtotal}
+                  {toggle?shippingCharge + subtotal:subtotal}
                 </p>
               </div>
               <p
@@ -106,6 +111,15 @@ const Cart = () => {
               >
                 Secure Checkout
               </p>
+              <div className="d-flex justify-content-center align-items-center">
+                <span className="font-weight-bold">Expidet shipping</span>
+                <Toggle
+                  className="ml-3"
+                  defaultChecked={toggle}
+                  icons={false}
+                  onChange={handleToggleShipping}
+                />
+              </div>
             </div>
             <div className="row">
               <div className="col-lg-12 col-md-6">
