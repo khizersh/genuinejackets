@@ -30,14 +30,13 @@
   margin-left: -20px;
   color: darkgray;
 }
-.categoryButton{
+.categoryButton {
   text-align: center;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
 .categoryButton:hover {
- 
   background-color: white !important;
   color: black !important;
 }
@@ -78,8 +77,20 @@
   background-color: rgba(26, 26, 26, 0.95) !important;
   color: white;
 }
-.searchBar_Wrapper{
+.searchBar_Wrapper {
   padding-bottom: 10px;
+}
+.authItem {
+  transition: 0.4s;
+}
+.active{
+  background-color: #fcb800;
+  color: white;
+}
+
+.authItem:hover {
+  color: #fcb800;
+  background-color: white;
 }
 /* Media Queries */
 @media (max-width: 1200px) {

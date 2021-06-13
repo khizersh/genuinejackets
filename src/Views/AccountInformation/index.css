@@ -1,0 +1,36 @@
+.userImage {
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  width: 60px;
+}
+.sideWrapper {
+  width: 90%;
+  margin: 0;
+}
+.sideItem {
+  font-weight: bold;
+  padding-left: 18px !important;
+  border: 1px solid gray;
+  padding: 5px;
+  margin-bottom: 0;
+  background-color: white;
+  font-size: 16px;
+  display: flex !important;
+  align-items: center !important;
+  color: black;
+}
+.sideItem:hover {
+  background-color: #fcb800;
+  color: white;
+  cursor: pointer;
+}
+.right_wrapper {
+  height: 400px;
+  background-color: white;
+  width: 100%;
+}
+.accountWrapper {
+  height: 100%  ;
+  background-color: #eceeec !important;
+}

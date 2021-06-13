@@ -38,8 +38,13 @@ const Cart = () => {
     };
     console.log("body***", user.id);
     try {
-      validateCoupon(body);
-      history.push("/shoppingDetail");
+      const { statusCode } = await validateCoupon(body);
+      console.log(statusCode);
+      if (statusCode === 1) {
+        history.push("/shoppingDetail");
+      } else {
+        return false;
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -102,7 +107,7 @@ const Cart = () => {
                 <p className="font-weight-bold">Order Total</p>
                 <p className="font-weight-bold">
                   {CURRENCY}
-                  {toggle?shippingCharge + subtotal:subtotal}
+                  {toggle ? shippingCharge + subtotal : subtotal}
                 </p>
               </div>
               <p

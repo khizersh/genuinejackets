@@ -11,6 +11,7 @@ import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
+  Dropdown,
 } from "reactstrap";
 
 import "./style.css";
@@ -21,6 +22,7 @@ const WebNavbar = ({ categories }) => {
   const state = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
+  const [authDropDown, setAuthDropDown] = useState(false);
   const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
   const history = useHistory();
@@ -46,10 +48,6 @@ const WebNavbar = ({ categories }) => {
     );
     console.log(user);
   }, [isMobile]);
-
-  // const toggle = () => {
-  //   setIsDropdownOpen(!dropdownOpen);
-  // };
 
   const onMouseEnter = (a) => {
     setIsOpenBox(a);
@@ -87,12 +85,59 @@ const WebNavbar = ({ categories }) => {
           </div>
           <div className=" d-flex justify-content-end align-items-center">
             {!user ? (
-              <Link to="/signIn">
-                <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
-                  <BiUser className="icon" />
-                  <p className="icon_name">Sign In</p>
-                </span>
-              </Link>
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                <UncontrolledDropdown
+                  isOpen={authDropDown}
+                  onMouseEnter={() => setAuthDropDown(true)}
+                  onMouseLeave={() => setAuthDropDown(false)}
+                  style={{ transition: "0.5s" }}
+                >
+                  <DropdownToggle
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "white",
+                      border: "none",
+                      margin: 0,
+                      outline: "none",
+                      transition: "0.5s",
+                    }}
+                    className="categoryButton authButtonItem"
+                  >
+                    <div className="d-flex flex-column align-items-center  text-dark">
+                      <Link to="/signIn">
+                        <BiUser className="icon text-dark" />
+                        <p className="icon_name">Sign In</p>
+                      </Link>
+                    </div>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem
+                      onClick={() =>
+                        history.push(`/accountInformation`)
+                      }
+                      className=" dropdownItem"
+                    >
+                      Account Information
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={() =>
+                        history.push(`/wishlist`)
+                      }
+                      className=" dropdownItem"
+                    >
+                      WishList
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={() =>
+                        history.push(`/logout`)
+                      }
+                      className=" dropdownItem"
+                    >
+                      Logout
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </span>
             ) : (
               <span
                 className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center"

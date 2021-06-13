@@ -12,6 +12,7 @@ import ShoppingDetail from "./Views/ShoppingDetail";
 import SignIn from "./Views/SignIn";
 import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
+import AccountInformation from "./Views/AccountInformation";
 import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
@@ -53,6 +54,9 @@ function App() {
               </Route>
               <Route exact path="/verify/:token">
                 <Verify />
+              </Route>
+              <Route exact path="/:slug">
+                <AccountInformation />
               </Route>
             </Switch>
             <Footer />
