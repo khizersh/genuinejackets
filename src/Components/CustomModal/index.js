@@ -48,7 +48,7 @@ const CustomModal = (props) => {
     let cartItemObj = {
       id: detail.id,
       itemName: detail?.title,
-      itemImage: detail.imageList[0].picByte,
+      itemImage: detail.imageList[0].image,
       price: price?.price,
       priceId: price?.priceId,
       attribute: attribute,
