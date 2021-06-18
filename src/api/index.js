@@ -122,7 +122,18 @@ export const onVerify = function (body) {
   return axios.post(BASE_URL + "/user/verify", body);
 };
 
-export const validateCoupon = function (body) {
+export const validateCoupon = function (coupon) {
+  return axios
+    .post(BASE_URL + "/coupon/validate/" + coupon)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error.message);
+    });
+};
+
+export const checkout = function (body) {
   return axios
     .post(BASE_URL + "/checkout", body)
     .then(function (response) {

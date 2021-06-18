@@ -24,3 +24,11 @@ export const confirm_Checkout = (data) => {
     data:data,
   };
 };
+
+export const apply_coupon = (data) => {
+  console.log(data);
+  return {
+    type: "COUPON",
+    data:data,
+  };
+};

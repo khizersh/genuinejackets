@@ -1,5 +1,6 @@
 const initialState = {
   cartArray: [],
+  coupon: null
 };
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,6 +38,9 @@ const cartReducer = (state = initialState, action) => {
       console.log(data);
 
       return { ...state };
+    }
+    case "COUPON": {
+      return { ...state, coupon: action.data };
     }
     default:
       return state;

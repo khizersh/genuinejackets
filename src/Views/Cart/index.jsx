@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { useHistory } from "react-router";
+import { toast } from "react-toastify";
+import Toggle from "react-toggle";
+import "react-toggle/style.css"; // for ES6 modules
 
 import CartItem from "../../Components/CartItem";
 import CartFooter from "../../Components/CartFooter";
-import { CURRENCY, products } from "../../constant";
+import { CURRENCY } from "../../constant";
+import { validateCoupon, checkout } from "../../api";
 import "./style.css";
-import { useHistory } from "react-router";
-import Toggle from "react-toggle";
-import { validateCoupon } from "../../api";
-import "react-toggle/style.css"; // for ES6 modules
+import { apply_coupon } from "../../Store/actions/cart";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
+  const coupon_data = useSelector((state) => state.cartReducer.coupon);
   const [subtotal, setSubtotal] = useState(0);
   const [promoCode, setpromoCode] = useState("");
   const [shippingCharge, setShippingCharges] = useState(30);
   const [toggle, setToggle] = useState(false);
+  const [couponData, setCouponData] = useState("");
+  const [couponPrice, setCouponPrice] = useState(0);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleToggleShipping = () => {
     setToggle(!toggle);
@@ -29,17 +35,31 @@ const Cart = () => {
     let productList = state.map((x) => {
       return { productId: x.id, quantity: x.quantity, priceId: x.priceId };
     });
-    const body = {
-      userId: user.id,
-      coupon: false,
-      totalAmount: +subtotal,
-      netAmount: +subtotal,
-      productList: productList,
-    };
-    console.log("body***", user.id);
+    
+    let body;
+    if (couponData) {
+      body = {
+        userId: user?.id,
+        coupon: true,
+        couponId: couponData?.id,
+        couponAmount: +couponPrice,
+        totalAmount: +subtotal,
+        netAmount: (+subtotal - (+couponPrice)),
+        productList: productList,
+      };
+    } else {
+      body = {
+        userId: user?.id,
+        coupon: false,
+        totalAmount: +subtotal,
+        netAmount: +subtotal,
+        productList: productList,
+      };
+      
+    }
+    
     try {
-      const { statusCode } = await validateCoupon(body);
-      console.log(statusCode);
+      const { statusCode } = await checkout(body);
       if (statusCode === 1) {
         history.push("/shoppingDetail");
       } else {
@@ -49,7 +69,9 @@ const Cart = () => {
       console.log(error.message);
     }
   };
+  
   useEffect(() => {
+    setCouponData(coupon_data);
     let temp = 0;
 
     for (let index = 0; index < state.length; index++) {
@@ -58,8 +80,27 @@ const Cart = () => {
       temp += value;
     }
     console.log(temp);
+    
     setSubtotal(temp);
-  }, [state]);
+    setCouponPrice(coupon_data ? (temp / coupon_data.percentageOff) : 0);
+  }, [state,coupon_data]);
+
+  const coupon = async () => {
+    if (!promoCode) return toast.warning("Enter Promo Code");
+    try {
+      const data = await validateCoupon(promoCode);
+      console.log(data);
+      if (data?.statusCode === 1) {
+        dispatch(apply_coupon(data?.data));
+        return toast.success("Coupon Verified");
+      } else {
+        return toast.warning(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   if (!state.length)
     return (
       <h1 className="d-flex justify-content-center align-items-center my-5">
@@ -88,18 +129,24 @@ const Cart = () => {
                 <div className="w-50">
                   <p>Subtotal:</p>
                   {<p>{toggle ? "Expidet shipping :" : "Free Shipping"}</p>}
+                  <p>{couponData ? "Coupon" : null}</p>
                 </div>
                 <div>
                   <p>
                     {CURRENCY}
                     {subtotal}
                   </p>
-                  {toggle && (
-                    <p>
-                      {CURRENCY}
-                      {shippingCharge}
-                    </p>
-                  )}
+                  <p>
+                    {toggle ? (
+                      <>
+                        {CURRENCY}
+                        {shippingCharge}
+                      </>
+                    ) : (
+                      "$0"
+                    )}
+                  </p>
+                  <p>{couponData ? couponData.percentageOff + "%" : null}</p>
                 </div>
               </div>
               <hr />
@@ -107,7 +154,7 @@ const Cart = () => {
                 <p className="font-weight-bold">Order Total</p>
                 <p className="font-weight-bold">
                   {CURRENCY}
-                  {toggle ? shippingCharge + subtotal : subtotal}
+                  {toggle ? shippingCharge + (couponPrice ? (subtotal - couponPrice) : subtotal) : couponPrice ? (subtotal - couponPrice) : subtotal}
                 </p>
               </div>
               <p
@@ -139,7 +186,10 @@ const Cart = () => {
                     value={promoCode}
                     onChange={(e) => setpromoCode(e.target.value)}
                   />
-                  <button className="btn btn-light btn-block text-truncate btn-sm mt-2">
+                  <button
+                    className="btn btn-light btn-block text-truncate btn-sm mt-2"
+                    onClick={coupon}
+                  >
                     Apply
                   </button>
                 </div>
