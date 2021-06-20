@@ -143,3 +143,24 @@ export const checkout = function (body) {
       console.log(error.message);
     });
 };
+
+export const getUserCoupons = function (slug) {
+  return axios
+    .get(BASE_URL + "/assign-coupon/user/" + slug)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const getUserOrders = function (slug) {
+  return axios
+    .get(BASE_URL + "/order/user/" + slug)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

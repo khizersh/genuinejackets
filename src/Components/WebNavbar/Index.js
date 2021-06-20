@@ -86,6 +86,13 @@ const WebNavbar = ({ categories }) => {
           <div className=" d-flex justify-content-end align-items-center">
             {!user ? (
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                <Link to="/signIn" className="d-flex flex-column  align-items-center justify-content-center ">
+                  <BiUser className="icon text-dark" />
+                  <p className="icon_name">Sign In</p>
+                </Link>
+              </span>
+            ) : (
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
                 <UncontrolledDropdown
                   isOpen={authDropDown}
                   onMouseEnter={() => setAuthDropDown(true)}
@@ -104,47 +111,28 @@ const WebNavbar = ({ categories }) => {
                     className="categoryButton authButtonItem"
                   >
                     <div className="d-flex flex-column align-items-center  text-dark">
-                      <Link to="/signIn">
-                        <BiUser className="icon text-dark" />
-                        <p className="icon_name">Sign In</p>
-                      </Link>
+                      <VscSignOut className="icon" />
+                      <p className="icon_name">Sign Out</p>
                     </div>
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem
-                      onClick={() =>
-                        history.push(`/accountInformation`)
-                      }
+                      onClick={() => history.push(`/accountInformation`)}
                       className=" dropdownItem"
                     >
                       Account Information
                     </DropdownItem>
                     <DropdownItem
-                      onClick={() =>
-                        history.push(`/wishlist`)
-                      }
+                      onClick={() => history.push(`/wishlist`)}
                       className=" dropdownItem"
                     >
                       WishList
                     </DropdownItem>
-                    <DropdownItem
-                      onClick={() =>
-                        history.push(`/logout`)
-                      }
-                      className=" dropdownItem"
-                    >
+                    <DropdownItem onClick={onSignOut} className=" dropdownItem">
                       Logout
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              </span>
-            ) : (
-              <span
-                className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center"
-                onClick={onSignOut}
-              >
-                <VscSignOut className="icon" />
-                <p className="icon_name">Sign Out</p>
               </span>
             )}
 

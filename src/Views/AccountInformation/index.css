@@ -34,3 +34,9 @@
   height: 100%  ;
   background-color: #eceeec !important;
 }
+@media (max-width: 768px) {
+  .headingMain {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
