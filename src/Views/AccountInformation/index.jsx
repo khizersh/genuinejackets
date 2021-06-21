@@ -33,7 +33,7 @@ const Index = () => {
     }
   };
   useEffect(() => {
-    console.log(slug);
+    // console.log(slug);
     setIsActive(slug);
   }, [slug]);
   return (

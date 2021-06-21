@@ -164,3 +164,14 @@ export const getUserOrders = function (slug) {
       console.log(error);
     });
 };
+
+export const getOrderDetail = function (id) {
+  return axios
+    .get(BASE_URL + "/order/detail/" + id)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

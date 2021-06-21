@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+
 import Orders from "../Orders";
 import OrderDetail from "../OrderDetail";
-import { useEffect } from "react";
+import { getOrderDetail } from "../../api";
+
 const OrderDetailWrapper = () => {
   const [showOrderDetails, setShowOrderDetails] = useState(false);
-  const showDetail = () => {
+  const [id, setId] = useState(4);
+  const [order, setOrder] = useState([]);
+  const showDetail = (id) => {
     setShowOrderDetails(true);
+    setId(id);
   };
-  useEffect(() => {}, [showOrderDetails]);
+  useEffect(() => {
+    const getData = () => {
+      try {
+        const { data, statusCode } = getOrderDetail(id);
+        console.log(data);
+        if (statusCode === 1) {
+          setOrder(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    id && getData();
+  }, [id]);
   return showOrderDetails ? (
-      <OrderDetail  showOrderDetails={setShowOrderDetails}  />
-      ) : (
-      <Orders showDetail={showDetail} />
+    <OrderDetail showOrderDetails={setShowOrderDetails} order={order} />
+  ) : (
+    <Orders showDetail={showDetail} />
   );
 };
 

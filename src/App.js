@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./Store/index";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { PersistGate } from "redux-persist/integration/react";
+import "bootstrap/dist/css/bootstrap.css";
 
 import "./App.css";
+import { store, persistor } from "./Store/index";
 import Home from "./Views/Home";
 import SignUp from "./Views/SignUp";
 import ShoppingDetail from "./Views/ShoppingDetail";
@@ -18,6 +18,7 @@ import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import Footer from "./Components/Footer";
 import Verify from "./Views/Verify";
+import OrderDetail from "./Components/OrderDetail";
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
               <Route exact path="/:slug">
                 <AccountInformation />
               </Route>
+              {/* <Route exact path="/order/:id">
+                <OrderDetail />
+              </Route> */}
             </Switch>
             <Footer />
           </Router>

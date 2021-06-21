@@ -1,11 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { Table } from "reactstrap";
-import { getUserOrders } from "../../api";
 import { AiOutlineLeft } from "react-icons/ai";
-const Orders = ({ showOrderDetails }) => {
+
+import { getOrderDetail } from "../../api";
+
+const Orders = ({ showOrderDetails, order }) => {
   return (
     <div className="h-100 ">
       <AiOutlineLeft
@@ -14,12 +13,12 @@ const Orders = ({ showOrderDetails }) => {
         onClick={() => showOrderDetails(false)}
       />
       <div className="d-flex justify-content-between">
-        <p>some refrence</p>
-        <p>some refrence</p>
+        <p>Order Id</p>
+        <p>Date</p>
       </div>
       <div className="d-flex justify-content-between">
-        <p>some refrence</p>
-        <p>some refrence</p>
+        <p>Total</p>
+        <p>Coupon</p>
       </div>
       <div
         style={{
@@ -36,10 +35,24 @@ const Orders = ({ showOrderDetails }) => {
               <th className="tableHeading">SubTotal</th>
             </tr>
           </thead>
-          <tbody
-            
-          >
-            <tr>
+          <tbody>
+            {order?.length
+              ? order.map((ord, ind) => (
+                  <tr key={ind}>
+                    <td>{ord?.id}</td>
+                    <td>
+                      <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+                        alt=""
+                        style={{ height: "50px" }}
+                      />
+                    </td>
+                    <td>25</td>
+                    <td>2000</td>
+                  </tr>
+                ))
+              : null}
+            {/* <tr>
               <td>Red Jacket</td>
               <td>
                 <img
@@ -98,7 +111,7 @@ const Orders = ({ showOrderDetails }) => {
               </td>
               <td>25</td>
               <td>2000</td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </div>
