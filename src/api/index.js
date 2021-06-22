@@ -167,7 +167,18 @@ export const getUserOrders = function (slug) {
 
 export const getOrderDetail = function (id) {
   return axios
-    .get(BASE_URL + "/order/detail/" + id)
+    .get(BASE_URL + "/checkout/" + id)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const stripeOrder = function (data) {
+  return axios
+    .post(BASE_URL + "/order/stripe", data)
     .then(function (response) {
       return response.data;
     })

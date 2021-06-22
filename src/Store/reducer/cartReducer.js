@@ -1,6 +1,7 @@
 const initialState = {
   cartArray: [],
-  coupon: null
+  coupon: null,
+  checkoutId: null,
 };
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -21,8 +22,8 @@ const cartReducer = (state = initialState, action) => {
     }
     case "UPDATE_CART": {
       let data = { ...state };
-      console.log(action.data.id);
-      console.log(action);
+      // console.log(action.data.id);
+      // console.log(action);
       let updated = data?.cartArray.map((x) => {
         console.log(action.data.quantityValue);
         if (x.id === action.data.id) {
@@ -30,13 +31,10 @@ const cartReducer = (state = initialState, action) => {
         }
         return x;
       });
-      console.log(updated);
+      // console.log(updated);
       return { ...state, cartArray: updated };
     }
     case "CONFIRM_CHECKOUT": {
-      let data = { ...state };
-      console.log(data);
-
       return { ...state };
     }
     case "COUPON": {

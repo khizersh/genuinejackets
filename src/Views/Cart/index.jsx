@@ -7,11 +7,10 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css"; // for ES6 modules
 
 import CartItem from "../../Components/CartItem";
-import CartFooter from "../../Components/CartFooter";
 import { CURRENCY } from "../../constant";
 import { validateCoupon, checkout } from "../../api";
+import { apply_coupon, confirm_Checkout } from "../../Store/actions/cart";
 import "./style.css";
-import { apply_coupon } from "../../Store/actions/cart";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
@@ -35,7 +34,7 @@ const Cart = () => {
     let productList = state.map((x) => {
       return { productId: x.id, quantity: x.quantity, priceId: x.priceId };
     });
-    
+
     let body;
     if (couponData) {
       body = {
@@ -44,7 +43,7 @@ const Cart = () => {
         couponId: couponData?.id,
         couponAmount: +couponPrice,
         totalAmount: +subtotal,
-        netAmount: (+subtotal - (+couponPrice)),
+        netAmount: +subtotal - +couponPrice,
         productList: productList,
       };
     } else {
@@ -55,12 +54,13 @@ const Cart = () => {
         netAmount: +subtotal,
         productList: productList,
       };
-      
     }
-    
+
     try {
-      const { statusCode } = await checkout(body);
+      const { data, statusCode } = await checkout(body);
+      console.log(data);
       if (statusCode === 1) {
+        dispatch(confirm_Checkout(data?.id));
         history.push("/shoppingDetail");
       } else {
         return false;
@@ -69,7 +69,7 @@ const Cart = () => {
       console.log(error.message);
     }
   };
-  
+
   useEffect(() => {
     setCouponData(coupon_data);
     let temp = 0;
@@ -80,10 +80,10 @@ const Cart = () => {
       temp += value;
     }
     console.log(temp);
-    
+
     setSubtotal(temp);
-    setCouponPrice(coupon_data ? (temp / coupon_data.percentageOff) : 0);
-  }, [state,coupon_data]);
+    setCouponPrice(coupon_data ? temp / coupon_data.percentageOff : 0);
+  }, [state, coupon_data]);
 
   const coupon = async () => {
     if (!promoCode) return toast.warning("Enter Promo Code");
@@ -154,7 +154,12 @@ const Cart = () => {
                 <p className="font-weight-bold">Order Total</p>
                 <p className="font-weight-bold">
                   {CURRENCY}
-                  {toggle ? shippingCharge + (couponPrice ? (subtotal - couponPrice) : subtotal) : couponPrice ? (subtotal - couponPrice) : subtotal}
+                  {toggle
+                    ? shippingCharge +
+                      (couponPrice ? subtotal - couponPrice : subtotal)
+                    : couponPrice
+                    ? subtotal - couponPrice
+                    : subtotal}
                 </p>
               </div>
               <p

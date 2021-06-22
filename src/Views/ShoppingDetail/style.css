@@ -10,6 +10,21 @@ input {
 label {
   font-weight: bold;
 }
+.border-1 {
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.payment-heading:hover {
+  cursor: pointer;
+  background: #00b1b7;
+  color: #ffffff;
+}
+.payment-heading.active {
+  background: #00b1b7;
+}
+.mw-49 {
+  max-width: 48.5%;
+}
 @media (max-width: 991px) {
   .rightSide_shipping {
     margin-top: 30px !important;
@@ -19,5 +34,4 @@ label {
   .spaceB {
     margin-top: 5px !important;
   }
-  
 }

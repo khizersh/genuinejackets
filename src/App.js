@@ -18,7 +18,6 @@ import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import Footer from "./Components/Footer";
 import Verify from "./Views/Verify";
-import OrderDetail from "./Components/OrderDetail";
 
 function App() {
   return (
