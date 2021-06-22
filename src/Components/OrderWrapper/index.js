@@ -13,10 +13,9 @@ const OrderDetailWrapper = () => {
     setId(id);
   };
   useEffect(() => {
-    const getData = () => {
+    const getData = async () => {
       try {
-        const { data, statusCode } = getOrderDetail(id);
-        console.log(data);
+        const { data, statusCode } = await getOrderDetail(id);
         if (statusCode === 1) {
           setOrder(data);
         }

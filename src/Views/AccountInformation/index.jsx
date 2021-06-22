@@ -61,7 +61,7 @@ const Index = () => {
               <p className="pt-2">
                 <FaRegUser />
               </p>
-              <p className="ml-2 mb-0">Account Information</p>
+              <p className="ml-2  mb-0">Account Information</p>
             </div>
             <div
               onClick={() => history.push("wishlist")}
@@ -104,7 +104,7 @@ const Index = () => {
           </div>
         </div>
         <div className="col-md-9 m-0 p-0 ">
-          <h3 className="font-weight-bold headingMain ml-5 ">
+          <h3 className="font-weight-bold headingMain ml-2 ">
             {slug.charAt(0).toUpperCase() + slug.slice(1)}
           </h3>
           <hr />

@@ -24,28 +24,28 @@ const Orders = ({ showDetail }) => {
   return (
     <Table responsive>
       <thead style={{ backgroundColor: "#e4e4e4" }}>
-        <tr>
+        <tr className="text-center">
           <th className="tableHeading">Order Id</th>
           <th className="tableHeading">Total Amount</th>
           <th className="tableHeading">Details</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="text-center">
         {orders?.length
           ? orders.map((ord, ind) => (
-              <tr key={ind}>
-                <td>{ind + 1}</td>
-                <td>{ord?.totalAmount}</td>
-                <td>
-                  <button
-                    className="btn btn-info"
-                    onClick={() => showDetail(ord?.checkoutId)}
-                  >
-                    More Info
-                  </button>
-                </td>
-              </tr>
-            ))
+            <tr key={ind}>
+              <td>{ind + 1}</td>
+              <td>{ord?.totalAmount}</td>
+              <td>
+                <button
+                  className="btn btn-info"
+                  onClick={() => showDetail(ord?.checkoutId)}
+                >
+                  More Info
+                </button>
+              </td>
+            </tr>
+          ))
           : null}
         {/* <tr>
           <td>454564545646546546546565</td>
