@@ -9,11 +9,9 @@ const cartReducer = (state = initialState, action) => {
       if (state.cartArray.find((x) => x.id === action.data.id)) {
         return state;
       }
-      console.log("Cart added");
       return { ...state, cartArray: [...state.cartArray, action.data] };
     }
     case "REMOVE_FROM_CART": {
-      console.log("Cart Removed", action.data);
       let filtered = state.cartArray.filter((x) => {
         return x.id !== action.data;
       });
@@ -22,10 +20,7 @@ const cartReducer = (state = initialState, action) => {
     }
     case "UPDATE_CART": {
       let data = { ...state };
-      // console.log(action.data.id);
-      // console.log(action);
       let updated = data?.cartArray.map((x) => {
-        console.log(action.data.quantityValue);
         if (x.id === action.data.id) {
           x.quantity = action.data.quantityValue;
         }
@@ -39,6 +34,9 @@ const cartReducer = (state = initialState, action) => {
     }
     case "COUPON": {
       return { ...state, coupon: action.data };
+    }
+    case "EMPTY_CART": {
+      return { cartArray: [], coupon: null, checkoutId: null };
     }
     default:
       return state;

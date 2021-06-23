@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "https://jackter.herokuapp.com/api";
-const BASE_URL = "http://localhost:9999/api";
+const BASE_URL = "https://jackter.herokuapp.com/api";
+// const BASE_URL = "http://localhost:9999/api";
 
 export const getMainBanner = function () {
   return axios

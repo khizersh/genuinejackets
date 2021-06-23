@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PhoneInput from "react-phone-input-2";
 import { toast } from "react-toastify";
 import ReactFlagsSelect from "react-flags-select";
@@ -11,6 +11,7 @@ import "./style.css";
 import Stripe from "../../Components/Stripe";
 import { stripeOrder } from "../../api";
 import { useHistory } from "react-router-dom";
+import { empty_cart } from "../../Store/actions/cart";
 
 const Index = () => {
   const user = useSelector((state) => state.authReducer.user);
@@ -25,16 +26,18 @@ const Index = () => {
   const [zip, setZip] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [selected, setSelected] = useState("PK");
-  const stripePromise = loadStripe("pk_test_51IeOOQGrSShEYYrvGriEVk8ZC6BVsJFOFhnywdAjKJ1H2Z27hVnbkPAYvBw7H72Yu1tFPkwoTucIih3Nj144p8BO009vg4LiMm");
+  const stripePromise = loadStripe(
+    "pk_test_51IeOOQGrSShEYYrvGriEVk8ZC6BVsJFOFhnywdAjKJ1H2Z27hVnbkPAYvBw7H72Yu1tFPkwoTucIih3Nj144p8BO009vg4LiMm"
+  );
   // const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
   const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!user) return history.push("/signIn", { from: "cartPage" });
   }, []);
 
   const onSubmit = async (token) => {
-    
     if (!name) return toast.warning("Enter Name");
     if (!phone) return toast.warning("Enter Number");
     if (!address1) return toast.warning("Enter Address");
@@ -50,7 +53,6 @@ const Index = () => {
         email: user?.email,
         fullName: name,
         checkoutId: checkoutId,
-        // checkoutId: 6,
         country,
         state,
         city,
@@ -59,10 +61,17 @@ const Index = () => {
         postalCode: zip,
         phoneNo: phone,
         token: token,
-        suggestin: "xyz"
-      }
+        suggestin: "xyz",
+      };
       const { data, statusCode } = await stripeOrder(body);
       console.log(data, statusCode);
+      if (statusCode === 1) {
+        dispatch(empty_cart());
+        toast.success("Order Placed Successfully");
+        setTimeout(() => {
+          history.replace("/");
+        }, 1000);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -11,24 +11,27 @@ export const remove_from_cart = (data) => {
   };
 };
 export const update_cart = (data) => {
-  console.log(data)
   return {
     type: "UPDATE_CART",
-    data:data,
+    data: data,
   };
 };
 export const confirm_Checkout = (data) => {
-  console.log(data)
   return {
     type: "CONFIRM_CHECKOUT",
-    data:data,
+    data: data,
   };
 };
 
 export const apply_coupon = (data) => {
-  console.log(data);
   return {
     type: "COUPON",
-    data:data,
+    data: data,
+  };
+};
+
+export const empty_cart = () => {
+  return {
+    type: "EMPTY_CART",
   };
 };
