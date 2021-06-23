@@ -13,13 +13,13 @@ const useOptions = () => {
           letterSpacing: "0.025em",
           fontFamily: "Source Code Pro, monospace",
           "::placeholder": {
-            color: "#aab7c4"
-          }
+            color: "#aab7c4",
+          },
         },
         invalid: {
-          color: "#9e2146"
-        }
-      }
+          color: "#9e2146",
+        },
+      },
     }),
     []
   );
@@ -27,12 +27,12 @@ const useOptions = () => {
   return options;
 };
 
-const CardForm = ({onSubmit}) => {
+const CardForm = ({ onSubmit }) => {
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -42,23 +42,27 @@ const CardForm = ({onSubmit}) => {
     }
 
     try {
+      const card = elements.getElement(CardElement);
+
       const payload = await stripe.createPaymentMethod({
         type: "card",
-        card: elements.getElement(CardElement)
+        card: card,
       });
-      
-      console.log("[PaymentMethod]", payload);
+      const result = await stripe.createToken(card);
+
       if (payload?.error) {
         toast.error(payload?.error?.message);
+      } else if (payload?.paymentMethod) {
       }
-      else if(payload?.paymentMethod){
-        onSubmit(payload?.paymentMethod?.id);
+      if (result?.error) {
+        toast.error(result?.error?.message);
+      } else if (result?.token) {
+        onSubmit(result?.token?.id);
       }
     } catch (error) {
       console.log(error);
       toast.error(error?.message);
     }
-
   };
 
   return (
@@ -71,7 +75,7 @@ const CardForm = ({onSubmit}) => {
           onReady={() => {
             console.log("CardElement [ready]");
           }}
-          onChange={event => {
+          onChange={(event) => {
             console.log("CardElement [change]", event);
           }}
           onBlur={() => {
@@ -82,7 +86,11 @@ const CardForm = ({onSubmit}) => {
           }}
         />
       </label>
-      <button className="btn btn-success px-4 mt-3" type="submit" disabled={!stripe}>
+      <button
+        className="btn btn-success px-4 mt-3"
+        type="submit"
+        disabled={!stripe}
+      >
         Confirm
       </button>
     </form>

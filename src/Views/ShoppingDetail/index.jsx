@@ -25,7 +25,8 @@ const Index = () => {
   const [zip, setZip] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [selected, setSelected] = useState("PK");
-  const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+  const stripePromise = loadStripe("pk_test_51IeOOQGrSShEYYrvGriEVk8ZC6BVsJFOFhnywdAjKJ1H2Z27hVnbkPAYvBw7H72Yu1tFPkwoTucIih3Nj144p8BO009vg4LiMm");
+  // const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
   const history = useHistory();
 
   useEffect(() => {
@@ -49,6 +50,7 @@ const Index = () => {
         email: user?.email,
         fullName: name,
         checkoutId: checkoutId,
+        // checkoutId: 6,
         country,
         state,
         city,
