@@ -16,6 +16,7 @@ import AccountInformation from "./Views/AccountInformation";
 import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
+import FAQ from "./Views/Faq";
 import Footer from "./Components/Footer";
 import Verify from "./Views/Verify";
 
@@ -30,6 +31,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route exact path="/faq">
+                <FAQ />
               </Route>
               <Route exact path="/register">
                 <SignUp />
@@ -58,9 +62,6 @@ function App() {
               <Route exact path="/:slug">
                 <AccountInformation />
               </Route>
-              {/* <Route exact path="/order/:id">
-                <OrderDetail />
-              </Route> */}
             </Switch>
             <Footer />
           </Router>

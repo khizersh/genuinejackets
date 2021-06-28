@@ -11,3 +11,10 @@ a{
 a:hover{
   color: inherit;
 }
+.accordionButton{
+  background: #abafae;
+  color: black;
+  padding:16px;
+  border: 0;
+  font-size: 22px;
+}
