@@ -30,7 +30,7 @@ const cartReducer = (state = initialState, action) => {
       return { ...state, cartArray: updated };
     }
     case "CONFIRM_CHECKOUT": {
-      return { ...state };
+      return { ...state, checkoutId: action.data };
     }
     case "COUPON": {
       return { ...state, coupon: action.data };
