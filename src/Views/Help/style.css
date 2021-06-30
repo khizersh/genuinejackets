@@ -1,0 +1,48 @@
+.panel-group {
+    margin-bottom: 20px;
+    border-top: 1px solid #dcdcdc;
+    margin-top: 40px;
+}
+
+.mtm, .mvm, .mam {
+    margin-top: 10px !important;
+}
+
+.panel-title {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #666 !important;
+}
+
+.panel-group .panel-heading {
+    border-bottom: 0;
+}
+
+
+.panel-default>.panel-heading, .panel-heading {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    padding-top: 20px !important;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.panel-body {
+    padding: 15px;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body, .panel-body {
+    border: 0 !important;
+    color: #999;
+}
+
+.privacy-title{
+    color: #515151 !important;
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    text-align: right;
+}

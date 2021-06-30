@@ -1,9 +1,10 @@
 import React from "react";
 import { UncontrolledCollapse, Button, CardBody, Card } from "reactstrap";
 import "../../App.css";
+
 const Example = () => (
   <div className="mt-5 d-flex justify-content-center align-items-center w-100 flex-column">
-    <h1 className="my-3">Help - frequently asked questions</h1>
+    <h2 className="my-3">Help - frequently asked questions</h2>
     <Button
       className="w-75 text-left outline-none accordionButton"
       id="toggler1"

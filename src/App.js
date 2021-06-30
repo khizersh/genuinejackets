@@ -18,6 +18,7 @@ import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import FAQ from "./Views/Faq";
 import Footer from "./Components/Footer";
+import Help from "./Views/Help"
 import Verify from "./Views/Verify";
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
               </Route>
               <Route exact path="/faq">
                 <FAQ />
+              </Route>
+              <Route exact path="/help/:id">
+                <Help />
               </Route>
               <Route exact path="/register">
                 <SignUp />
