@@ -40,7 +40,7 @@ function App() {
               <Route exact path="/help/:id">
                 <Help />
               </Route>
-              <Route exact path="/thankyou">
+              <Route exact path="/thankyou/:id">
                 <ThankYou />
               </Route>
               <Route exact path="/register">

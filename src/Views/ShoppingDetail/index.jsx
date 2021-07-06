@@ -6,14 +6,17 @@ import ReactFlagsSelect from "react-flags-select";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import "react-phone-input-2/lib/style.css";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import "./style.css";
 import Stripe from "../../Components/Stripe";
 import { stripeOrder } from "../../api";
 import { useHistory } from "react-router-dom";
 import { empty_cart } from "../../Store/actions/cart";
+import { CURRENCY } from "../../constant";
 
 const Index = () => {
+  const products = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const checkoutId = useSelector((state) => state.cartReducer.checkoutId);
   const [name, setName] = useState("");
@@ -26,6 +29,7 @@ const Index = () => {
   const [zip, setZip] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [selected, setSelected] = useState("PK");
+  const [subtotal, setSubtotal] = useState(0);
   const stripePromise = loadStripe(
     "pk_test_51IeOOQGrSShEYYrvGriEVk8ZC6BVsJFOFhnywdAjKJ1H2Z27hVnbkPAYvBw7H72Yu1tFPkwoTucIih3Nj144p8BO009vg4LiMm"
   );
@@ -35,6 +39,14 @@ const Index = () => {
 
   useEffect(() => {
     if (!user) return history.push("/signIn", { from: "cartPage" });
+    let temp = 0;
+    for (let index = 0; index < products?.length; index++) {
+      const element = products[index];
+      let value = element.price * element.quantity;
+      temp += value;
+    }
+
+    setSubtotal(temp);
   }, []);
 
   const onSubmit = async (token) => {
@@ -69,7 +81,7 @@ const Index = () => {
         dispatch(empty_cart());
         toast.success("Order Placed Successfully");
         setTimeout(() => {
-          history.replace("/");
+          history.replace(`/thankyou/${data?.checkoutId}`);
         }, 1000);
       }
     } catch (error) {
@@ -201,6 +213,14 @@ const Index = () => {
             </Elements>
           ) : null}
           {/* <button className="btn btn-success px-4 mt-5">Confirm</button> */}
+          <PayPalScriptProvider
+            options={{
+              "client-id":
+                "AK4scZxQtmOXH2wrD7SuHhNK5NirAJK4pA.VimpNLroHZ16xWrgS-x0a",
+            }}
+          >
+            <PayPalButtons style={{ layout: "horizontal" }} />
+          </PayPalScriptProvider>
         </div>
         <div className=" col-lg-4 rightSide_shipping">
           <h3 className="font-weight-bold">Your Order</h3>
@@ -213,26 +233,28 @@ const Index = () => {
               </div>
               <hr />
               {/* Items */}
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex">
-                  <p>Order Item </p>
-                  <p className="mx-1 text-muted"> x 5</p>
-                </div>
-                <p>Rs 0</p>
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex">
-                  <p>Order Item </p>
-                  <p className="mx-1 text-muted"> x 5</p>
-                </div>
-                <p>Rs 0</p>
-              </div>
+              {products?.length
+                ? products.map((pro, ind) => (
+                    <div
+                      className="d-flex justify-content-between align-items-center"
+                      key={ind}
+                    >
+                      <div className="d-flex">
+                        <p>{pro?.itemName}</p>
+                        <p className="mx-1 text-muted"> x {pro?.quantity}</p>
+                      </div>
+                      <p>
+                        {CURRENCY} {pro?.price}
+                      </p>
+                    </div>
+                  ))
+                : null}
               <hr />
               <div className="d-flex justify-content-between align-items-center">
                 <div className="d-flex">
                   <p className="font-weight-bold">Subtotal </p>
                 </div>
-                <p>Rs 100</p>
+                <p>{CURRENCY} {subtotal}</p>
               </div>
             </div>
           </div>
