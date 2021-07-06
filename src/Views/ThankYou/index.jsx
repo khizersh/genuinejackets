@@ -52,19 +52,6 @@ const ThankYou = () => {
           <p className="bg_color_dark text-white px-4 py-2 text-uppercase ">
             You Purchased :
           </p>
-          {/* <div className="center">
-            <p className="h1 font-weight-bold">1</p>
-            <span className="text-muted h2">x</span>
-            <img
-               src="https://www.alfatah.com.pk/wp-content/uploads/2020/08/DW-133G.jpg"
-              alt="oven"
-              className="w-75"
-              style={{height:'300px'}}
-            />
-          </div> */}
-          {/* <div className=" col-lg-4 rightSide_shipping">
-            <h3 className="font-weight-bold">Your Order</h3> */}
-
           <div className="border border-gray  py-4 px-3">
             <div className="py-2 ">
               <div className="d-flex justify-content-between align-items-center font-weight-bold">
@@ -72,7 +59,6 @@ const ThankYou = () => {
                 <p>TOTAL</p>
               </div>
               <hr />
-              {/* Items */}
               {products?.length
                 ? products.map((pro, ind) => (
                     <div
@@ -99,7 +85,6 @@ const ThankYou = () => {
                 </p>
               </div>
             </div>
-            {/* </div> */}
           </div>
         </div>
       </div>

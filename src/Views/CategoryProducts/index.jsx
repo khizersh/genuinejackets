@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
+
 import "./index.css";
 import SkeletonCard from "../../Components/SkeletonCard";
 import { getProductsByCategory } from "../../api/index";
-import "rc-slider/assets/index.css";
 import GlobalCard from "../../Components/GlobalCard/index";
+
 const Index = () => {
   const { slug } = useParams();
   const [range1, setRange1] = useState(150);
@@ -78,7 +81,12 @@ const Index = () => {
           height="500px"
         />
       </div>
-
+      <Breadcrumb>
+        <BreadcrumbItem className="ml-5">
+          <Link to="#">Home</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem>Category</BreadcrumbItem>
+      </Breadcrumb>
       <section className="mt-5">
         <div className="container ">
           <div className="row">

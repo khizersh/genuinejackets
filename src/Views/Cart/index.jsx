@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import Toggle from "react-toggle";
 import "react-toggle/style.css"; // for ES6 modules
 
@@ -110,6 +112,12 @@ const Cart = () => {
 
   return (
     <div className="cart-wrapper mt-4">
+      <Breadcrumb>
+        <BreadcrumbItem className="ml-5">
+          <Link to="#">Home</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem>Cart</BreadcrumbItem>
+      </Breadcrumb>
       <div className="container pt-3  item-main-wrapper">
         <div className="row">
           <div className="col-lg-7 my-3 bg-white p-3 cartItem-wrapper mr-2">

@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import {
+  FormGroup,
+  Input,
+  Label,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
@@ -43,7 +49,7 @@ const settings = {
         slidesToScroll: 1,
         initialSlide: 2,
         dots: true,
-        arrows: false
+        arrows: false,
       },
     },
     {
@@ -53,7 +59,7 @@ const settings = {
         slidesToScroll: 1,
         initialSlide: 1,
         dots: true,
-        arrows: false
+        arrows: false,
       },
     },
   ],
@@ -153,8 +159,8 @@ const ProductDescription = () => {
         if (data?.statusCode === 1) {
           let obj = {
             price: data?.data?.price,
-            priceId: data?.data?.priceId
-          }
+            priceId: data?.data?.priceId,
+          };
           setPrice(obj);
         }
       } catch (error) {
@@ -171,7 +177,7 @@ const ProductDescription = () => {
     }
   };
   return (
-    <div className="my-5">
+    <div className="mb-5 mt-4">
       <Helmet>
         <title>{`Jackter.com: ${detail?.title}`}</title>
         <meta name="description" content={detail?.description} />
@@ -181,6 +187,17 @@ const ProductDescription = () => {
         <meta property="og:stars" content={detail?.reviewCount} />
         <meta property="og:category" content={detail?.categoryName} />
       </Helmet>
+      <Breadcrumb>
+        <BreadcrumbItem className="ml-5">
+          <Link to="#">Home</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <Link to={`/category/leather/${detail?.categoryId}`}>{detail?.categoryName}</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          {detail?.title.charAt(0).toUpperCase() + detail?.title.slice(1)}
+        </BreadcrumbItem>
+      </Breadcrumb>
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -211,7 +228,8 @@ const ProductDescription = () => {
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
-                  {CURRENCY} {(price && price.price) ? price?.price : detail?.range}
+                  {CURRENCY}{" "}
+                  {price && price.price ? price?.price : detail?.range}
                 </h1>
               )}
             </p>
@@ -237,16 +255,19 @@ const ProductDescription = () => {
             )}
             <div className="mt-3">
               {/* <ul className="pl-3"> */}
-                {!detail ? (
-                  <div className="d-flex flex-column">
-                    <Skeleton height={20} width={250} />
-                    <Skeleton height={20} width={250} />
-                  </div>
-                ) : detail?.bulletList?.length ? (
-                  detail?.bulletList.map((list, i) => (
-                    <span key={i} dangerouslySetInnerHTML={{__html: list?.point}}></span>
-                  ))
-                ) : null}
+              {!detail ? (
+                <div className="d-flex flex-column">
+                  <Skeleton height={20} width={250} />
+                  <Skeleton height={20} width={250} />
+                </div>
+              ) : detail?.bulletList?.length ? (
+                detail?.bulletList.map((list, i) => (
+                  <span
+                    key={i}
+                    dangerouslySetInnerHTML={{ __html: list?.point }}
+                  ></span>
+                ))
+              ) : null}
               {/* </ul> */}
             </div>
             <FormGroup>
