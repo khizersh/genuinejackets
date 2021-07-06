@@ -11,7 +11,6 @@ const ThankYou = () => {
     const getDetail = async () => {
       try {
         const { data, statusCode } = await getOrderDetail(id);
-        console.log(data);
         if (statusCode === 1) {
           setProducts(data?.productList);
           let temp = 0;
