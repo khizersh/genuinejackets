@@ -1,0 +1,50 @@
+.thankyou_Wrapper {
+  font-family: "Libre Baskerville", serif;
+}
+.bg_color_dark {
+  background-color: #262626;
+}
+.border_bottom {
+  border-bottom: 3px solid #262626;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.left_row_thankyou {
+  letter-spacing: 4px;
+  line-height: 25px;
+}
+.right_thankyou {
+  letter-spacing: 4px;
+  line-height: 25px;
+}
+@media (max-width: 768px) {
+  .left_row_thankyou {
+    margin-right: 0px !important;
+    background-color: "red" !important;
+  }
+  .thankyou_Wrapper{
+      margin: 0 40px !important;
+  }
+  .content_thankyou{
+      width: 100% !important;
+  }
+}
+@media (max-width: 450px) {
+    .thankyou_heading{
+        font-size: 60px;
+        }
+}
+@media (max-width: 390px) {
+    .thankyou_heading{
+        font-size: 45px;
+        }
+}
+@media (max-width: 350px) {
+    .thankyou_heading{
+        font-size: 35px;
+        }
+}

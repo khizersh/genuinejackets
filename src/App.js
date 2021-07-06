@@ -17,8 +17,9 @@ import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import FAQ from "./Views/Faq";
+import ThankYou from "./Views/ThankYou";
 import Footer from "./Components/Footer";
-import Help from "./Views/Help"
+import Help from "./Views/Help";
 import Verify from "./Views/Verify";
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
               </Route>
               <Route exact path="/help/:id">
                 <Help />
+              </Route>
+              <Route exact path="/thankyou">
+                <ThankYou />
               </Route>
               <Route exact path="/register">
                 <SignUp />
