@@ -16,7 +16,7 @@ import {
 
 import "./style.css";
 import { sign_Out_User } from "../../Store/actions/authAction";
-
+import { empty_favourite } from "../../Store/actions/favouriteAction";
 const WebNavbar = ({ categories }) => {
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
@@ -60,7 +60,9 @@ const WebNavbar = ({ categories }) => {
   };
 
   const onSignOut = () => {
+    console.log("signOut")
     dispatch(sign_Out_User());
+    dispatch(empty_favourite());
     toast.success("SignOut Successfully");
     setTimeout(() => {
       history.push("/");
@@ -86,7 +88,10 @@ const WebNavbar = ({ categories }) => {
           <div className=" d-flex justify-content-end align-items-center">
             {!user ? (
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
-                <Link to="/signIn" className="d-flex flex-column  align-items-center justify-content-center ">
+                <Link
+                  to="/signIn"
+                  className="d-flex flex-column  align-items-center justify-content-center "
+                >
                   <BiUser className="icon text-dark" />
                   <p className="icon_name">Sign In</p>
                 </Link>
@@ -112,7 +117,7 @@ const WebNavbar = ({ categories }) => {
                   >
                     <div className="d-flex flex-column align-items-center  text-dark">
                       <VscSignOut className="icon" />
-                      <p className="icon_name">Sign Out</p>
+                      <p className="icon_name" onClick={onSignOut}>Sign Out</p>
                     </div>
                   </DropdownToggle>
                   <DropdownMenu>
@@ -138,7 +143,9 @@ const WebNavbar = ({ categories }) => {
 
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BsBag className="icon" />
-              <p className="icon_name">Favourites</p>
+              <Link to="/favourite">
+                <p className="icon_name">Favourites</p>
+              </Link>
             </span>
             <Link to="/cart">
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">

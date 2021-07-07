@@ -7,6 +7,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +32,7 @@ import {
 } from "../../api/index";
 import { CURRENCY } from "../../constant";
 import { add_to_cart } from "../../Store/actions/cart";
+import { add_to_favourite } from "../../Store/actions/favouriteAction";
 import SliderCard from "../../Components/Cards/SliderCard";
 import "./style.css";
 import Skeleton from "react-loading-skeleton";
@@ -67,6 +69,9 @@ const settings = {
 
 const ProductDescription = () => {
   const cart = useSelector((state) => state.cartReducer.cartArray);
+  const favourites = useSelector((state) => state.favouriteReducer.favArray);
+  const isUser = useSelector((state) => state.authReducer);
+  const [isAdded, setIsAdded] = useState(false);
   const [images, setImages] = useState([]);
   const [attribute, setAttribute] = useState([]);
   const [color, setColor] = useState([]);
@@ -81,8 +86,9 @@ const ProductDescription = () => {
   const myRef = useRef();
   useEffect(() => {
     getProductByIdWrapper();
+
     window.scrollTo(0, 0);
-  }, [slug]);
+  }, [slug, isAdded]);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
     if (data.data?.imageList?.length) {
@@ -94,6 +100,9 @@ const ProductDescription = () => {
     }
     // setImages(data.data?.imageList);
     console.log(data);
+    const favCheck = favourites.find((item) => item.id === data?.data?.id);
+    favCheck ? setIsAdded(true) : setIsAdded(false);
+    console.log(favCheck);
     setDetail(data.data);
     getProducts(data?.data?.categoryId);
   };
@@ -122,6 +131,27 @@ const ProductDescription = () => {
 
     dispatch(add_to_cart(cartItemObj));
     toast.success("Added To Cart");
+  };
+  const addtofav = () => {
+    console.log(isAdded);
+    const { user } = isUser;
+    let cartItemObj = {
+      id: detail.id,
+      itemName: detail?.title,
+      itemImage: detail.imageList[0].image,
+      price: price?.price,
+      priceId: price?.priceId,
+      attribute: attribute,
+      quantity,
+    };
+    // console.log(user);
+    if (user) {
+      dispatch(add_to_favourite(cartItemObj));
+      toast.success("Added To Favourite");
+      setIsAdded(true);
+    } else {
+      toast.warning("Please Sign In");
+    }
   };
 
   const onChangeAtrribute = async (val, ind, i) => {
@@ -192,7 +222,9 @@ const ProductDescription = () => {
           <Link to="#">Home</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link to={`/category/leather/${detail?.categoryId}`}>{detail?.categoryName}</Link>
+          <Link to={`/category/leather/${detail?.categoryId}`}>
+            {detail?.categoryName}
+          </Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
           {detail?.title.charAt(0).toUpperCase() + detail?.title.slice(1)}
@@ -377,6 +409,17 @@ const ProductDescription = () => {
                   >
                     +
                   </div>
+                  <span onClick={addtofav}>
+                    {isAdded ? (
+                      <AiFillHeart
+                        size={30}
+                        className="ml-1 cursor-pointer"
+                        style={{ color: "red" }}
+                      />
+                    ) : (
+                      <AiOutlineHeart size={30} className="ml-1 cursor-pointer" />
+                    )}
+                  </span>
                 </div>
               ) : (
                 <div className="d-flex justify-content-center align-items-center">

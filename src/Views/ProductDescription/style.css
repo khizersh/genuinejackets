@@ -72,6 +72,9 @@ html {
   background-color: #e7a603;
   color: #fff;
 }
+.cursor-pointer{
+  cursor: pointer;
+}
 
 .product-description-links span:hover {
   cursor: pointer;
@@ -127,10 +130,16 @@ html {
   line-height: 26px;
 }
 
-.react-stars-wrapper-46199183974972830:hover{
+.react-stars-wrapper-46199183974972830:hover {
   cursor: pointer;
 }
-
+.fav_icon  {
+  color: black;
+}
+.fav_icon:hover {
+  color: red;
+}
+/* Media Queries */
 @media (min-width: 992px) {
   .marginTopAndBottom {
     margin-top: 30px;
@@ -144,7 +153,7 @@ html {
 }
 @media (max-width: 991px) {
   .actionButton_desc {
-    padding:4px !important;
+    padding: 4px !important;
     padding-bottom: 5px !important;
     height: 44px;
     font-size: 14px;

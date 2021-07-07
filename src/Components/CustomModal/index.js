@@ -7,6 +7,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Slider from "react-animated-slider";
@@ -16,8 +17,12 @@ import "react-animated-slider/build/horizontal.css";
 import { add_to_cart } from "../../Store/actions/cart";
 import { CURRENCY } from "../../constant";
 import { getPriceByAttruibute } from "../../api";
+import { add_to_favourite } from "../../Store/actions/favouriteAction";
 
 const CustomModal = (props) => {
+  const favourites = useSelector((state) => state.favouriteReducer.favArray);
+  const isUser = useSelector((state) => state.authReducer);
+  const [isAdded, setIsAdded] = useState(false);
   const { detail, className, showModal, setShowModal } = props;
   const cart = useSelector((state) => state.cartReducer.cartArray);
   const [images, setImages] = useState([]);
@@ -40,6 +45,8 @@ const CustomModal = (props) => {
       }));
       setImages(arr);
     }
+    const favCheck = favourites.find((item) => item.id === detail?.id);
+    favCheck ? setIsAdded(true) : setIsAdded(false);
   }, [detail.id]);
 
   const addtocart = () => {
@@ -59,7 +66,28 @@ const CustomModal = (props) => {
     toast.success("Added To Cart");
   };
 
-  const onChangeAtrribute = async (val, ind,i) => {
+  const addtofav = () => {
+    console.log(isAdded);
+    const { user } = isUser;
+    let cartItemObj = {
+      id: detail.id,
+      itemName: detail?.title,
+      itemImage: detail.imageList[0].image,
+      price: price?.price,
+      priceId: price?.priceId,
+      attribute: attribute,
+      quantity,
+    };
+    // console.log(user);
+    if (user) {
+      dispatch(add_to_favourite(cartItemObj));
+      toast.success("Added To Favourite");
+      setIsAdded(true);
+    } else {
+      toast.warning("Please Sign In");
+    }
+  };
+  const onChangeAtrribute = async (val, ind, i) => {
     let dup = attribute;
     dup[ind] = val;
     // console.log(ind);
@@ -244,10 +272,24 @@ const CustomModal = (props) => {
                   >
                     +
                   </div>
+                  <span onClick={addtofav}>
+                    {isAdded ? (
+                      <AiFillHeart
+                        size={30}
+                        className="ml-1 cursor-pointer"
+                        style={{ color: "red" }}
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        size={30}
+                        className="ml-1 cursor-pointer"
+                      />
+                    )}
+                  </span>
                 </div>
                 <div>
                   <button
-                    className="btn btn-info btn-md mx-3"
+                    className="btn btn-info btn-md mx-1"
                     onClick={addtocart}
                     disabled={cart.some((e) => +e.id === +detail?.id)}
                   >

@@ -17,6 +17,7 @@ import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import FAQ from "./Views/Faq";
+import Favourite from "./Views/Favourite";
 import ThankYou from "./Views/ThankYou";
 import Footer from "./Components/Footer";
 import Help from "./Views/Help";
@@ -34,9 +35,13 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
+              <Route exact path="/favourite">
+                <Favourite />
+              </Route>
               <Route exact path="/faq">
                 <FAQ />
               </Route>
+
               <Route exact path="/help/:id">
                 <Help />
               </Route>
@@ -49,9 +54,11 @@ function App() {
               <Route exact path="/signIn">
                 <SignIn />
               </Route>
+
               <Route exact path="/product/:title/:slug">
                 <ProductDescription />
               </Route>
+
               <Route exact path="/cart">
                 <Cart />
               </Route>
