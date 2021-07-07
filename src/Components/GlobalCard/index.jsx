@@ -11,7 +11,7 @@ function GlobalCard({ pro }) {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState([]);
   const [slug, setSlug] = useState("");
-  console.log(pro);
+  // console.log(pro);
   useEffect(() => {
     setDetail(pro);
     let _slug = pro?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");

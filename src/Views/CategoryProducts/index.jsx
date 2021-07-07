@@ -11,9 +11,9 @@ import GlobalCard from "../../Components/GlobalCard/index";
 
 const Index = () => {
   const { slug } = useParams();
-  const [range1, setRange1] = useState(150);
-  const [range2, setRange2] = useState(1000);
-  const [volume, setVolume] = useState([150, 1000]);
+  const [range1, setRange1] = useState(null);
+  const [range2, setRange2] = useState(0);
+  const [volume, setVolume] = useState([0, 0]);
   const [products, setProducts] = useState([]);
   const [priceFilterProducts, setPriceFilterProducts] = useState([]);
   useEffect(() => {
@@ -26,31 +26,31 @@ const Index = () => {
       const validProducts = data.filter((product) => product.range);
       setProducts(validProducts);
       setPriceFilterProducts(validProducts);
-      console.log(validProducts);
+      // console.log(validProducts);
     } catch (error) {
       return error.message;
     }
   };
 
   useEffect(() => {
-    console.log("After Change");
+    console.log("After Change", priceFilterProducts, range1);
     priceFilterProducts?.map((element) => {
       console.log("value 1", parseInt(element.range.split("-")[0].trim()));
       console.log("value 2", parseInt(element.range.split("-")[1].trim()));
       if (parseInt(element.range.split("-")[0].trim()) >= range1) {
         console.log("min", parseInt(element.range.split("-")[0].trim()));
-        setRange1(500);
+        setRange1(parseInt(element.range.split("-")[0].trim()));
         console.log("Min State===>", range1);
       }
       if (parseInt(element.range.split("-")[1].trim()) >= range2) {
-        setRange2(8000);
+        setRange2(parseInt(element.range.split("-")[1].trim()));
         console.log("max", parseInt(element.range.split("-")[1].trim()));
         console.log("Max State===>", range2);
       }
     });
-    setRange1(1000);
-    setRange2(5000);
-  }, [volume]);
+    // setRange1(1000);
+    // setRange2(5000);
+  }, [volume, priceFilterProducts]);
 
   const afterHandleChange = () => {
     console.log("change");
@@ -93,17 +93,19 @@ const Index = () => {
             <div className="col-md-3">
               <div className="mt-5 pt-5">
                 <h2> By Price</h2>
-                <Range
-                  draggableTrack
-                  min={range1}
-                  step={10}
-                  max={range2}
-                  value={volume}
-                  onChange={setVolume}
-                  onAfterChange={afterHandleChange}
-                />
+                {range1 && range2 && (
+                  <Range
+                    draggableTrack
+                    min={range1}
+                    step={10}
+                    max={range2}
+                    value={[range1,range2]}
+                    onChange={setVolume}
+                    onAfterChange={afterHandleChange}
+                  />
+                )}
                 <p className="text-muted mt-3">
-                  Price: Rs {volume[0]} - Rs {volume[1]}
+                  Price: Rs {range1} - Rs {range2}
                 </p>
               </div>
             </div>

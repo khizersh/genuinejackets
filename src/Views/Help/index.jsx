@@ -1,12 +1,14 @@
+import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useParams } from "react-router";
 import "react-tabs/style/react-tabs.css";
+
 import PrivacyPolicy from "../../Components/Help/PrivacyPolicy";
 import TermsCondition from "../../Components/Help/TermsCondition";
 import RefundReturn from "../../Components/Help/RefundReturn";
-import "./style.css";
 import FAQ from "../Faq";
-import { useParams } from "react-router";
-import React, { useState, useEffect } from "react";
+
+import "./style.css";
 
 export default () => {
   const [defaults, setDefault] = useState(null);
@@ -19,13 +21,13 @@ export default () => {
   }, [id]);
 
   function returnData(id) {
-    if (id == "faq") {
+    if (id === "faq") {
       return 0;
-    } else if (id == "refund&return") {
+    } else if (id === "refund&return") {
       return 1;
-    } else if (id == "privacy-policy") {
+    } else if (id === "privacy-policy") {
       return 2;
-    } else if (id == "term&condition") {
+    } else if (id === "term&condition") {
       return 3;
     } else {
       return 0;
@@ -36,7 +38,7 @@ export default () => {
     <div className="container">
       <div className="row">
         <div className="col-12 mt-5">
-          {defaults != null ? (
+          {defaults !== null ? (
             <Tabs defaultIndex={defaults}>
               <TabList className="d-flex justify-content-around">
                 <Tab>FAQ</Tab>
