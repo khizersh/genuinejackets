@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
-import { IoCartOutline } from "react-icons/io5";
+import { RiPagesLine } from "react-icons/ri";
 import { VscSignOut } from "react-icons/vsc";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,6 @@ import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
-  Dropdown,
 } from "reactstrap";
 
 import "./style.css";
@@ -60,7 +59,7 @@ const WebNavbar = ({ categories }) => {
   };
 
   const onSignOut = () => {
-    console.log("signOut")
+    console.log("signOut");
     dispatch(sign_Out_User());
     dispatch(empty_favourite());
     toast.success("SignOut Successfully");
@@ -117,7 +116,9 @@ const WebNavbar = ({ categories }) => {
                   >
                     <div className="d-flex flex-column align-items-center  text-dark">
                       <VscSignOut className="icon" />
-                      <p className="icon_name" onClick={onSignOut}>Sign Out</p>
+                      <p className="icon_name" onClick={onSignOut}>
+                        Sign Out
+                      </p>
                     </div>
                   </DropdownToggle>
                   <DropdownMenu>
@@ -148,9 +149,9 @@ const WebNavbar = ({ categories }) => {
               </Link>
             </span>
             <Link to="/cart">
-              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center position-relative">
                 <span className="cartnumber">{state.length}</span>
-                <IoCartOutline className="icon" size={20} />
+                <RiPagesLine className="icon" />
                 <p className="icon_name">Bag</p>
               </span>
             </Link>

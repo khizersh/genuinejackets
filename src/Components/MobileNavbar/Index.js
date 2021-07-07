@@ -34,7 +34,7 @@ const MobileNavbar = ({ categories }) => {
                 <p className="icon_name ">Sign In</p>
               </span>
             </Link>
-            <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
+            <span className="icon-Hover d-flex flex-column mx-2 align-items-center position-relative">
               <span className="cartnumber">{state.length}</span>
               <RiPagesLine className="icon" />
               <p className="icon_name">Bag</p>

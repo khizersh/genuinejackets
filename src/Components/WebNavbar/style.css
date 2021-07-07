@@ -54,6 +54,9 @@
   width: auto !important;
   outline: none !important;
 }
+.position-relative {
+  position: relative;
+}
 .cartnumber {
   background-color: #fe8273 !important ;
   border-radius: 50%;
@@ -63,6 +66,9 @@
   color: #f2f2f2;
   height: 15px;
   width: 15px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
 }
 .dropdownItem {
   background-color: transparent !important;
@@ -83,7 +89,7 @@
 .authItem {
   transition: 0.4s;
 }
-.active{
+.active {
   background-color: #fcb800;
   color: white;
 }
