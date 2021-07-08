@@ -21,7 +21,7 @@ const Index = () => {
           <thead style={{ backgroundColor: "#e4e4e4" }}>
             <tr>
               <th className="pl_extra">Product Name</th>
-              <th className="fav_table_heading">Unit Price</th>
+              <th className="fav_table_heading">Price</th>
               <th className="fav_table_heading">Vendor</th>
               <th></th>
             </tr>
@@ -44,7 +44,7 @@ const Index = () => {
                   />
                   <p className="mt-2">{item?.itemName}</p>
                 </td>
-                <td className="pt-4 mt-0 ">$40545</td>
+                <td className="pt-4 mt-0 ">{item?.range}</td>
                 <td className="pt-4 ">Global Office</td>
                 <td className="pt-3  mt-0">
                   <button className="btn btn-warning  btn-sm addFav_btn">
