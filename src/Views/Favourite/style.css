@@ -4,7 +4,7 @@
     font-size: 14px;
   }
   .pl_extra {
-    padding-left: 25px !important;
+    /* padding-left: 10px !important; */
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -20,16 +20,26 @@
     padding-right: 20px;
     text-align: center;
   }
-  .addFav_btn{
-      font-size: 12px;
+  .addFav_btn {
+    font-size: 12px;
   }
 }
-.pl_extra {
-  padding-left: 70px !important;
+@media (min-width: 767px) {
+  .pl_extra {
+    margin: 0 !important;
+    padding-left: 70px !important;
+    
+  }
 }
-.table_fav_wrap{
-    font-size: 14px !important;
+@media (max-width: 500px) {
+  .mL_image {
+    margin-left: 20px !important;
+  }
 }
-.fav_table_heading{
+
+.table_fav_wrap {
+  font-size: 14px !important;
+}
+.fav_table_heading {
   text-align: center;
 }
