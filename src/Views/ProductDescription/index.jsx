@@ -143,6 +143,7 @@ const ProductDescription = () => {
       priceId: price?.priceId,
       attribute: attribute,
       quantity,
+      range: detail?.range,
     };
     // console.log(user);
     if (user) {
@@ -417,7 +418,10 @@ const ProductDescription = () => {
                         style={{ color: "red" }}
                       />
                     ) : (
-                      <AiOutlineHeart size={30} className="ml-1 cursor-pointer" />
+                      <AiOutlineHeart
+                        size={30}
+                        className="ml-1 cursor-pointer"
+                      />
                     )}
                   </span>
                 </div>
