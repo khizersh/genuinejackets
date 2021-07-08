@@ -187,3 +187,14 @@ export const stripeOrder = function (data) {
       console.log(error);
     });
 };
+
+export const searchProduct = function (search) {
+  return axios
+    .get(BASE_URL + "/search/" + search)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import Slider from "react-slick";
 
 import SliderComponent from "../../Components/Slider";
 import SkeletonCard from "../../Components/SkeletonCard";
 
 import { getSectionProducts, getMainBanner } from "../../api/index";
-import "./style.css";
-import Slider from "react-slick";
 import SliderCard from "../../Components/Cards/SliderCard";
-import Skeleton from "react-loading-skeleton";
 import Loader from "../../Components/Loader";
+
+import "./style.css";
 
 const Home = () => {
   const [products, setProducts] = useState([]);

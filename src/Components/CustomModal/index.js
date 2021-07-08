@@ -233,7 +233,7 @@ const CustomModal = (props) => {
                                 className="custom-option-description"
                                 value=""
                               >
-                                Select {attribute?.parentTitle.toLowerCase()}
+                                Select {attribute?.parentTitle?.toLowerCase()}
                               </option>
                               {attribute?.childAttributeList?.length
                                 ? attribute?.childAttributeList.map(

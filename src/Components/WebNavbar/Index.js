@@ -24,6 +24,7 @@ const WebNavbar = ({ categories }) => {
   const [authDropDown, setAuthDropDown] = useState(false);
   const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
+  const [search, setSearch] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -66,6 +67,13 @@ const WebNavbar = ({ categories }) => {
     setTimeout(() => {
       history.push("/");
     }, 1000);
+  };
+
+  const onSearch = () => {
+    history.push({
+      pathname: "/search",
+      search: `?${search}`,
+    });
   };
 
   return (
@@ -225,8 +233,13 @@ const WebNavbar = ({ categories }) => {
           </div>
           <div className="col-md-6 d-flex justify-content-center searchBar_Wrapper">
             <div className="d-flex justify-content-end align-items-center w-100">
-              <input placeholder="Search" className="search-bar" />
-              <BsSearch className="search-icon" />
+              <input
+                placeholder="Search"
+                className="search-bar"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+              <BsSearch className="search-icon" onClick={onSearch} />
             </div>
           </div>
         </div>

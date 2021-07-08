@@ -22,6 +22,7 @@ import ThankYou from "./Views/ThankYou";
 import Footer from "./Components/Footer";
 import Help from "./Views/Help";
 import Verify from "./Views/Verify";
+import Search from "./Views/Search";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route exact path="/search">
+                <Search />
               </Route>
               <Route exact path="/favourite">
                 <Favourite />
@@ -54,11 +58,9 @@ function App() {
               <Route exact path="/signIn">
                 <SignIn />
               </Route>
-
               <Route exact path="/product/:title/:slug">
                 <ProductDescription />
               </Route>
-
               <Route exact path="/cart">
                 <Cart />
               </Route>
