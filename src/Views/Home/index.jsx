@@ -78,7 +78,7 @@ const Home = () => {
     return <Loader />;
   }
   return (
-    <div className="mt-4">
+    <div className="mt-3">
       <SliderComponent slides={banners} />
 
       <div className="container">
