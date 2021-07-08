@@ -116,7 +116,7 @@ const WebNavbar = ({ categories }) => {
                   >
                     <div className="d-flex flex-column align-items-center  text-dark">
                       <VscSignOut className="icon" />
-                      <p className="icon_name" onClick={onSignOut}>
+                      <p className="icon_name" >
                         Sign Out
                       </p>
                     </div>

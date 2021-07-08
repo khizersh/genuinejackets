@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiPagesLine } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Sidebar from "../Sidebar/Index";
 import "./style.css";
+import { sign_Out_User } from "../../Store/actions/authAction";
+import { empty_favourite } from "../../Store/actions/favouriteAction";
+import { VscSignOut } from "react-icons/vsc";
+import { toast } from "react-toastify";
 
 const MobileNavbar = ({ categories }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const state = useSelector((state) => state.cartReducer.cartArray);
+  const { user } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(user);
+  }, []);
+  const history = useHistory();
+  const onSignOut = () => {
+    console.log("signOut");
+    dispatch(sign_Out_User());
+    dispatch(empty_favourite());
+    toast.success("SignOut Successfully");
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
+  };
   return (
     <div className="main-MobileNavbar">
       <div className="divider d-flex justify-content-between align-items-center   w-100">
@@ -28,12 +47,22 @@ const MobileNavbar = ({ categories }) => {
         </div>
         <div>
           <div className="col-md-4 d-flex align-items-center justify-content-center ">
-            <Link to="/signIn">
-              <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
-                <BiUser className="icon" />
-                <p className="icon_name ">Sign In</p>
-              </span>
-            </Link>
+            {user ? (
+              <div
+                onClick={onSignOut}
+                className="icon-Hover d-flex flex-column mx-2 align-items-center"
+              >
+               <VscSignOut className="icon" />
+                <p className="icon_name">Sign Out</p>
+              </div>
+            ) : (
+              <Link to="/signIn">
+                <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
+                  <BiUser className="icon" />
+                  <p className="icon_name ">Sign In</p>
+                </span>
+              </Link>
+            )}
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center position-relative">
               <span className="cartnumber">{state.length}</span>
               <RiPagesLine className="icon" />
