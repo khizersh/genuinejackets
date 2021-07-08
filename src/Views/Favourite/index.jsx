@@ -22,7 +22,6 @@ const Index = () => {
             <tr>
               <th className="pl_extra">Product Name</th>
               <th className="fav_table_heading">Price</th>
-              <th className="fav_table_heading">Vendor</th>
               <th></th>
             </tr>
           </thead>
@@ -31,7 +30,7 @@ const Index = () => {
               <tr key={item.id}>
                 <td
                   colSpan={1}
-                  className="d-flex    align-items-center flex-row"
+                  className="d-flex align-items-center flex-row"
                 >
                   <p className="mt-3" onClick={() => removefav(item.id)}>
                     X
@@ -45,7 +44,6 @@ const Index = () => {
                   <p className="mt-2">{item?.itemName}</p>
                 </td>
                 <td className="pt-4 mt-0 ">{item?.range}</td>
-                <td className="pt-4 ">Global Office</td>
                 <td className="pt-3  mt-0">
                   <button className="btn btn-warning  btn-sm addFav_btn">
                     Add cart
