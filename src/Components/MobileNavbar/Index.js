@@ -52,8 +52,8 @@ const MobileNavbar = ({ categories }) => {
                 onClick={onSignOut}
                 className="icon-Hover d-flex flex-column mx-2 align-items-center"
               >
-               <VscSignOut className="icon" />
-                <p className="icon_name">Sign Out</p>
+                <BiUser className="icon text-dark" />
+                <p className="icon_name">{user?.fullName}</p>
               </div>
             ) : (
               <Link to="/signIn">

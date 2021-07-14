@@ -115,10 +115,8 @@ const WebNavbar = ({ categories }) => {
                     className="categoryButton authButtonItem"
                   >
                     <div className="d-flex flex-column align-items-center  text-dark">
-                      <VscSignOut className="icon" />
-                      <p className="icon_name" >
-                        Sign Out
-                      </p>
+                      <BiUser className="icon text-dark" />
+                      <p className="icon_name">{user?.fullName}</p>
                     </div>
                   </DropdownToggle>
                   <DropdownMenu>
