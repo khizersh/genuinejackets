@@ -82,13 +82,19 @@ const ProductDescription = () => {
   const [products, setProducts] = useState([]);
   const [isActive, setisActive] = useState("");
   const [indexNumber, setIndexNumber] = useState();
+  const [range, setRange] = useState("");
+
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const dispatch = useDispatch();
   const myRef = useRef();
   useEffect(() => {
     getProductByIdWrapper();
 
     window.scrollTo(0, 0);
-  }, [slug, isAdded]);
+  }, [slug, isAdded,curreny_type_State]);
+  // useEffect(() => {}, [curreny_type_State, range]);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
     if (data.data?.imageList?.length) {
@@ -98,12 +104,20 @@ const ProductDescription = () => {
       }));
       setImages(arr);
     }
-    // setImages(data.data?.imageList);
     console.log(data);
     const favCheck = favourites.find((item) => item.id === data?.data?.id);
     favCheck ? setIsAdded(true) : setIsAdded(false);
     console.log(favCheck);
     setDetail(data.data);
+    console.log(curreny_type_State);
+    console.log(data.data);
+    if (curreny_type_State === "CAD") {
+      setRange(data.data?.rangeCad);
+    } else if (curreny_type_State === "EUR") {
+      setRange(data.data?.rangeEuro);
+    } else {
+      setRange(data.data?.range);
+    }
     getProducts(data?.data?.categoryId);
   };
   const getProducts = async (id) => {
@@ -261,8 +275,7 @@ const ProductDescription = () => {
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
-                  {CURRENCY}{" "}
-                  {price && price.price ? price?.price : detail?.range}
+                  {CURRENCY} {range}
                 </h1>
               )}
             </p>

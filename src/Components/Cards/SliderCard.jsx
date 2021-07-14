@@ -6,16 +6,29 @@ import ReactStars from "react-rating-stars-component";
 import CustomModal from "../CustomModal";
 import { CURRENCY } from "../../constant";
 import "./style.css";
+import { useSelector } from "react-redux";
 
 function SliderCard({ pro }) {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState("");
   const [slug, setSlug] = useState("");
+  const [range, setRange] = useState("");
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   useEffect(() => {
     setDetail(pro);
     let _slug = pro?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     setSlug(_slug);
-  });
+    // console.log(detail);
+    if (curreny_type_State === "CAD") {
+      setRange(pro?.angeCad);
+    } else if (curreny_type_State === "EUR") {
+      setRange(pro?.rangeEuro);
+    } else {
+      setRange(pro?.range);
+    }
+  }, [curreny_type_State]);
   return (
     <div className=" pb-5 p-1 mt-5 scaleY  ">
       <Card className="product-card-Wrapper">
@@ -61,7 +74,7 @@ function SliderCard({ pro }) {
           </div>
           <span tag="h6" className="mb-2 card-product-price pb-5">
             {CURRENCY}
-            {pro?.range || pro?.priceRange}
+            {range}
           </span>
         </CardBody>
       </Card>

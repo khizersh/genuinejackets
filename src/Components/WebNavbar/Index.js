@@ -6,28 +6,41 @@ import { VscSignOut } from "react-icons/vsc";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+
 import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
+  Dropdown,
 } from "reactstrap";
 
 import "./style.css";
 import { sign_Out_User } from "../../Store/actions/authAction";
 import { empty_favourite } from "../../Store/actions/favouriteAction";
+import { change_curreny_type } from "../../Store/actions/currenyActions";
+import { empty_cart } from "../../Store/actions/cart";
 const WebNavbar = ({ categories }) => {
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
+  const fav_Array = useSelector((state) => state.favouriteReducer.favArray);
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const user = useSelector((state) => state.authReducer.user);
+
   const [dropdownOpen, setIsDropdownOpen] = useState(false);
   const [authDropDown, setAuthDropDown] = useState(false);
   const [switchNavbar, setSwitchNavbar] = useState(false);
   const [isOpenBox, setIsOpenBox] = useState(null);
   const [search, setSearch] = useState("");
+  const [currencyDropDown, setCurrencyDropDown] = useState(false);
+  const [currValue, setCurrValue] = useState("USD");
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const handleCurrencyDropDown = (e) =>
+    setCurrencyDropDown((prevState) => !prevState);
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
       setSwitchNavbar(true);
@@ -47,6 +60,8 @@ const WebNavbar = ({ categories }) => {
       false
     );
     console.log(user);
+    console.log(curreny_type_State);
+    setCurrValue(curreny_type_State);
   }, [isMobile]);
 
   const onMouseEnter = (a) => {
@@ -75,12 +90,51 @@ const WebNavbar = ({ categories }) => {
       search: `?${search}`,
     });
   };
+  const handleSelectCurrency = ({ currentTarget: { textContent } }) => {
+    if (state.length||fav_Array?.length) {
+      console.log("ifd");
+      Swal.fire({
+        title: "Do you want to Change the Currency Type ?",
+        showCancelButton: true,
+        confirmButtonText: `Save`,
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(empty_cart());
+          dispatch(empty_favourite());
+          Swal.fire("Currency Changed");
+          dispatch(change_curreny_type(textContent));
+          setCurrValue(textContent);
+        } else {
+          return;
+        }
+      });
+    } else {
+      dispatch(change_curreny_type(textContent));
+      setCurrValue(textContent);
+    }
+  };
 
   return (
     <div className="main-webnavbar">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
-          <div className=" d-flex justify-content-start "></div>
+          <div className=" d-flex justify-content-start ">
+            <Dropdown isOpen={currencyDropDown} toggle={handleCurrencyDropDown}>
+              <DropdownToggle>{currValue}</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                  USD
+                </DropdownItem>
+                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                  EUR
+                </DropdownItem>
+                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                  CAD
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
           <div className=" d-flex justify-content-center">
             <div>
               <Link to="/">
