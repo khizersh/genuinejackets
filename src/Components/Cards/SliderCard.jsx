@@ -61,7 +61,7 @@ function SliderCard({ pro }) {
           </div>
           <span tag="h6" className="mb-2 card-product-price pb-5">
             {CURRENCY}
-            {pro?.range}
+            {pro?.range || pro?.priceRange}
           </span>
         </CardBody>
       </Card>
