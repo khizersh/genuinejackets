@@ -221,14 +221,16 @@ const Index = () => {
               </Elements>
             ) : null}
             {/* <button className="btn btn-success px-4 mt-5">Confirm</button> */}
-            <PayPalScriptProvider
-              options={{
-                "client-id":
-                  "AK4scZxQtmOXH2wrD7SuHhNK5NirAJK4pA.VimpNLroHZ16xWrgS-x0a",
-              }}
-            >
-              <PayPalButtons style={{ layout: "horizontal" }} />
-            </PayPalScriptProvider>
+            {paymentMethod === "paypal" && (
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "AV0SphzJXIIxL1bScZHl04glMe-rKhYC19lErrS03X0pkzrD6Di2EnEv3s2bViZZEgfp2Nhuk9sP0aP1",
+                }}
+              >
+                <PayPalButtons style={{ layout: "horizontal" }} />
+              </PayPalScriptProvider>
+            )}
           </div>
           <div className=" col-lg-4 rightSide_shipping">
             <h3 className="font-weight-bold">Your Order</h3>

@@ -1,5 +1,5 @@
 const initialState = {
-  currency_Value: "USDF",
+  currency_Value: "USD",
 };
 const currenyReducer = (state = initialState, action) => {
   switch (action.type) {
