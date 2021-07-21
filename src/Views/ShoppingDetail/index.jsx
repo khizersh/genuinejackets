@@ -89,6 +89,14 @@ const Index = () => {
       console.log(error);
     }
   };
+
+  const onApprove = (data, actions) => {
+    console.log("--------");
+    console.log(data, actions);
+    console.log("--------");
+    return actions.order.capture();
+  };
+
   return (
     <div className="mt-4">
       <Breadcrumb>
@@ -228,7 +236,21 @@ const Index = () => {
                     "AV0SphzJXIIxL1bScZHl04glMe-rKhYC19lErrS03X0pkzrD6Di2EnEv3s2bViZZEgfp2Nhuk9sP0aP1",
                 }}
               >
-                <PayPalButtons style={{ layout: "horizontal" }} />
+                <PayPalButtons
+                  style={{ layout: "horizontal" }}
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: "0.01",
+                          },
+                        },
+                      ],
+                    });
+                  }}
+                  onApprove={(data, actions) => onApprove(data, actions)}
+                />
               </PayPalScriptProvider>
             )}
           </div>

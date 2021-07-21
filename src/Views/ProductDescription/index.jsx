@@ -200,7 +200,7 @@ const ProductDescription = () => {
           productId: detail?.id,
           list: attribute,
         });
-
+        console.log(data);
         if (data?.statusCode === 1) {
           let obj = {
             price: data?.data?.price,
@@ -275,7 +275,8 @@ const ProductDescription = () => {
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
-                  {CURRENCY} {range}
+                  {/* {CURRENCY} {range} */}
+                  {CURRENCY} {price && price.price ? price?.price : range}
                 </h1>
               )}
             </p>

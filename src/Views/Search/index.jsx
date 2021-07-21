@@ -35,12 +35,12 @@ const Search = () => {
     <div className="container mt-5">
       <div className="text-center">
         <h2>SEARCH RESULTS for "{search?.slice(1, search?.length)}"</h2>
-        <p>{products.length} ITEMS</p>
+        <p>{products.filter((product) => product.range).length} ITEMS</p>
       </div>
       <div className="row">
         {products?.length
           ? products
-              .filter((product) => product.priceRange)
+              .filter((product) => product.range)
               .map((product, ind) => (
                 <div className="col-md-3" key={ind}>
                   <SliderCard pro={product} />

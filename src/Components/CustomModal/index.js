@@ -31,6 +31,10 @@ const CustomModal = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const [isActive, setisActive] = useState("");
+  const [range, setRange] = useState("");
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const dispatch = useDispatch();
   const toggle = () => {
     setShowModal(!props.showModal);
@@ -47,6 +51,13 @@ const CustomModal = (props) => {
     }
     const favCheck = favourites.find((item) => item.id === detail?.id);
     favCheck ? setIsAdded(true) : setIsAdded(false);
+    if (curreny_type_State === "CAD") {
+      setRange(detail?.angeCad);
+    } else if (curreny_type_State === "EUR") {
+      setRange(detail?.rangeEuro);
+    } else {
+      setRange(detail?.range);
+    }
   }, [detail.id]);
 
   const addtocart = () => {
@@ -122,6 +133,7 @@ const CustomModal = (props) => {
         productId: detail?.id,
         list: attribute,
       });
+      console.log(data);
       let obj = {
         price: data?.data?.price,
         priceId: data?.data?.priceId,
@@ -160,7 +172,7 @@ const CustomModal = (props) => {
             <div className="col-md-6 marginTopAndBottom  ">
               <p className="product-title">{detail.title}</p>
               <p className="product-price my-3">
-                {CURRENCY} {price && price.price ? price?.price : detail?.range}
+                {CURRENCY} {price && price.price ? price?.price : range}
               </p>
               <p className="product-description my-3">{detail?.description}</p>
               <FormGroup>
