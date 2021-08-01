@@ -12,23 +12,24 @@ const Verify = () => {
       const data = new FormData();
       data.append("code", location.search.slice(6, location?.search?.length));
       const onUserVerify = async () => {
-          try {
-              let res = await onVerify(data);
-              if (res?.data?.statusCode === 1) {
-                  toast.success("Successfully Verified");
-                  setTimeout(() => {
-                        router.push("/");
-                    }, 1000);
-                } else {
-                    toast.warning(res?.data?.message);
-                }
-            } catch (error) {
-                toast.warning(error?.message);
-            }
-        };
-        onUserVerify();
+        try {
+          let res = await onVerify(data);
+          if (res?.data?.statusCode === 1) {
+            toast.success("Successfully Verified");
+            setTimeout(() => {
+              router.push("/signIn");
+            }, 1000);
+          } else {
+            toast.warning(res?.data?.message);
+          }
+        } catch (error) {
+          toast.warning(error?.message);
+        }
+      };
+      onUserVerify();
     }
   }, []);
+  console.log("verify: ", location.search);
   return (
     <div
       className="d-flex justify-content-center align-items-center mt-5"
