@@ -1,24 +1,30 @@
+import { useState } from "react";
 import React, { useEffect } from "react";
-import "./index.css";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { FiPower } from "react-icons/fi";
-import { ImSwitch } from "react-icons/im";
-import { useParams } from "react-router";
-import { useState } from "react";
+import { useParams, useHistory } from "react-router";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+
+import "./index.css";
+
 import AccountForm from "../../Components/AccountForm";
 import WishList from "../../Components/WishList";
 import Logout from "../../Components/Logout";
-import { useHistory } from "react-router";
 import CouponDetails from "../../Components/CouponDetail";
 import Orders from "../../Components/Orders";
 import OrderWrapper from "../../Components/OrderWrapper";
+import { sign_Out_User } from "../../Store/actions/authAction";
+import { empty_favourite } from "../../Store/actions/favouriteAction";
+
 const Index = () => {
   const history = useHistory();
   const { slug } = useParams();
   console.log(slug);
   const [isActive, setIsActive] = useState("accountInformation");
   const [title, setTitle] = useState("");
+  const dispatch = useDispatch();
   const customRender = () => {
     if (isActive === "accountInformation") {
       return <AccountForm />;
@@ -36,6 +42,15 @@ const Index = () => {
     // console.log(slug);
     setIsActive(slug);
   }, [slug]);
+
+  const signOut = () => {
+    dispatch(sign_Out_User());
+    dispatch(empty_favourite());
+    toast.success("SignOut Successfully");
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
+  };
   return (
     <div className="h-full py-5  mt-4 accountWrapper">
       <div className="container-fluid row no-gutters">
@@ -64,7 +79,7 @@ const Index = () => {
               <p className="ml-2  mb-0">Account Information</p>
             </div>
             <div
-              onClick={() => history.push("wishlist")}
+              onClick={() => history.push("favourite")}
               className={`sideItem ${isActive === "wishlist" ? "active" : ""}`}
             >
               <p className="pt-2">
@@ -93,7 +108,7 @@ const Index = () => {
               <p className="ml-2 mb-0">Orders</p>
             </div>
             <div
-              onClick={() => history.push("logout")}
+              onClick={signOut}
               className={`sideItem ${isActive === "logout" ? "active" : ""}`}
             >
               <p className="pt-2">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
-import { VscSignOut } from "react-icons/vsc";
+import { BiDownArrow } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -91,7 +91,7 @@ const WebNavbar = ({ categories }) => {
     });
   };
   const handleSelectCurrency = ({ currentTarget: { textContent } }) => {
-    if (state.length||fav_Array?.length) {
+    if (state.length || fav_Array?.length) {
       console.log("ifd");
       Swal.fire({
         title: "Do you want to Change the Currency Type ?",
@@ -120,8 +120,12 @@ const WebNavbar = ({ categories }) => {
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
           <div className=" d-flex justify-content-start ">
-            <Dropdown isOpen={currencyDropDown} toggle={handleCurrencyDropDown}>
-              <DropdownToggle>{currValue}</DropdownToggle>
+            <Dropdown
+              isOpen={currencyDropDown}
+              toggle={handleCurrencyDropDown}
+              className="currencyDropdown"
+            >
+              <DropdownToggle>{currValue} <BiDownArrow /> </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
                   USD
