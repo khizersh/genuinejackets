@@ -21,6 +21,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-image-gallery": "^1.0.9",
+    "react-image-magnifiers": "^1.4.0",
     "react-loading-skeleton": "^2.2.0",
     "react-meta-tags": "^1.0.1",
     "react-phone-input-2": "^2.14.0",

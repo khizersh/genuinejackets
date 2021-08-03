@@ -72,7 +72,7 @@ html {
   background-color: #e7a603;
   color: #fff;
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -133,12 +133,33 @@ html {
 .react-stars-wrapper-46199183974972830:hover {
   cursor: pointer;
 }
-.fav_icon  {
+.fav_icon {
   color: black;
 }
 .fav_icon:hover {
   color: red;
 }
+/* .center_xy {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  top: 0%;
+  left: 0;
+  overflow: hidden;
+  width: 70%;
+  height: 35%;
+  text-align: center;
+}
+
+.modal_image_pWrap {
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  transform: translate(-50%,4%);
+  height: 26%;
+} */
 /* Media Queries */
 @media (min-width: 992px) {
   .marginTopAndBottom {

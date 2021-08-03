@@ -15,7 +15,7 @@ import ImageGallery from "react-image-gallery";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import ReactStars from "react-rating-stars-component";
-
+import ImageModal from "../../Components/ImageModal";
 import SkeletonCard from "../../Components/SkeletonCard/index";
 import SkeletonGallery from "../../Components/SkeletonCard/SkeletonGallery/index";
 import "slick-carousel/slick/slick.css";
@@ -83,6 +83,7 @@ const ProductDescription = () => {
   const [isActive, setisActive] = useState("");
   const [indexNumber, setIndexNumber] = useState();
   const [range, setRange] = useState("");
+  const [showImageModal, setShowImageModal] = useState(false);
 
   const curreny_type_State = useSelector(
     (state) => state.currencyReducer.currency_Value
@@ -93,7 +94,7 @@ const ProductDescription = () => {
     getProductByIdWrapper();
 
     window.scrollTo(0, 0);
-  }, [slug, isAdded,curreny_type_State]);
+  }, [slug, isAdded, curreny_type_State]);
   // useEffect(() => {}, [curreny_type_State, range]);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
@@ -221,8 +222,11 @@ const ProductDescription = () => {
       myRef.current.test();
     }
   };
+  const handleImageModal = () => {
+    setShowImageModal(true);
+  };
   return (
-    <div className="mb-5 mt-4">
+    <div className="mb-5 mt-4 ">
       <Helmet>
         <title>{`Jackter.com: ${detail?.title}`}</title>
         <meta name="description" content={detail?.description} />
@@ -258,7 +262,8 @@ const ProductDescription = () => {
                 thumbnailPosition={"left"}
                 infinite={true}
                 useBrowserFullscreen={true}
-                showFullscreenButton={true}
+                showFullscreenButton={false}
+                onClick={handleImageModal}
               />
             ) : (
               <SkeletonGallery />
@@ -527,6 +532,18 @@ const ProductDescription = () => {
           )}
         </section>
       </div>
+
+      {showImageModal && (
+        <div className="mx-5 bg-danger">
+          <ImageModal
+            isOpen={showImageModal}
+            images={images}
+            title={detail?.title}
+            detail={detail}
+            handleCloseModal={setShowImageModal}
+          />
+        </div>
+      )}
     </div>
   );
 };
