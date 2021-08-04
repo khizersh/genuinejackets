@@ -172,9 +172,13 @@ const CustomModal = (props) => {
             <div className="col-md-6 marginTopAndBottom  ">
               <p className="product-title">{detail.title}</p>
               <p className="product-price my-3">
-                {CURRENCY} {price && price.price ? price?.price : range}
+                {curreny_type_State === "EUR" ? "€" : CURRENCY}{" "}
+                {price && price.price ? price?.price : range}
               </p>
-              <p className="product-description my-3">{detail?.description}</p>
+              <p
+                className="product-description my-3"
+                dangerouslySetInnerHTML={{ __html: detail?.description }}
+              />
               <FormGroup>
                 {detail
                   ? detail?.attributeList.map((attribute, index) => (

@@ -280,8 +280,8 @@ const ProductDescription = () => {
                 <Skeleton height={35} width={300} />
               ) : (
                 <h1 className="product-price mt-1">
-                  {/* {CURRENCY} {range} */}
-                  {CURRENCY} {price && price.price ? price?.price : range}
+                  {/* {curreny_type_State === "EUR" ? "€" : CURRENCY} {range} */}
+                  {curreny_type_State === "EUR" ? "€" : CURRENCY} {price && price.price ? price?.price : range}
                 </h1>
               )}
             </p>

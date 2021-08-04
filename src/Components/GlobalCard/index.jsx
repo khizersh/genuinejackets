@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { useSelector } from "react-redux";
 
 import CustomModal from "../CustomModal";
 import { CURRENCY } from "../../constant";
@@ -11,7 +12,9 @@ function GlobalCard({ pro }) {
   const [showModal, setShowModal] = useState(false);
   const [detail, setDetail] = useState([]);
   const [slug, setSlug] = useState("");
-  // console.log(pro);
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   useEffect(() => {
     setDetail(pro);
     let _slug = pro?.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -63,7 +66,7 @@ function GlobalCard({ pro }) {
             ({detail?.reviewCount})
           </div>
           <span tag="h6" className="mb-2 card-product-price ">
-            {CURRENCY}
+            {curreny_type_State === "EUR" ? "€" : CURRENCY}
             {pro?.range}
           </span>
         </CardBody>

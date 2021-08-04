@@ -20,6 +20,9 @@ const Index = () => {
   const products = useSelector((state) => state.cartReducer.cartArray);
   const user = useSelector((state) => state.authReducer.user);
   const checkoutId = useSelector((state) => state.cartReducer.checkoutId);
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const [name, setName] = useState("");
   const [phone, setPhone] = useState();
   const [address1, setAddress1] = useState("");
@@ -276,7 +279,8 @@ const Index = () => {
                           <p className="mx-1 text-muted"> x {pro?.quantity}</p>
                         </div>
                         <p>
-                          {CURRENCY} {pro?.price}
+                          {curreny_type_State === "EUR" ? "€" : CURRENCY}{" "}
+                          {pro?.price}
                         </p>
                       </div>
                     ))
@@ -287,7 +291,7 @@ const Index = () => {
                     <p className="font-weight-bold">Subtotal </p>
                   </div>
                   <p>
-                    {CURRENCY} {subtotal}
+                    {curreny_type_State === "EUR" ? "€" : CURRENCY} {subtotal}
                   </p>
                 </div>
               </div>

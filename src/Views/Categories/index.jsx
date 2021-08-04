@@ -30,9 +30,9 @@ const Categories = () => {
         <Col sm={0} md={3} className="p-0 filter">
           {parentCategories?.length
             ? parentCategories.map((cat, ind) => {
-                let title = cat?.childTitle
-                  ?.toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
+                // let title = cat?.childTitle
+                //   ?.toLowerCase()
+                //   .replace(/[^a-z0-9]+/g, "-");
                 return (
                   <section key={ind}>
                     <h5>{cat?.title}:</h5>
@@ -40,7 +40,13 @@ const Categories = () => {
                       {cat?.childList?.length
                         ? cat?.childList?.map((child_cat, index) => (
                             <li key={index}>
-                              <Link to={`/category/${title}/${child_cat?.id}`}>
+                              <Link
+                                to={`/category/${child_cat?.childTitle
+                                  ?.toLowerCase()
+                                  .replace(/[^a-z0-9]+/g, "-")}/${
+                                  child_cat?.id
+                                }`}
+                              >
                                 {child_cat?.childTitle}
                               </Link>
                             </li>

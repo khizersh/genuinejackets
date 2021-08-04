@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+import "./style.css";
 import { getOrderDetail } from "../../api";
 import { CURRENCY } from "../../constant";
-import "./style.css";
+
 const ThankYou = () => {
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const [products, setProducts] = useState([]);
   const [subtotal, setSubTotal] = useState("");
   const { id } = useParams();
@@ -70,7 +76,7 @@ const ThankYou = () => {
                         <p className="mx-1 text-muted"> x {pro?.quantity}</p>
                       </div>
                       <p>
-                        {CURRENCY} {pro?.price}
+                        {curreny_type_State === "EUR" ? "€" : CURRENCY} {pro?.price}
                       </p>
                     </div>
                   ))
@@ -81,7 +87,7 @@ const ThankYou = () => {
                   <p className="font-weight-bold">Subtotal </p>
                 </div>
                 <p>
-                  {CURRENCY} {subtotal}
+                  {curreny_type_State === "EUR" ? "€" : CURRENCY} {subtotal}
                 </p>
               </div>
             </div>

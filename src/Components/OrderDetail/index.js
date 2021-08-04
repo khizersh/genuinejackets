@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { Table } from "reactstrap";
 import { AiOutlineLeft } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 import { CURRENCY } from "../../constant";
 
 const Orders = ({ showOrderDetails, order }) => {
-  useEffect(() => {
-  }, [order])
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
+  useEffect(() => {}, [order]);
   return (
     <div className="h-100 ">
       <AiOutlineLeft
@@ -15,11 +18,19 @@ const Orders = ({ showOrderDetails, order }) => {
         onClick={() => showOrderDetails(false)}
       />
       <div className="d-flex justify-content-between p-1">
-        <p><b>Id:</b> {order?.id}</p>
-        <p><b>Date: </b>{new Date(order?.orderDate).toLocaleDateString()}</p>
+        <p>
+          <b>Id:</b> {order?.id}
+        </p>
+        <p>
+          <b>Date: </b>
+          {new Date(order?.orderDate).toLocaleDateString()}
+        </p>
       </div>
       <div className="d-flex justify-content-between">
-        <p><b>Total: </b>{order?.totalAmount}</p>
+        <p>
+          <b>Total: </b>
+          {order?.totalAmount}
+        </p>
         <p>{order?.coupon ? `<b>Coupon</b> ${order?.couponTitle}` : null}</p>
       </div>
       <div
@@ -40,19 +51,22 @@ const Orders = ({ showOrderDetails, order }) => {
           <tbody className="text-center">
             {order?.productList?.length
               ? order?.productList?.map((ord, ind) => (
-                <tr key={ind}>
-                  <td>{ord?.productTitle}</td>
-                  <td>
-                    <img
-                      src={ord?.productImage}
-                      alt={ord?.productTitle}
-                      style={{ height: "50px" }}
-                    />
-                  </td>
-                  <td>{ord?.quantity}</td>
-                  <td>{CURRENCY}{ord?.price}</td>
-                </tr>
-              ))
+                  <tr key={ind}>
+                    <td>{ord?.productTitle}</td>
+                    <td>
+                      <img
+                        src={ord?.productImage}
+                        alt={ord?.productTitle}
+                        style={{ height: "50px" }}
+                      />
+                    </td>
+                    <td>{ord?.quantity}</td>
+                    <td>
+                      {curreny_type_State === "EUR" ? "€" : CURRENCY}
+                      {ord?.price}
+                    </td>
+                  </tr>
+                ))
               : null}
             {/* <tr>
               <td>Red Jacket</td>

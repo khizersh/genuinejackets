@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBin3Line } from "react-icons/ri";
 
 import "./style.css";
@@ -10,6 +10,9 @@ const CartItem = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const dispatch = useDispatch();
   const removeCart = () => {
     dispatch(remove_from_cart(item.id));
@@ -53,7 +56,7 @@ const CartItem = ({ item }) => {
 
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">
-              {CURRENCY}
+              {curreny_type_State === "EUR" ? "€" : CURRENCY}
               {item?.quantity * item.price}
             </p>
           </div>

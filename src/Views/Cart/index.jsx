@@ -24,6 +24,9 @@ const Cart = () => {
   const [toggle, setToggle] = useState(false);
   const [couponData, setCouponData] = useState("");
   const [couponPrice, setCouponPrice] = useState(0);
+  const curreny_type_State = useSelector(
+    (state) => state.currencyReducer.currency_Value
+  );
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -141,13 +144,13 @@ const Cart = () => {
                 </div>
                 <div>
                   <p>
-                    {CURRENCY}
+                    {curreny_type_State === "EUR" ? "€" : CURRENCY}
                     {subtotal}
                   </p>
                   <p>
                     {toggle ? (
                       <>
-                        {CURRENCY}
+                        {curreny_type_State === "EUR" ? "€" : CURRENCY}
                         {shippingCharge}
                       </>
                     ) : (
@@ -161,7 +164,7 @@ const Cart = () => {
               <div className="d-flex justify-content-between">
                 <p className="font-weight-bold">Order Total</p>
                 <p className="font-weight-bold">
-                  {CURRENCY}
+                  {curreny_type_State === "EUR" ? "€" : CURRENCY}
                   {toggle
                     ? shippingCharge +
                       (couponPrice ? subtotal - couponPrice : subtotal)

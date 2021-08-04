@@ -62,7 +62,7 @@ function SliderCard({ pro }) {
             <Link to={`/product/${slug}/${pro?.id}`}>
               {pro?.title?.length < 37
                 ? pro?.title
-                : pro.title.slice(0, 37) + "..."}
+                : pro.title.slice(0, 32) + "..."}
             </Link>
           </span>
           <div className="d-flex justify-content-center align-items-center">
@@ -77,7 +77,7 @@ function SliderCard({ pro }) {
             ({detail?.reviewCount})
           </div>
           <span tag="h6" className="mb-2 card-product-price pb-5">
-            {CURRENCY}
+            {curreny_type_State === "EUR" ? "€" : CURRENCY}
             {range}
           </span>
         </CardBody>
