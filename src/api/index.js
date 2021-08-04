@@ -37,9 +37,9 @@ export const getParentCategories = function () {
     });
 };
 
-export const getChildCategories = function () {
+export const getChildCategories = function (id) {
   return axios
-    .get(BASE_URL + "/childCategory")
+    .get(BASE_URL + "/childCategory/parent/" + id)
     .then(function (response) {
       return response.data;
     })
@@ -51,6 +51,17 @@ export const getChildCategories = function () {
 export const getParentCategoriesWithChild = function () {
   return axios
     .get(BASE_URL + "/parentCategory/withChild")
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const getCategoryById = function (id) {
+  return axios
+    .get(BASE_URL + "/childCategory/" + id)
     .then(function (response) {
       return response.data;
     })

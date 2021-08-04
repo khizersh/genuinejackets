@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import "./style.css";
@@ -12,8 +10,8 @@ import {
   MOUSE_ACTIVATION,
   TOUCH_ACTIVATION,
 } from "react-image-magnifiers";
-const index = ({ handleCloseModal, isOpen, images, title, detail }) => {
-  const [currentImage, setCurrentImage] = useState(images?.[0].original);
+const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
+  const [currentImage, setCurrentImage] = useState(images[0]?.original);
   console.log(images);
   useEffect(() => {}, [currentImage]);
   return (
@@ -23,8 +21,7 @@ const index = ({ handleCloseModal, isOpen, images, title, detail }) => {
       centered={true}
       size="lg"
       // style={{ width: "100%" }}
-      style={{ maxWidth: "900px", width: "100%", }}
-
+      style={{ maxWidth: "900px", width: "100%" }}
     >
       <ModalBody>
         <div className="row h-100 pt-3 row_Image_modal_wrap">
@@ -94,4 +91,4 @@ const index = ({ handleCloseModal, isOpen, images, title, detail }) => {
   );
 };
 
-export default index;
+export default ImageModal;

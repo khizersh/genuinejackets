@@ -6,12 +6,13 @@ import "rc-slider/assets/index.css";
 
 import "./index.css";
 import SkeletonCard from "../../Components/SkeletonCard";
-import { getProductsByCategory } from "../../api/index";
+import { getCategoryById, getProductsByCategory } from "../../api/index";
 import GlobalCard from "../../Components/GlobalCard/index";
 
 const Index = () => {
   const { slug } = useParams();
   const [range1, setRange1] = useState(null);
+  const [category, setCategory] = useState(null);
   const [range2, setRange2] = useState(0);
   const [volume, setVolume] = useState([0, 0]);
   const [products, setProducts] = useState([]);
@@ -21,31 +22,33 @@ const Index = () => {
   }, [slug, volume]);
   const getProducts = async () => {
     try {
+      const categoryData = await getCategoryById(slug);
       const { data } = await getProductsByCategory(slug);
+      // console.log(categoryData.data);
+      setCategory(categoryData.data);
       setProducts(data);
       const validProducts = data.filter((product) => product.range);
       setProducts(validProducts);
       setPriceFilterProducts(validProducts);
-      // console.log(validProducts);
     } catch (error) {
       return error.message;
     }
   };
 
   useEffect(() => {
-    console.log("After Change", priceFilterProducts, range1);
+    // console.log("After Change", priceFilterProducts, range1);
     priceFilterProducts?.map((element) => {
-      console.log("value 1", parseInt(element.range.split("-")[0].trim()));
-      console.log("value 2", parseInt(element.range.split("-")[1].trim()));
+      // console.log("value 1", parseInt(element.range.split("-")[0].trim()));
+      // console.log("value 2", parseInt(element.range.split("-")[1].trim()));
       if (parseInt(element.range.split("-")[0].trim()) >= range1) {
-        console.log("min", parseInt(element.range.split("-")[0].trim()));
+        // console.log("min", parseInt(element.range.split("-")[0].trim()));
         setRange1(parseInt(element.range.split("-")[0].trim()));
-        console.log("Min State===>", range1);
+        // console.log("Min State===>", range1);
       }
       if (parseInt(element.range.split("-")[1].trim()) >= range2) {
         setRange2(parseInt(element.range.split("-")[1].trim()));
-        console.log("max", parseInt(element.range.split("-")[1].trim()));
-        console.log("Max State===>", range2);
+        // console.log("max", parseInt(element.range.split("-")[1].trim()));
+        // console.log("Max State===>", range2);
       }
     });
     // setRange1(1000);
@@ -72,10 +75,10 @@ const Index = () => {
     setPriceFilterProducts(filteredArray);
   };
   return (
-    <div className="mt-4">
+    <div>
       <div onClick={() => console.log(range1, range2)}>
         <img
-          src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
+          src={category?.banner}
           alt="background cover"
           width="100%"
           height="500px"
@@ -86,6 +89,7 @@ const Index = () => {
           <Link to="#">Home</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>Category</BreadcrumbItem>
+        <BreadcrumbItem>{category?.categoryName}</BreadcrumbItem>
       </Breadcrumb>
       <section className="mt-5">
         <div className="container ">

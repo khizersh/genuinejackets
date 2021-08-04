@@ -59,8 +59,6 @@ const WebNavbar = ({ categories }) => {
       },
       false
     );
-    console.log(user);
-    console.log(curreny_type_State);
     setCurrValue(curreny_type_State);
   }, [isMobile]);
 
@@ -75,7 +73,6 @@ const WebNavbar = ({ categories }) => {
   };
 
   const onSignOut = () => {
-    console.log("signOut");
     dispatch(sign_Out_User());
     dispatch(empty_favourite());
     toast.success("SignOut Successfully");
@@ -92,7 +89,6 @@ const WebNavbar = ({ categories }) => {
   };
   const handleSelectCurrency = ({ currentTarget: { textContent } }) => {
     if (state.length || fav_Array?.length) {
-      console.log("ifd");
       Swal.fire({
         title: "Do you want to Change the Currency Type ?",
         showCancelButton: true,
@@ -125,7 +121,9 @@ const WebNavbar = ({ categories }) => {
               toggle={handleCurrencyDropDown}
               className="currencyDropdown"
             >
-              <DropdownToggle>{currValue} <BiDownArrow /> </DropdownToggle>
+              <DropdownToggle>
+                {currValue} <BiDownArrow />{" "}
+              </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
                   USD
@@ -225,11 +223,9 @@ const WebNavbar = ({ categories }) => {
 
       {/* Bottom  */}
 
-      <div
-        className={`px-5 pb-5 bottom_nav ${switchNavbar ? "sticky_nav" : ""}`}
-      >
-        <div className="row align-items-center justify-content-center ">
-          <div className="col-md-6 text-white p-0 d-flex align-items-center mt-2 ">
+      <div className={`px-5 bottom_nav ${switchNavbar ? "sticky_nav" : ""}`}>
+        <div className="d-flex align-items-center justify-content-center ">
+          <div className="col-md-6 text-white d-flex align-items-center web-dropdown">
             {" "}
             {categories?.length
               ? categories.map((cat, ind) => (
@@ -252,7 +248,7 @@ const WebNavbar = ({ categories }) => {
                         className="categoryButton"
                       >
                         <span
-                          onClick={() => history.push("/categories")}
+                          onClick={() => history.push(`/categories/${cat?.id}`)}
                           className="  "
                         >
                           {cat?.title}
@@ -287,7 +283,7 @@ const WebNavbar = ({ categories }) => {
               : null}
             {/* </Dropdown> */}
           </div>
-          <div className="col-md-6 d-flex justify-content-center searchBar_Wrapper">
+          <div className="col-md-6 d-flex justify-content-center">
             <div className="d-flex justify-content-end align-items-center w-100">
               <input
                 placeholder="Search"

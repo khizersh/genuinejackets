@@ -246,7 +246,7 @@ const ProductDescription = () => {
           </Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          {detail?.title.charAt(0).toUpperCase() + detail?.title.slice(1)}
+          {detail?.title?.charAt(0)?.toUpperCase() + detail?.title?.slice(1)}
         </BreadcrumbItem>
       </Breadcrumb>
       <div className="container">

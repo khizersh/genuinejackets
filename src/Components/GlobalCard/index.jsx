@@ -28,7 +28,7 @@ function GlobalCard({ pro }) {
                 width="100%"
                 height="300px"
                 className="card_img_wrapper"
-                src={`${pro.imageList[0].image}`}
+                src={`${pro?.imageList[0]?.image}`}
                 alt="Card image cap"
               />
             </Link>

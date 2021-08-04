@@ -41,7 +41,7 @@ const Home = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
-          arrows: false
+          arrows: false,
         },
       },
       {
@@ -79,7 +79,7 @@ const Home = () => {
     return <Loader />;
   }
   return (
-    <div className="mt-3">
+    <div>
       <SliderComponent slides={banners} />
 
       <div className="container">
