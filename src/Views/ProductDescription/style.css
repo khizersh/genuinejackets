@@ -16,6 +16,11 @@ html {
   color: gray;
   font-size: 14px;
 }
+
+.count-text {
+  color: #337ab7;
+}
+
 .attributes-heading {
   font-weight: 700;
   text-transform: uppercase;

@@ -20,14 +20,14 @@ const Index = forwardRef(({ detail, indexNumber }, ref) => {
   }));
   return (
     <div>
-      <Tabs
-        selectedIndex={tabIndex}
-      >
+      <Tabs selectedIndex={tabIndex}>
         <TabList>
-          <Tab onClick={()=>setTabIndex(0)}>DESCRIPTION</Tab>
-          <Tab onClick={()=>setTabIndex(1)}>REVIEWS (0)</Tab>
-          <Tab onClick={()=>setTabIndex(2)}>Rating </Tab>
-          <Tab onClick={()=>setTabIndex(3)}>Shipping Details </Tab>
+          <Tab onClick={() => setTabIndex(0)}>DESCRIPTION</Tab>
+          <Tab onClick={() => setTabIndex(1)}>
+            REVIEWS ({detail?.reviewCount})
+          </Tab>
+          <Tab onClick={() => setTabIndex(2)}>Rating </Tab>
+          <Tab onClick={() => setTabIndex(3)}>Shipping Details </Tab>
         </TabList>
 
         <TabPanel className="mt-5">
@@ -35,7 +35,7 @@ const Index = forwardRef(({ detail, indexNumber }, ref) => {
           {!detail?.description ? (
             <Skeleton className="description_Skeleton" height={100} />
           ) : (
-            <p dangerouslySetInnerHTML={{__html: detail?.description}}></p>
+            <p dangerouslySetInnerHTML={{ __html: detail?.description }}></p>
           )}
         </TabPanel>
 

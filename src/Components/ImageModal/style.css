@@ -5,15 +5,14 @@
 }
 .preview_box {
   border: 1px solid gray;
-  height: 40px;
-  /* background-color: black; */
+  height: 50px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .preview_box img {
-  height: 75% !important;
+  height: 90% !important;
 }
 .preview_box:hover {
   border: 2px solid #004b91;
@@ -31,7 +30,7 @@
   border: 2px solid #004b91 !important;
 }
 @media (max-width: 786px) {
-  .modal-content{
+  .modal-content {
     margin: 25px;
   }
 }

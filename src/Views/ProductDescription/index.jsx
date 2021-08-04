@@ -5,6 +5,8 @@ import {
   Label,
   Breadcrumb,
   BreadcrumbItem,
+  Row,
+  Col,
 } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -98,26 +100,26 @@ const ProductDescription = () => {
   // useEffect(() => {}, [curreny_type_State, range]);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
-    if (data.data?.imageList?.length) {
+    if (data?.data?.imageList?.length) {
       let arr = data.data?.imageList.map((img) => ({
         original: img.image,
         thumbnail: img.image,
       }));
       setImages(arr);
     }
-    console.log(data);
+    // console.log(data);
     const favCheck = favourites.find((item) => item.id === data?.data?.id);
     favCheck ? setIsAdded(true) : setIsAdded(false);
-    console.log(favCheck);
-    setDetail(data.data);
-    console.log(curreny_type_State);
-    console.log(data.data);
+    // console.log(favCheck);
+    setDetail(data?.data);
+    // console.log(curreny_type_State);
+    // console.log(data.data);
     if (curreny_type_State === "CAD") {
-      setRange(data.data?.rangeCad);
+      setRange(data?.data?.rangeCad);
     } else if (curreny_type_State === "EUR") {
-      setRange(data.data?.rangeEuro);
+      setRange(data?.data?.rangeEuro);
     } else {
-      setRange(data.data?.range);
+      setRange(data?.data?.range);
     }
     getProducts(data?.data?.categoryId);
   };
@@ -226,7 +228,7 @@ const ProductDescription = () => {
     setShowImageModal(true);
   };
   return (
-    <div className="mb-5 mt-4 ">
+    <div className="mb-5 ">
       <Helmet>
         <title>{`Jackter.com: ${detail?.title}`}</title>
         <meta name="description" content={detail?.description} />
@@ -281,7 +283,8 @@ const ProductDescription = () => {
               ) : (
                 <h1 className="product-price mt-1">
                   {/* {curreny_type_State === "EUR" ? "€" : CURRENCY} {range} */}
-                  {curreny_type_State === "EUR" ? "€" : CURRENCY} {price && price.price ? price?.price : range}
+                  {curreny_type_State === "EUR" ? "€" : CURRENCY}{" "}
+                  {price && price.price ? price?.price : range}
                 </h1>
               )}
             </p>
@@ -302,7 +305,7 @@ const ProductDescription = () => {
                   edit={false}
                   value={detail?.review}
                 />
-                ({detail?.reviewCount})
+                <span className="count-text">({detail?.reviewCount})</span>
               </a>
             )}
             <div className="mt-3">
@@ -518,11 +521,21 @@ const ProductDescription = () => {
         <section className="mt-5 ">
           <h3>Related Items</h3>
           {products.length ? (
-            <Slider {...settings}>
-              {products.map((product, i) => (
-                <SliderCard pro={product} key={i} />
-              ))}
-            </Slider>
+            products.length > 3 ? (
+              <Slider {...settings}>
+                {products.map((product, i) => (
+                  <SliderCard pro={product} key={i} />
+                ))}
+              </Slider>
+            ) : (
+              <Row>
+                <Col md={3}>
+                  {products.map((product, i) => (
+                    <SliderCard pro={product} key={i} />
+                  ))}
+                </Col>
+              </Row>
+            )
           ) : (
             <Slider {...settings}>
               <SkeletonCard />

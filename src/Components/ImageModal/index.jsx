@@ -37,8 +37,8 @@ const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
             />
           </div>
           {/* right*/}
-          <div className="col-sm-1" />
-          <div className="text-right h-100  w-100    col-sm-3 rightWrapper_modal pr-5">
+          {/* <div className="col-sm-1" /> */}
+          <div className="text-right h-100 col-sm-4 rightWrapper_modal pr-5">
             <p
               className="cursor-pointer"
               onClick={() => handleCloseModal(false)}
@@ -52,35 +52,15 @@ const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
                   onClick={() => setCurrentImage(image.original)}
                   className={`${
                     currentImage === image.original ? "active_modalBorder" : " "
-                  } preview_box col-md-2 m-2`}
+                  } preview_box col-md-3 m-1`}
                 >
+                  {/* <div> */}
                   <img
                     onClick={() => setCurrentImage(image.original)}
                     src={image?.thumbnail}
                     alt=""
                   />
-                </div>
-              ))}
-              {images?.map((image) => (
-                <div
-                  onClick={() =>
-                    setCurrentImage(
-                      "https://m.media-amazon.com/images/I/81JqiQGWbFL._AC_SL1500_.jpg"
-                    )
-                  }
-                  className={`${
-                    currentImage ===
-                    "https://m.media-amazon.com/images/I/81JqiQGWbFL._AC_SL1500_.jpg"
-                      ? "active_modalBorder"
-                      : ""
-                  } preview_box col-md-2 m-2`}
-                >
-                  <img
-                    src={
-                      "https://m.media-amazon.com/images/I/81JqiQGWbFL._AC_SL1500_.jpg"
-                    }
-                    alt=""
-                  />
+                  {/* </div> */}
                 </div>
               ))}
             </div>
