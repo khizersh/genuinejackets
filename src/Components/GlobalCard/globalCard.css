@@ -1,5 +1,6 @@
 .product-card-global {
-  height: 410px;
+  height: 380px;
+  padding: 5px 10px;
 }
 .card_img_wrapper {
   height: 280px;
@@ -60,6 +61,7 @@
   box-shadow: 5px 5px 5px #ccc;
   cursor: pointer;
 }
+
 @media (max-width: 970px) {
   .card-body {
     padding: 0px !important;
@@ -73,7 +75,7 @@
     font-size: 14px;
   }
   .product-card-global {
-    height: 320px !important;
+    height: 280px !important;
   }
 }
 @media (max-width: 767px) {

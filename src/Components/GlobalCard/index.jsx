@@ -21,10 +21,10 @@ function GlobalCard({ pro }) {
     setSlug(_slug);
   });
   return (
-    <div className=" pb-5  p-1 mt-5 product-card-global_wrapper scaleY">
-      <Card className="product-card-global p-3">
+    <div className=" pb-5 p-1 pt-0 mt-5 product-card-global_wrapper scaleY">
+      <Card className="product-card-global ">
         <div className="product-img-wrapper">
-          <div className="product-img-wrapper1">
+          <div className="product-img-wrapper">
             <Link to={`/product/${slug}/${pro?.id}`}>
               <CardImg
                 top
@@ -48,7 +48,7 @@ function GlobalCard({ pro }) {
             </Button>
           </div>
         </div>
-        <CardBody className="text-center p-3">
+        <CardBody className="text-center pt-0">
           <span className="card-product-title" tag="h5">
             <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
           </span>
