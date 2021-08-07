@@ -13,9 +13,28 @@ a:hover{
   color: inherit;
 }
 .accordionButton{
-  background: #abafae;
+  background: white;
+  /* border-color: darkgray; */
+  border: 1px solid grey !important;
   color: black;
   padding:16px;
   border: 0;
   font-size: 22px;
+}
+
+.accordionButton:hover{
+  background-color: white !important;
+  background: none !important;
+  color: black;
+  padding:16px;
+  border: 1px solid !important;
+  box-shadow: 5px 10px #888888;
+}
+.accordionButton:focus{
+  background-color: white !important;
+  background: none !important;
+  color: black !important;
+}
+.accordionButton:active{
+  color: black !important;
 }

@@ -6,6 +6,7 @@ import {
   FaGoogle,
   FaVimeoV,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./style.css";
 const index = () => {
   return (
@@ -46,7 +47,8 @@ const index = () => {
                 <li>About Us</li>
                 <li>Business With us</li>
                 <li>Deliver Information</li>
-                <li>Terms {"&"} Condition</li>
+                <li><a href="/help/refund&return">Refund & Return</a></li>
+
               </ul>
             </div>
           </div>
@@ -55,11 +57,11 @@ const index = () => {
             <p className="footer-heading">HELP</p>
             <div className="footer-list  text-left">
               <ul>
-                <li>Contact Us</li>
-                <li>Track Order</li>
-                <li>F.A.Q </li>
-                <li>Privacy Policy</li>
-                <li>Return</li>
+                <li><a href="/help/contact-us">Contact Us</a></li>
+                <li><Link to="/track-order">Track Order</Link></li>
+                <li><a href="/help/faq">F.A.Q</a></li>
+                <li><a href="/help/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/help/term&condition">Refund & Return</a></li>
               </ul>
             </div>
           </div>
