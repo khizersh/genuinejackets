@@ -7,6 +7,8 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import logo from "../../assets/images/Position1.png"
+import name from "../../assets/images/Position2.png"
 
 import {
   DropdownToggle,
@@ -124,12 +126,13 @@ const WebNavbar = ({ categories }) => {
                   alt="logo"
                 />
               </Link> */}
-              <h2>Logo here</h2>
+              <img className="logo" alt="The Genuine Jackets" src={logo}/>
+              {/* <h2>Logo here</h2> */}
             </div>
           </div>
           {/* d-flex justify-content-start */}
           <div className="d-flex justify-content-center m-auto">
-            <h3>Ther genuine jackets</h3>
+          <img  alt="The Genuine Jackets" src={name}/>
           </div>
 
           <div className=" d-flex justify-content-end align-items-center">
