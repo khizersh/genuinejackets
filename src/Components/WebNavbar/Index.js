@@ -132,7 +132,7 @@ const WebNavbar = ({ categories }) => {
           </div>
           {/* d-flex justify-content-start */}
           <div className="d-flex justify-content-center m-auto">
-          <img  alt="The Genuine Jackets" src={name}/>
+          <img className="web-name" alt="The Genuine Jackets" src={name}/>
           </div>
 
           <div className=" d-flex justify-content-end align-items-center">
