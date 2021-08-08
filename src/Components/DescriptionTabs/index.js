@@ -12,10 +12,11 @@ import { getReviews, postReview } from "../../api/index";
 import Review from "../Review";
 import { useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
+import { toast } from "react-toastify";
 const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
   const { user } = useSelector((state) => state.authReducer);
 
@@ -23,7 +24,7 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
     setTabIndex(1);
   };
   const ratingChanged = (newRating) => {
-    alert(newRating);
+    // alert(newRating);
     setRating(newRating);
   };
 
@@ -34,15 +35,23 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
   }));
 
   useEffect(() => {
+    console.log("gfdg");
+    getPrductReviews();
+  }, []);
+
+  useEffect(() => {
     getPrductReviews();
   }, [rating]);
 
   const getPrductReviews = async () => {
     try {
+      console.log(id);
       const allReviews = await getReviews(id);
+      console.log(allReviews);
       setReviews(allReviews?.data);
-      console.log(reviews);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handlePostReview = async () => {
     try {
@@ -54,6 +63,14 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
       };
       const response = await postReview(body);
       console.log(response);
+      if (response?.data?.statusCode === 1) {
+        toast.success("Successfully Rated");
+        getPrductReviews();
+        setReview("");
+        setRating(0);
+      } else {
+        toast.error(response?.data?.message);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -81,23 +98,24 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
 
         <TabPanel>
           <h2 className="pb-4 product-description-tab">Reviews</h2>
-          {!reviews?.length === 0 ? (
+          {!reviews?.length ? (
             <span>
               <p>There are no reviews yet.</p>
               <p style={{ letterSpacing: "2px" }}>
-                Be the first to review “Minty Dress
+                Be the first to review
+                {/* “Minty Dress */}
               </p>
             </span>
           ) : (
-            <div>
-              <Review />
-              <Review />
-              <Review />
-              {/* <Review />
-              <Review />
-              <Review />
-              <Review /> */}
-            </div>
+            reviews.map((rev, ind) => (
+              <Review
+                userImage={rev?.userImage}
+                userName={rev?.userName}
+                reviewCount={rev?.reviewCount}
+                review={rev?.review}
+                key={ind}
+              />
+            ))
           )}
         </TabPanel>
         <TabPanel>
@@ -116,6 +134,7 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
                 size={24}
                 isHalf={true}
                 edit={true}
+                value={rating}
               />
               <textarea
                 name="review"
