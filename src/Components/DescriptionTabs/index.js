@@ -8,16 +8,55 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Table } from "reactstrap";
 import "react-tabs/style/react-tabs.css";
 import Skeleton from "react-loading-skeleton";
-const Index = forwardRef(({ detail, indexNumber }, ref) => {
+import { getReviews, postReview } from "../../api/index";
+import Review from "../Review";
+import { useSelector } from "react-redux";
+import ReactStars from "react-rating-stars-component";
+const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
+  const [reviews, setReviews] = useState([]);
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(1);
   const [tabIndex, setTabIndex] = useState(0);
+  const { user } = useSelector((state) => state.authReducer);
+
   const test = () => {
     setTabIndex(1);
   };
+  const ratingChanged = (newRating) => {
+    alert(newRating);
+    setRating(newRating);
+  };
+
   useImperativeHandle(ref, () => ({
     test() {
       setTabIndex(1);
     },
   }));
+
+  useEffect(() => {
+    getPrductReviews();
+  }, [rating]);
+
+  const getPrductReviews = async () => {
+    const allReviews = await getReviews(id);
+    setReviews(allReviews?.data);
+
+    console.log(reviews);
+  };
+  const handlePostReview = async () => {
+    try {
+      const body = {
+        review,
+        userId: user?.id,
+        reviewCount: rating,
+        productId: id,
+      };
+      const response = await postReview(body);
+      console.log(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div>
       <Tabs selectedIndex={tabIndex}>
@@ -41,25 +80,57 @@ const Index = forwardRef(({ detail, indexNumber }, ref) => {
 
         <TabPanel>
           <h2 className="pb-4 product-description-tab">Reviews</h2>
-          <p>There are no reviews yet.</p>
-          <p style={{ letterSpacing: "2px" }}>
-            Be the first to review “Minty Dress
-          </p>
-          <p>
-            You must be <span style={{ color: "#337ab7" }}>logged in</span> to
-            post a review
-          </p>
+          {!reviews?.length === 0 ? (
+            <span>
+              <p>There are no reviews yet.</p>
+              <p style={{ letterSpacing: "2px" }}>
+                Be the first to review “Minty Dress
+              </p>
+            </span>
+          ) : (
+            <div>
+              <Review />
+              <Review />
+              <Review />
+              <Review />
+              <Review />
+              <Review />
+              <Review />
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
-          <h2 className="pb-4 product-description-tab">Rating</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quas ipsam earum fuga deserunt aliquid iste ducimus libero, eum
-            molestias sapiente modi vel natus, omnis in. Velit vitae ipsa magnam
-            illo. Debitis, ut culpa! Quisquam molestiae unde fuga? Molestiae
-            atque illum earum ipsa praesentium qui aut est dolorum recusandae
-            harum.
-          </p>
+          {!user ? (
+            <p>
+              You must be <span style={{ color: "#337ab7" }}>logged in</span> to
+              post a review
+            </p>
+          ) : (
+            <div>
+              <h2 className="text-muted">Write a review</h2>
+              <ReactStars
+                classNames="rating"
+                onChange={ratingChanged}
+                count={5}
+                size={24}
+                isHalf={true}
+                edit={true}
+              />
+              <textarea
+                name="review"
+                onChange={(e) => setReview(e.target.value)}
+                className="mt-3 rounded-lg p-3 w-100 "
+                style={{ backgroundColor: "#e4e4e4", fontSize: "20px" }}
+                rows="5"
+              ></textarea>
+              <button
+                className="btn btn-success d-block"
+                onClick={handlePostReview}
+              >
+                Post Review
+              </button>
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
           <h2 className="pb-4 product-description-tab">Shipping Details</h2>

@@ -515,6 +515,7 @@ const ProductDescription = () => {
             detail={detail}
             indexNumber={indexNumber}
             ref={myRef}
+            id={slug}
           />
         </section>
         <hr />

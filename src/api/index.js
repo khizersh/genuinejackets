@@ -210,3 +210,26 @@ export const searchProduct = function (search) {
       console.log(error);
     });
 };
+export const getReviews = (id) => {
+  console.log("Api Called", id);
+  return axios
+    .get(BASE_URL + "/review/product/" + id)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const postReview = function (body) {
+  console.log("body***", body);
+  return axios
+    .post(BASE_URL + "/review", body)
+    .then(function (response) {
+      console.log(response)
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error.message);
+    });
+};
