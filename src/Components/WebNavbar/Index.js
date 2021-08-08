@@ -115,40 +115,46 @@ const WebNavbar = ({ categories }) => {
     <div className="main-webnavbar">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
-          <div className=" d-flex justify-content-start ">
-            <Dropdown
-              isOpen={currencyDropDown}
-              toggle={handleCurrencyDropDown}
-              className="currencyDropdown"
-            >
-              <DropdownToggle>
-                {currValue} <BiDownArrow />{" "}
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
-                  USD
-                </DropdownItem>
-                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
-                  EUR
-                </DropdownItem>
-                <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
-                  CAD
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
           <div className=" d-flex justify-content-center">
             <div>
-              <Link to="/">
+              {/* <Link to="/">
                 <img
                   className="logo"
                   src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
                   alt="logo"
                 />
-              </Link>
+              </Link> */}
+              <h2>Logo here</h2>
             </div>
           </div>
+          {/* d-flex justify-content-start */}
+          <div className="d-flex justify-content-center m-auto">
+            <h3>Ther genuine jackets</h3>
+          </div>
+
           <div className=" d-flex justify-content-end align-items-center">
+            <span className="mb-3 mr-4">
+              <Dropdown
+                isOpen={currencyDropDown}
+                toggle={handleCurrencyDropDown}
+                className="currencyDropdown"
+              >
+                <DropdownToggle>
+                  {currValue} <BiDownArrow />{" "}
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                    USD
+                  </DropdownItem>
+                  <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                    EUR
+                  </DropdownItem>
+                  <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
+                    CAD
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </span>
             {!user ? (
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
                 <Link
@@ -283,8 +289,8 @@ const WebNavbar = ({ categories }) => {
               : null}
             {/* </Dropdown> */}
           </div>
-          <div className="col-md-6 d-flex justify-content-center">
-            <div className="d-flex justify-content-end align-items-center w-100">
+          <div className="col-md-6 d-flex justify-content-center ">
+            <div className="d-flex justify-content-end align-items-center w-100 search">
               <input
                 placeholder="Search"
                 className="search-bar"

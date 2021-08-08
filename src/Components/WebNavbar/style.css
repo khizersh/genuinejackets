@@ -50,7 +50,14 @@
   margin-left: -25px;
   color: darkgray;
   cursor: pointer;
+  
 }
+
+.search-icon:hover{
+  color: rgb(247, 247, 66);
+  transition: all 0.3s;
+}
+
 .categoryButton {
   text-align: center;
   display: flex !important;
