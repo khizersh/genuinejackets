@@ -211,7 +211,6 @@ export const searchProduct = function (search) {
     });
 };
 export const getReviews = (id) => {
-  console.log("Api Called", id);
   return axios
     .get(BASE_URL + "/review/product/" + id)
     .then(function (response) {
@@ -222,7 +221,7 @@ export const getReviews = (id) => {
     });
 };
 export const postReview = function (body) {
-  console.log("body***", body);
+  // console.log("body***", body);
   return axios
     .post(BASE_URL + "/review", body)
     .then(function (response) {

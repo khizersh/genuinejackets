@@ -1,0 +1,1569 @@
+{
+	"info": {
+		"_postman_id": "f360e301-b201-4a03-a49e-fdfb4fa5dbb5",
+		"name": "ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get Parent Attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digitalOcean}}/api/parent-attribute",
+					"host": [
+						"{{digitalOcean}}"
+					],
+					"path": [
+						"api",
+						"parent-attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get child attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/child-attribute",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"child-attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add child attribute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Small\",\r\n    \"parentId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/child-attribute",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"child-attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add parent category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryName\":\"Cotton\",\r\n    \"isActive\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/parentCategory",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"parentCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Parent Attribute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Size\",\r\n    \"active\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/parent-attribute",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"parent-attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add child category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "{\n    \"categoryName\":\"child category\",\n    \"active\":true,\n    \"parentId\":1\n}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/khizer/Desktop/khizer stuff/react js/eco/jacket images/8.jpeg"
+						},
+						{
+							"key": "banner",
+							"type": "file",
+							"src": "/C:/Users/khizer/Desktop/khizer stuff/react js/eco/jacket images/6.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/childCategory",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"childCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Parent category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/parentCategory",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"parentCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get child category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/childCategory",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"childCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/product",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"test product 1\",\r\n    \"description\":\"description\",\r\n    \"categoryId\":1,\r\n    \"attributeList\":[\r\n        {\r\n        \"parentAttributeId\":1,\r\n        \"multiImage\":true,\r\n        \"subAttributeList\":[\r\n            { \"childAttributeId\":1},\r\n            { \"childAttributeId\":2},\r\n             { \"childAttributeId\":3}\r\n            ]\r\n    }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/product",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/product/detail/11",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"detail",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Product attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/price-attribute/5",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"price-attribute",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Product attribute price",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"productId\":4,\r\n    \"price\":202\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/price-attribute",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"price-attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product attribute list by product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/price-attribute/product/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"price-attribute",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/user",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add user and send email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "{\n       \"email\":\"khizeroff61@gmail.com\",\n    \"password\":\"khizer\",\n    \"firstName\":\"muhammad\",\n    \"lastName\":\"khizer\"\n\n}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Hp/Desktop/khizer stuff/images/jacket/user.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{eco}}/api/user/process_register",
+					"host": [
+						"{{eco}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"process_register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "Y78Upljctf2WCwguwwNLDrhChOw0nEiDTPLhKrjpWjID4pIbKZhSA7DED5GU60dH",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/user/verify",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{local}}/api/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"khizeroff61@gmail.com\",\r\n    \"password\":\"khizer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/login",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get child category by parent id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/childCategory/parent/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"childCategory",
+						"parent",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get child attribute by parent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/child-attribute/parent/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"child-attribute",
+						"parent",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add attribute images",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageList",
+							"type": "file",
+							"src": "/C:/Users/khizer/Pictures/recipe.png"
+						},
+						{
+							"key": "attribute",
+							"value": "{\n    \"attributeId\":1,\n    \"productId\":4\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/product/attribute-image",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"attribute-image"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get attribute image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/attribute-image",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"attribute-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product sections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{eco}}/api/cache/product",
+					"host": [
+						"{{eco}}"
+					],
+					"path": [
+						"api",
+						"cache",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add section",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"New Arrivals\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{digitalOcean}}/api/section",
+					"host": [
+						"{{digitalOcean}}"
+					],
+					"path": [
+						"api",
+						"section"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add section items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":8,\r\n    \"sectionId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/section-item",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"section-item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add all section item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"sectionId\":1,\r\n    \"productId\":2\r\n    },\r\n    {\r\n    \"sectionId\":1,\r\n    \"productId\":3\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/section-item/all",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"section-item",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/product/category/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"category",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":1,\r\n    \"list\":[\"Medium\", \"Black\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/price-attribute/price",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"price-attribute",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home page banner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digitalOcean}}/api/banner",
+					"host": [
+						"{{digitalOcean}}"
+					],
+					"path": [
+						"api",
+						"banner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add home page banner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/khizer/Pictures/mypic1.png"
+						},
+						{
+							"key": "banner",
+							"value": "{\n    \"title\":\"Banner 2\",\n    \"description\":\"Banner 2\",\n    \"url\":\"www.google.com\"\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{eco}}/api/banner",
+					"host": [
+						"{{eco}}"
+					],
+					"path": [
+						"api",
+						"banner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all categories with child",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/parentCategory/withChild",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"parentCategory",
+						"withChild"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete child category by ud",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/childCategory/7",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"childCategory",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update child category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "{\n    \"id\":1,\n    \"categoryName\":\"Leather\"\n    \n}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/khizer/Desktop/khizer stuff/react js/eco/jacket images/8.jpeg"
+						},
+						{
+							"key": "banner",
+							"type": "file",
+							"src": "/C:/Users/khizer/Desktop/khizer stuff/react js/eco/jacket images/7.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/childCategory/update",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"childCategory",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/khizer/Desktop/khizer stuff/react js/eco/jacket images/8.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/file/uploadFile",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"file",
+						"uploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/product/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product parent attribute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pId\":3,\r\n    \"parentAttributeId\":3,\r\n    \"parentAttributeName\":\"Material\",\r\n    \"multiImage\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/product/parent",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"parent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove sub attribute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"childAttributeId\":3,\r\n    \"parentID\":12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/product/sub",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"sub"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove parent attribute product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/product/remove-parent/17",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"remove-parent",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get coupons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/coupon",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"coupon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add coupon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Coupon 1\",\r\n    \"expiryDate\":\"2021-06-22\",\r\n    \"percentageOff\":12.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/coupon",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"coupon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload image aws",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/storage/uploadFile",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"storage",
+						"uploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"coupon\":false,\r\n    \"totalAmount\":253,\r\n    \"netAmount\":253,\r\n    \"productList\":[\r\n        {\r\n        \"productId\":8,\r\n        \"quantity\":1,\r\n        \"priceId\":49\r\n        },\r\n        {\r\n        \"productId\":9,\r\n        \"quantity\":1,\r\n        \"priceId\":55\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/checkout",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate coupon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{eco}}/api/coupon/validate/COU-2770112",
+					"host": [
+						"{{eco}}"
+					],
+					"path": [
+						"api",
+						"coupon",
+						"validate",
+						"COU-2770112"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bullet points by product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/points/product/11",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"points",
+						"product",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/user/2",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/review",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"review\":\"This is first reviw\",\r\n    \"userId\":3,\r\n    \"reviewCount\":3.5,\r\n    \"productId\":8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/review",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete review",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/review/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"review",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get review by product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/review/product/8",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"review",
+						"product",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"khizeroff61@gmail.com\",\r\n    \"password\":\"khizer\",\r\n    \"userType\":\"normal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/auth",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stripe order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":18,\r\n    \"email\":\"abc@gmail.com\",\r\n    \"token\":\"pm_1J4rKQ2eZvKYlo2CTNATtd9x\",\r\n    \"fullName\" : \"name here\",\r\n    \"checkoutId\":6,\r\n    \"country\":\"pakistan\",\r\n    \"state\" :\"sindh\",\r\n    \"city\":\"karachi\",\r\n    \"addressLine1\":\"line 1\",\r\n    \"addressLine2\":\"line 2\",\r\n    \"postalCode\":\"75050\",\r\n    \"phoneNo\": \"533665565\",\r\n    \"suggestion\":\"keep it simple\"\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/order/stripe",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"stripe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Coupons by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/assign-coupon/user/3",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"assign-coupon",
+						"user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign coupons",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":3,\r\n    \"couponId\":4\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/assign-coupon/user/assign",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"assign-coupon",
+						"user",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all checkouts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/checkout",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Order detail by cehckout id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/order/detail/6",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"detail",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Orders by user id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{eco}}/api/order/user/18",
+					"host": [
+						"{{eco}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"user",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stripe order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "get All Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/order",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get checkout by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/checkout/4",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"checkout",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get All Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/order",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by keyword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/search/jacket",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"search",
+						"jacket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add cache section",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"value": "\n[\n        {\n            \"id\": 1,\n            \"title\": \"New Arrivals\",\n            \"productList\": [\n                {\n                    \"id\": 1,\n                    \"title\": \"Jacket 1\",\n                    \"priceSet\": null,\n                    \"description\": \"Jacket 1\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"120.0 - 120.0\",\n                    \"review\": 4.5,\n                    \"reviewCount\": 1,\n                    \"keywords\": \"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 1,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 3,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 1,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 2,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 1,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        },\n                        {\n                            \"id\": 2,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"title\": \"jacket 2\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 2\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"140.0 - 140.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf\",\n                    \"imageList\": [\n                        {\n                            \"id\": 5,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 6,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 3,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 4,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 3,\n                            \"point\": \"asgasfasfasfsafasf\",\n                            \"productId\": 2\n                        },\n                        {\n                            \"id\": 4,\n                            \"point\": \"asfasfasf\",\n                            \"productId\": 2\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"title\": \"jacket 3\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 3\",\n                    \"categoryId\": 2,\n                    \"categoryName\": \"Cotton\",\n                    \"sequence\": null,\n                    \"range\": \"135.0 - 135.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"asdasdasd,dsfsdgsdg,dfhgdfh\",\n                    \"imageList\": [\n                        {\n                            \"id\": 7,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg\"\n                        },\n                        {\n                            \"id\": 8,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg\"\n                        },\n                        {\n                            \"id\": 9,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\"\n                        },\n                        {\n                            \"id\": 10,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 5,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 3,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 5,\n                            \"point\": \"Size: large\",\n                            \"productId\": 3\n                        }\n                    ]\n                },\n                {\n                    \"id\": 1,\n                    \"title\": \"Jacket 1\",\n                    \"priceSet\": null,\n                    \"description\": \"Jacket 1\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"120.0 - 120.0\",\n                    \"review\": 4.5,\n                    \"reviewCount\": 1,\n                    \"keywords\": \"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 1,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 3,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 1,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 2,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 1,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        },\n                        {\n                            \"id\": 2,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"title\": \"jacket 2\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 2\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"140.0 - 140.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf\",\n                    \"imageList\": [\n                        {\n                            \"id\": 5,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 6,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 3,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 4,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 3,\n                            \"point\": \"asgasfasfasfsafasf\",\n                            \"productId\": 2\n                        },\n                        {\n                            \"id\": 4,\n                            \"point\": \"asfasfasf\",\n                            \"productId\": 2\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"title\": \"jacket 3\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 3\",\n                    \"categoryId\": 2,\n                    \"categoryName\": \"Cotton\",\n                    \"sequence\": null,\n                    \"range\": \"135.0 - 135.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"asdasdasd,dsfsdgsdg,dfhgdfh\",\n                    \"imageList\": [\n                        {\n                            \"id\": 7,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg\"\n                        },\n                        {\n                            \"id\": 8,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg\"\n                        },\n                        {\n                            \"id\": 9,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\"\n                        },\n                        {\n                            \"id\": 10,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 5,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 3,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 5,\n                            \"point\": \"Size: large\",\n                            \"productId\": 3\n                        }\n                    ]\n                },\n                {\n                    \"id\": 6,\n                    \"title\": \"Jacket 6\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>Jacket 6</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"111.0 - 111.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"Jacket 6,asfas\",\n                    \"imageList\": [\n                        {\n                            \"id\": 15,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 16,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 17,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 8,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 6,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 8,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 8,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 8,\n                            \"point\": \"<p>Jacket 6</p>\",\n                            \"productId\": 6\n                        }\n                    ]\n                },\n                {\n                    \"id\": 5,\n                    \"title\": \"Jacket 5\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>Jacket 5</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"133.0 - 133.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"Jacket 5,asfgasg,asgasgfasg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 12,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 13,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                        },\n                        {\n                            \"id\": 14,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 7,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 5,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 7,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 7,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 9,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 5,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 9,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661418166-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661419914-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661420012-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 7,\n                            \"point\": \"<p>Jacket 5 Jacket 5</p>\",\n                            \"productId\": 5\n                        }\n                    ]\n                },\n                {\n                    \"id\": 4,\n                    \"title\": \"jacket 4\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>jacket 4</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"122.0 - 122.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"sdasfasg,gsdhsdf,dgsdhgdfhg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 11,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569037448-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 6,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 4,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 6,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041067-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041250-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041361-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 6,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043345-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043463-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043551-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 6,\n                            \"point\": \"<ul><li>Size : Large , Medium , Small</li><li>Color: Black , Brown</li></ul>\",\n                            \"productId\": 4\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Hot Shops\",\n            \"productList\": [\n                {\n                    \"id\": 1,\n                    \"title\": \"Jacket 1\",\n                    \"priceSet\": null,\n                    \"description\": \"Jacket 1\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"120.0 - 120.0\",\n                    \"review\": 4.5,\n                    \"reviewCount\": 1,\n                    \"keywords\": \"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 1,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 3,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 1,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 2,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 1,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        },\n                        {\n                            \"id\": 2,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"title\": \"jacket 2\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 2\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"140.0 - 140.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf\",\n                    \"imageList\": [\n                        {\n                            \"id\": 5,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 6,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 3,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 4,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 3,\n                            \"point\": \"asgasfasfasfsafasf\",\n                            \"productId\": 2\n                        },\n                        {\n                            \"id\": 4,\n                            \"point\": \"asfasfasf\",\n                            \"productId\": 2\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"title\": \"jacket 3\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 3\",\n                    \"categoryId\": 2,\n                    \"categoryName\": \"Cotton\",\n                    \"sequence\": null,\n                    \"range\": \"135.0 - 135.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"asdasdasd,dsfsdgsdg,dfhgdfh\",\n                    \"imageList\": [\n                        {\n                            \"id\": 7,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg\"\n                        },\n                        {\n                            \"id\": 8,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg\"\n                        },\n                        {\n                            \"id\": 9,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\"\n                        },\n                        {\n                            \"id\": 10,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 5,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 3,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 5,\n                            \"point\": \"Size: large\",\n                            \"productId\": 3\n                        }\n                    ]\n                },\n                {\n                    \"id\": 1,\n                    \"title\": \"Jacket 1\",\n                    \"priceSet\": null,\n                    \"description\": \"Jacket 1\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"120.0 - 120.0\",\n                    \"review\": 4.5,\n                    \"reviewCount\": 1,\n                    \"keywords\": \"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 1,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 3,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 1,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 1,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 2,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 1,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 2,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 1,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        },\n                        {\n                            \"id\": 2,\n                            \"point\": \"this is product 1\",\n                            \"productId\": 1\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"title\": \"jacket 2\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 2\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"140.0 - 140.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf\",\n                    \"imageList\": [\n                        {\n                            \"id\": 5,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 6,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 3,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 3,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 4,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 2,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 4,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 3,\n                            \"point\": \"asgasfasfasfsafasf\",\n                            \"productId\": 2\n                        },\n                        {\n                            \"id\": 4,\n                            \"point\": \"asfasfasf\",\n                            \"productId\": 2\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"title\": \"jacket 3\",\n                    \"priceSet\": null,\n                    \"description\": \"jacket 3\",\n                    \"categoryId\": 2,\n                    \"categoryName\": \"Cotton\",\n                    \"sequence\": null,\n                    \"range\": \"135.0 - 135.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"asdasdasd,dsfsdgsdg,dfhgdfh\",\n                    \"imageList\": [\n                        {\n                            \"id\": 7,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg\"\n                        },\n                        {\n                            \"id\": 8,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg\"\n                        },\n                        {\n                            \"id\": 9,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg\"\n                        },\n                        {\n                            \"id\": 10,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 5,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 3,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 5,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 5,\n                            \"point\": \"Size: large\",\n                            \"productId\": 3\n                        }\n                    ]\n                },\n                {\n                    \"id\": 6,\n                    \"title\": \"Jacket 6\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>Jacket 6</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"111.0 - 111.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"Jacket 6,asfas\",\n                    \"imageList\": [\n                        {\n                            \"id\": 15,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 16,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                        },\n                        {\n                            \"id\": 17,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 8,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 6,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 8,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 8,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 8,\n                            \"point\": \"<p>Jacket 6</p>\",\n                            \"productId\": 6\n                        }\n                    ]\n                },\n                {\n                    \"id\": 5,\n                    \"title\": \"Jacket 5\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>Jacket 5</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"133.0 - 133.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"Jacket 5,asfgasg,asgasgfasg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 12,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                        },\n                        {\n                            \"id\": 13,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                        },\n                        {\n                            \"id\": 14,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 7,\n                            \"parentTitle\": \"Size\",\n                            \"parentAttributeId\": null,\n                            \"multi\": null,\n                            \"productId\": 5,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 2,\n                                    \"title\": \"Medium\",\n                                    \"parentId\": 7,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 1,\n                                    \"title\": \"Large\",\n                                    \"parentId\": 7,\n                                    \"attributeImage\": [],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        },\n                        {\n                            \"id\": 9,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 5,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 9,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661418166-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661419914-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661420012-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 7,\n                            \"point\": \"<p>Jacket 5 Jacket 5</p>\",\n                            \"productId\": 5\n                        }\n                    ]\n                },\n                {\n                    \"id\": 4,\n                    \"title\": \"jacket 4\",\n                    \"priceSet\": null,\n                    \"description\": \"<p>jacket 4</p>\",\n                    \"categoryId\": 1,\n                    \"categoryName\": \"Leather\",\n                    \"sequence\": null,\n                    \"range\": \"122.0 - 122.0\",\n                    \"review\": 0.0,\n                    \"reviewCount\": 0,\n                    \"keywords\": \"sdasfasg,gsdhsdf,dgsdhgdfhg\",\n                    \"imageList\": [\n                        {\n                            \"id\": 11,\n                            \"image\": \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569037448-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\"\n                        }\n                    ],\n                    \"attributeList\": [\n                        {\n                            \"id\": 6,\n                            \"parentTitle\": \"Color\",\n                            \"parentAttributeId\": null,\n                            \"multi\": true,\n                            \"productId\": 4,\n                            \"childAttributeList\": [\n                                {\n                                    \"id\": 3,\n                                    \"title\": \"Black\",\n                                    \"parentId\": 6,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041067-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041250-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041361-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                },\n                                {\n                                    \"id\": 4,\n                                    \"title\": \"Brown\",\n                                    \"parentId\": 6,\n                                    \"attributeImage\": [\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043345-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043463-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg\",\n                                        \"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043551-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg\"\n                                    ],\n                                    \"attributeImageFull\": []\n                                }\n                            ]\n                        }\n                    ],\n                    \"bulletList\": [\n                        {\n                            \"id\": 6,\n                            \"point\": \"<ul><li>Size : Large , Medium , Small</li><li>Color: Black , Brown</li></ul>\",\n                            \"productId\": 4\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/section/cache",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"section",
+						"cache"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cache section",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digitalOcean}}/api/section",
+					"host": [
+						"{{digitalOcean}}"
+					],
+					"path": [
+						"api",
+						"section"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cache product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/cache/product",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"cache",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search fro cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/search/cache/x",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"search",
+						"cache",
+						"x"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove section item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sectionId\":1,\r\n    \"productId\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{digitalOcean}}/api/section-item/remove",
+					"host": [
+						"{{digitalOcean}}"
+					],
+					"path": [
+						"api",
+						"section-item",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit banner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

@@ -38,10 +38,11 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
   }, [rating]);
 
   const getPrductReviews = async () => {
-    const allReviews = await getReviews(id);
-    setReviews(allReviews?.data);
-
-    console.log(reviews);
+    try {
+      const allReviews = await getReviews(id);
+      setReviews(allReviews?.data);
+      console.log(reviews);
+    } catch (error) {}
   };
   const handlePostReview = async () => {
     try {
@@ -92,10 +93,10 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
               <Review />
               <Review />
               <Review />
+              {/* <Review />
               <Review />
               <Review />
-              <Review />
-              <Review />
+              <Review /> */}
             </div>
           )}
         </TabPanel>
