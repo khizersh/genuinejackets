@@ -98,12 +98,13 @@ const ProductDescription = () => {
     window.scrollTo(0, 0);
   }, [slug, isAdded, curreny_type_State]);
   // useEffect(() => {}, [curreny_type_State, range]);
+
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
     if (data?.data?.imageList?.length) {
       let arr = data.data?.imageList.map((img) => ({
-        original: img.image,
-        thumbnail: img.image,
+        original: img?.image,
+        thumbnail: img?.image,
       }));
       setImages(arr);
     }
@@ -189,10 +190,10 @@ const ProductDescription = () => {
       let attrData = detail?.attributeList[ind].childAttributeList.find(
         (e) => e.title === dup[ind]
       );
-      if (attrData && attrData.attributeImage?.length) {
-        let imgArr = attrData.attributeImage.map((img) => ({
-          original: img,
-          thumbnail: img,
+      if (attrData && attrData.attributeImageFull?.length) {
+        let imgArr = attrData.attributeImageFull.map((img) => ({
+          original: img?.image,
+          thumbnail: img?.image,
         }));
         setImages(imgArr);
       }
@@ -338,8 +339,8 @@ const ProductDescription = () => {
                         <div>
                           {attribute?.childAttributeList?.length
                             ? attribute?.childAttributeList.map((attr, ind) =>
-                                attr?.attributeImage?.length
-                                  ? attr?.attributeImage.map((attr_img, i) => {
+                                attr?.attributeImageFull?.length
+                                  ? attr?.attributeImageFull.map((attr_img, i) => {
                                       if (i === 0) {
                                         return (
                                           <span
@@ -350,7 +351,7 @@ const ProductDescription = () => {
                                               {attr.title}
                                             </p>
                                             <img
-                                              src={attr_img}
+                                              src={attr_img?.image}
                                               key={i}
                                               width={55}
                                               height={65}

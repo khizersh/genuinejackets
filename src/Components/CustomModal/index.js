@@ -44,8 +44,8 @@ const CustomModal = (props) => {
   useEffect(() => {
     if (detail?.imageList?.length) {
       let arr = detail?.imageList.map((img) => ({
-        original: img.image,
-        thumbnail: img.image,
+        original: img?.image,
+        thumbnail: img?.image,
       }));
       setImages(arr);
     }
@@ -107,8 +107,8 @@ const CustomModal = (props) => {
     // console.log(detail?.attributeList);
     if (!val) {
       let arr = detail?.imageList.map((img) => ({
-        original: img.image,
-        thumbnail: img.image,
+        original: img?.image,
+        thumbnail: img?.image,
       }));
       return setImages(arr);
     }
@@ -118,11 +118,11 @@ const CustomModal = (props) => {
         (e) => e.title === dup[ind]
       );
       // console.log(attrData);
-      if (attrData && attrData.attributeImage?.length) {
+      if (attrData && attrData.attributeImageFull?.length) {
         // console.log(attrData.attributeImage);
-        let imgArr = attrData.attributeImage.map((img) => ({
-          original: img,
-          thumbnail: img,
+        let imgArr = attrData.attributeImageFull.map((img) => ({
+          original: img?.image,
+          thumbnail: img?.image,
         }));
         // console.log(imgArr);
         setImages(imgArr);
@@ -195,8 +195,8 @@ const CustomModal = (props) => {
                           <div>
                             {attribute?.childAttributeList?.length
                               ? attribute?.childAttributeList.map((attr, ind) =>
-                                  attr?.attributeImage?.length
-                                    ? attr?.attributeImage.map(
+                                  attr?.attributeImageFull?.length
+                                    ? attr?.attributeImageFull.map(
                                         (attr_img, i) => {
                                           if (i === 0) {
                                             return (
@@ -208,7 +208,7 @@ const CustomModal = (props) => {
                                                   {attr.title}
                                                 </p>
                                                 <img
-                                                  src={attr_img}
+                                                  src={attr_img?.image}
                                                   key={i}
                                                   width={55}
                                                   height={65}
