@@ -119,15 +119,9 @@ const WebNavbar = ({ categories }) => {
         <div className="row topNavbar justify-content-between">
           <div className=" d-flex justify-content-center">
             <div>
-              {/* <Link to="/">
-                <img
-                  className="logo"
-                  src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
-                  alt="logo"
-                />
-              </Link> */}
+              <Link to="/">
                 <img className="logo" alt="The Genuine Jackets" src={logo} />
-              {/* <h2>Logo here</h2> */}
+              </Link>
             </div>
           </div>
           {/* d-flex justify-content-start */}

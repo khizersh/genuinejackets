@@ -94,7 +94,9 @@ const Index = () => {
   };
 
   const onApprove = (data, actions) => {
-    console.log("--------");
+    alert("paypal data: ", JSON.stringify(data))
+    alert("paypal action: ", JSON.stringify(actions))
+    console.log("-------- paypal");
     console.log(data, actions);
     console.log("--------");
     return actions.order.capture();
@@ -236,7 +238,8 @@ const Index = () => {
               <PayPalScriptProvider
                 options={{
                   "client-id":
-                    "AV0SphzJXIIxL1bScZHl04glMe-rKhYC19lErrS03X0pkzrD6Di2EnEv3s2bViZZEgfp2Nhuk9sP0aP1",
+                    // "AV0SphzJXIIxL1bScZHl04glMe-rKhYC19lErrS03X0pkzrD6Di2EnEv3s2bViZZEgfp2Nhuk9sP0aP1",
+                    "AamgEnuHSgLxEc-XRh_YdhCjtRKB5zKyDc5KiRrz0buakexaxkJwEESIrzBcD-MJTxo9sNxjUd6MuvNx",
                 }}
               >
                 <PayPalButtons

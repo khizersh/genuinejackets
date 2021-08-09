@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { PersistGate } from "redux-persist/integration/react";
 import "bootstrap/dist/css/bootstrap.css";
-import "react-activity/dist/Spinner.css";
+// import "react-activity/dist/Spinner.css";
 
 import "./App.css";
 import { store, persistor } from "./Store/index";

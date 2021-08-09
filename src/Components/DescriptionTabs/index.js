@@ -17,6 +17,7 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [file, setFile] = useState(null);
   const [tabIndex, setTabIndex] = useState(0);
   const { user } = useSelector((state) => state.authReducer);
 
@@ -35,7 +36,6 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
   }));
 
   useEffect(() => {
-    console.log("gfdg");
     getPrductReviews();
   }, []);
 
@@ -45,9 +45,7 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
 
   const getPrductReviews = async () => {
     try {
-      console.log(id);
       const allReviews = await getReviews(id);
-      console.log(allReviews);
       setReviews(allReviews?.data);
     } catch (error) {
       console.log(error);
@@ -61,7 +59,10 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
         reviewCount: rating,
         productId: id,
       };
-      const response = await postReview(body);
+      let form = new FormData();
+      form.append("reviewString", JSON.stringify(body));
+      form.append("file", file);
+      const response = await postReview(form);
       console.log(response);
       if (response?.data?.statusCode === 1) {
         toast.success("Successfully Rated");
@@ -75,6 +76,10 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
       console.log(error.message);
     }
   };
+
+  const onClickImage = (e) => {
+    setFile(e.target.files[0]);
+  };
   return (
     <div>
       <Tabs selectedIndex={tabIndex}>
@@ -83,7 +88,7 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
           <Tab onClick={() => setTabIndex(1)}>
             REVIEWS ({detail?.reviewCount})
           </Tab>
-          <Tab onClick={() => setTabIndex(2)}>Rating </Tab>
+          <Tab onClick={() => setTabIndex(2)}>Return & Refund</Tab>
           <Tab onClick={() => setTabIndex(3)}>Shipping Details </Tab>
         </TabList>
 
@@ -97,60 +102,83 @@ const Index = forwardRef(({ detail, id, indexNumber }, ref) => {
         </TabPanel>
 
         <TabPanel>
-          <h2 className="pb-4 product-description-tab">Reviews</h2>
-          {!reviews?.length ? (
-            <span>
-              <p>There are no reviews yet.</p>
-              <p style={{ letterSpacing: "2px" }}>
-                Be the first to review
-                {/* “Minty Dress */}
-              </p>
-            </span>
-          ) : (
-            reviews.map((rev, ind) => (
-              <Review
-                userImage={rev?.userImage}
-                userName={rev?.userName}
-                reviewCount={rev?.reviewCount}
-                review={rev?.review}
-                key={ind}
-              />
-            ))
-          )}
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-12">
+                <h2 className="pb-4 product-description-tab">Reviews</h2>
+                {!reviews?.length ? (
+                  <span>
+                    <p>There are no reviews yet.</p>
+                    <p style={{ letterSpacing: "2px" }}>
+                      Be the first to review
+                      {/* “Minty Dress */}
+                    </p>
+                  </span>
+                ) : (
+                  reviews.map((rev, ind) => (
+                    <Review
+                      userImage={rev?.userImage}
+                      userName={rev?.userName}
+                      reviewCount={rev?.reviewCount}
+                      review={rev?.review}
+                      reviewImage={rev?.reviewImage}
+                      key={ind}
+                    />
+                  ))
+                )}
+              </div>
+              <div className="col-lg-6 col-12">
+                {!user ? (
+                  <p>
+                    You must be{" "}
+                    <span style={{ color: "#337ab7" }}>logged in</span> to post
+                    a review
+                  </p>
+                ) : (
+                  <div>
+                    <h2 className="text-muted">Write a review</h2>
+                    <ReactStars
+                      classNames="rating"
+                      onChange={ratingChanged}
+                      count={5}
+                      size={24}
+                      isHalf={true}
+                      edit={true}
+                      value={rating}
+                    />
+                    <textarea
+                      name="review"
+                      onChange={(e) => setReview(e.target.value)}
+                      className="mt-3 rounded-lg p-3 w-100 "
+                      style={{ backgroundColor: "#e4e4e4", fontSize: "20px" }}
+                      rows="5"
+                    ></textarea>
+                    <div className="form-group">
+                      <label>Attach image</label>
+                      <input type="file" className="" onChange={onClickImage} />
+                    </div>
+                    <button
+                      className="btn btn-success d-block"
+                      onClick={handlePostReview}
+                    >
+                      Post Review
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel>
-          {!user ? (
-            <p>
-              You must be <span style={{ color: "#337ab7" }}>logged in</span> to
-              post a review
-            </p>
-          ) : (
-            <div>
-              <h2 className="text-muted">Write a review</h2>
-              <ReactStars
-                classNames="rating"
-                onChange={ratingChanged}
-                count={5}
-                size={24}
-                isHalf={true}
-                edit={true}
-                value={rating}
-              />
-              <textarea
-                name="review"
-                onChange={(e) => setReview(e.target.value)}
-                className="mt-3 rounded-lg p-3 w-100 "
-                style={{ backgroundColor: "#e4e4e4", fontSize: "20px" }}
-                rows="5"
-              ></textarea>
-              <button
-                className="btn btn-success d-block"
-                onClick={handlePostReview}
-              >
-                Post Review
-              </button>
-            </div>
-          )}
+        <h2 className="pb-4 product-description-tab">Shipping & Refund</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+            quas ipsam earum fuga deserunt aliquid iste ducimus libero, eum
+            molestias sapiente modi vel natus, omnis in. Velit vitae ipsa magnam
+            illo. Debitis, ut culpa! Quisquam molestiae unde fuga? Molestiae
+            atque illum earum ipsa praesentium qui aut est dolorum recusandae
+            harum.
+          </p>
         </TabPanel>
         <TabPanel>
           <h2 className="pb-4 product-description-tab">Shipping Details</h2>
