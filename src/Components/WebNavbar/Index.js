@@ -117,7 +117,7 @@ const WebNavbar = ({ categories }) => {
     <div className="main-webnavbar">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
-          <div className=" d-flex justify-content-center" >
+          <div className=" d-flex justify-content-center" style={{marginTop:'-8px'}}>
             <div>
               <Link to="/">
                 <img className="logo" alt="The Genuine Jackets" src={logo} />
@@ -125,7 +125,7 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           {/* d-flex justify-content-start */}
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around" style={{marginTop:'-5px'}}>
             <Link to="/">
               <img className="web-name" alt="The Genuine Jackets" src={name} />
             </Link>
