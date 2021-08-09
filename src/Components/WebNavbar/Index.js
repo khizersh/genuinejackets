@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
-import { BiDownArrow } from "react-icons/bi";
+import { BiChevronDown } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -125,21 +125,21 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           {/* d-flex justify-content-start */}
-          <div className="d-flex justify-content-center m-auto">
+          <div className="d-flex justify-content-around mt-2">
             <Link to="/">
               <img className="web-name" alt="The Genuine Jackets" src={name} />
             </Link>
           </div>
 
           <div className=" d-flex justify-content-end align-items-center">
-            <span className="mb-3 mr-4">
+            <span style={{marginBottom:'4px'}}>
               <Dropdown
                 isOpen={currencyDropDown}
                 toggle={handleCurrencyDropDown}
                 className="currencyDropdown"
               >
                 <DropdownToggle>
-                  {currValue} <BiDownArrow />{" "}
+                  {currValue} <BiChevronDown />{" "}
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem onClick={(e) => handleSelectCurrency(e)}>
