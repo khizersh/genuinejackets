@@ -15,7 +15,7 @@
 
 .currencyDropdown button {
   color: #6c757d;
-  border-color: #6c757d;
+  border-color: white !important;
   background: none;
   border-radius: 0;
   display: flex;
