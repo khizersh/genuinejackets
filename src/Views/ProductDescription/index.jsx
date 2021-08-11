@@ -311,6 +311,7 @@ const ProductDescription = () => {
             )}
             <div className="mt-3">
               {/* <ul className="pl-3"> */}
+             <h5>Product Specification</h5> 
               {!detail ? (
                 <div className="d-flex flex-column">
                   <Skeleton height={20} width={250} />
@@ -320,6 +321,7 @@ const ProductDescription = () => {
                 detail?.bulletList.map((list, i) => (
                   <span
                     key={i}
+                    className="prod-desc"
                     dangerouslySetInnerHTML={{ __html: list?.point }}
                   ></span>
                 ))

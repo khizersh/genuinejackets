@@ -2,6 +2,8 @@
   height: 50px;
   width: 200px;
   margin: 0px 0px 0px 0px !important;
+  position: relative;
+  left: -44%;
   
 }
 
