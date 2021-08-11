@@ -125,7 +125,7 @@ const WebNavbar = ({ categories }) => {
             </div>
           </div>
           {/* d-flex justify-content-start */}
-          <div className="d-flex justify-content-around" style={{marginTop:'-5px'}}>
+          <div className="d-flex justify-content-around" >
             <Link to="/">
               <img className="web-name" alt="The Genuine Jackets" src={name} />
             </Link>
