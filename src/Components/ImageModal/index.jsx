@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 
 import "./style.css";
 import {
@@ -10,6 +10,8 @@ import {
   MOUSE_ACTIVATION,
   TOUCH_ACTIVATION,
 } from "react-image-magnifiers";
+import { AiOutlineClose } from "react-icons/ai";
+
 const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
   const [currentImage, setCurrentImage] = useState(images[0]?.original);
   console.log(images);
@@ -17,7 +19,7 @@ const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
   return (
     <Modal
       isOpen={isOpen}
-      toggle={handleCloseModal}
+      toggle={() => handleCloseModal(false)}
       centered={true}
       size="lg"
       // style={{ width: "100%" }}
@@ -43,7 +45,7 @@ const ImageModal = ({ handleCloseModal, isOpen, images, title, detail }) => {
               className="cursor-pointer"
               onClick={() => handleCloseModal(false)}
             >
-              X
+              <AiOutlineClose size="22" />
             </p>
             <h4>{title}</h4>
             <div className="row">

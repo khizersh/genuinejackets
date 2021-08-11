@@ -50,7 +50,11 @@ function GlobalCard({ pro }) {
         </div>
         <CardBody className="text-center pt-0">
           <span className="card-product-title" tag="h5">
-            <Link to={`/product/${slug}/${pro?.id}`}>{pro.title}</Link>
+            <Link to={`/product/${slug}/${pro?.id}`}>
+              {pro?.title?.length < 37
+                ? pro?.title
+                : pro.title.slice(0, 32) + "..."}
+            </Link>
           </span>
           <div className="d-flex justify-content-center align-items-center">
             <ReactStars

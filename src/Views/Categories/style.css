@@ -1,3 +1,7 @@
+.categories-list li:hover{
+  color: #337ab7;
+}
+
 .card-wrapper {
   margin-top: 100px;
 }
@@ -19,7 +23,8 @@
   .filter {
     display: none;
   }
-  .left-wrapper, .right-wrapper {
+  .left-wrapper,
+  .right-wrapper {
     margin-top: 0px;
     padding: 0px;
   }
@@ -30,6 +35,6 @@
     margin-top: 10px;
   }
 }
-.bg-gray{
+.bg-gray {
   background-color: "red" !important;
 }

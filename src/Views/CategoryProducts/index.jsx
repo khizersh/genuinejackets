@@ -103,7 +103,7 @@ const Index = () => {
                     min={range1}
                     step={10}
                     max={range2}
-                    value={[range1,range2]}
+                    value={[range1, range2]}
                     onChange={setVolume}
                     onAfterChange={afterHandleChange}
                   />
@@ -116,24 +116,21 @@ const Index = () => {
             <div className="col-md-9 ">
               <div className="row p-0 m-0 ">
                 {!products.length ? (
-                  <div className="row p-0 w-full ">
-                    <div className="col-xl-3  center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
+                  <div className="row p-0 w-full">
+                    <div className="col-xl-4 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
                       <SkeletonCard />
                     </div>
-                    <div className=" col-xl-3 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
+                    <div className=" col-xl-4 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
                       <SkeletonCard />
                     </div>
-                    <div className=" col-xl-3 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
-                      <SkeletonCard />
-                    </div>
-                    <div className=" col-xl-3 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
+                    <div className=" col-xl-4 center col-md-4 col-sm-6 col-12 mt-2 p-0 ">
                       <SkeletonCard />
                     </div>
                   </div>
                 ) : (
                   priceFilterProducts.map((item, index) => (
                     <div
-                      className="col-xl-3 col-md-4 col-sm-6 col-12 m-0 p-0 "
+                      className="col-xl-4 col-md-4 col-sm-6 col-12 m-0 p-0 "
                       key={index}
                     >
                       <GlobalCard pro={item} className="w-100" />

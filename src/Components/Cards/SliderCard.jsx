@@ -68,12 +68,13 @@ function SliderCard({ pro }) {
           <div className="d-flex justify-content-center align-items-center">
             <ReactStars
               count={5}
-              onChange={(ratingChanged) => console.log(ratingChanged)}
+              // onChange={(ratingChanged) => console.log(ratingChanged)}
               size={24}
               isHalf={true}
               edit={false}
               value={detail?.review}
-            />{" "}
+              key={detail?.review}
+            />
             ({detail?.reviewCount})
           </div>
           <span tag="h6" className="mb-2 card-product-price pb-5">

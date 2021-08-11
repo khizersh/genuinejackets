@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
@@ -24,8 +24,22 @@ const Categories = () => {
     };
     getData();
   }, []);
+
+  const useWindowSize = () => {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      function updateSize() {
+        setSize([window.innerWidth, window.innerHeight]);
+      }
+      window.addEventListener("resize", updateSize);
+      updateSize();
+      return () => window.removeEventListener("resize", updateSize);
+    }, []);
+    return size;
+  };
+  const [width, height] = useWindowSize();
   return (
-    <Container className="mt-5">
+    <div className={`${width > 1199 ? "container" : "container-fluid px-5"} mt-5`}>
       <Row>
         <Col sm={0} md={3} className="p-0 filter">
           {parentCategories?.length
@@ -36,7 +50,7 @@ const Categories = () => {
                 return (
                   <section key={ind}>
                     <h5>{cat?.title}:</h5>
-                    <ul>
+                    <ul className="categories-list">
                       {cat?.childList?.length
                         ? cat?.childList?.map((child_cat, index) => (
                             <li key={index}>
@@ -87,7 +101,7 @@ const Categories = () => {
           </Row>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

@@ -156,7 +156,7 @@ const CustomModal = (props) => {
         <ModalBody style={{ minHeight: "500px", width: "100%" }}>
           <div className="row w-100 ">
             <div className="col-md-6  d-flex justify-content-center align-items-center">
-              <Slider>
+              <Slider infinite={false}>
                 {images?.length
                   ? images.map((slide, index) => (
                       <img

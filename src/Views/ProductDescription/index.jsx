@@ -346,7 +346,7 @@ const ProductDescription = () => {
                                       if (i === 0) {
                                         return (
                                           <span
-                                            className="d-inline-block"
+                                            className="d-inline-block mr-3"
                                             key={ind}
                                           >
                                             <p className="text-center mb-2">
@@ -358,7 +358,7 @@ const ProductDescription = () => {
                                               width={55}
                                               height={65}
                                               className={
-                                                "p-1 m-1 attribute-img rounded-circle " +
+                                                "p-1 m-1 attribute-img rounded-circle" +
                                                 (isActive === ind
                                                   ? "img-active"
                                                   : "")

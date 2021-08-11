@@ -115,7 +115,7 @@ const WebNavbar = ({ categories }) => {
 
   return (
     <div className="main-webnavbar">
-      <div className={`${isMobile ? "container" : "container-fluid"}  `}>
+      <div className="container-fluid px-5">
         <div className="row topNavbar justify-content-between">
           <div className=" d-flex justify-content-center" style={{marginTop:'-8px'}}>
             <div>
